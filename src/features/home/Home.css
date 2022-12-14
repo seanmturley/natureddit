@@ -1,5 +1,7 @@
 .home {
   position: absolute;
   top: 6em;
+  height: 100%;
   display: flex;
+  overflow: auto;
 }
