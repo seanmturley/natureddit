@@ -1,16 +1,21 @@
 import React from "react";
 
+import formatAge from "../../utils/ageFormatting";
+
 function Card() {
+  // Static post details
   const card = {
     url:
       "https://www.reddit.com/r/natureporn/comments/zl5p2t/the_aleutian_islands_look_like_ireland/", // "permalink"
     image: "https://i.redd.it/rzwjiu2rlr5a1.jpg", // "url"
     subreddit: "r/natureporn", // subreddit_name_prefixed
-    age: "3 hours", // "created" gives the Unix time e.g. 1670962613
+    created: 1670962613, // Unix time
     title: "The Aleutian Islands look like Ireland",
     num_comments: 3,
     upvotes: 101 // score
   };
+
+  card.age = formatAge(card.created);
 
   return (
     <article className="card">
