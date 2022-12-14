@@ -2,6 +2,8 @@ import React from "react";
 
 import formatAge from "../../utils/ageFormatting";
 
+import "./Card.css";
+
 function Card() {
   // Static post details
   const card = {
@@ -30,7 +32,7 @@ function Card() {
           <span className="card__age">{card.age}</span> ago
         </div>
         <h1 className="card__title">{card.title}</h1>
-        <div>
+        <div className="card__stats">
           <div className="card__comments">{`${card.num_comments} comments`}</div>
           <div className="card__upvotes">{`${card.upvotes} upvotes`}</div>
         </div>

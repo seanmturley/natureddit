@@ -1,4 +1,5 @@
 .home {
   position: absolute;
   top: 6em;
+  display: flex;
 }
