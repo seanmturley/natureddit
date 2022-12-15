@@ -9,12 +9,12 @@ import "./App.css";
 
 function App() {
   return (
-    <>
+    <div className="app">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

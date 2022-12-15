@@ -12,7 +12,8 @@ function Card() {
     image: "https://i.redd.it/rzwjiu2rlr5a1.jpg", // "url"
     subreddit: "r/natureporn", // subreddit_name_prefixed
     created: 1670962613, // Unix time
-    title: "The Aleutian Islands look like Ireland",
+    title:
+      "The Aleutian Islands look like Ireland Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     num_comments: 3,
     upvotes: 101 // score
   };
@@ -25,7 +26,7 @@ function Card() {
         className="card__image"
         src={card.image}
         alt={`${card.subreddit} - ${card.title}`}
-      ></img>
+      />
       <section className="card__text">
         <div className="card__details">
           Posted in <span className="card__subreddit">{card.subreddit}</span>{" "}
