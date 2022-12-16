@@ -7,6 +7,7 @@ import "./Card.css";
 function Card() {
   // Static post details
   const card = {
+    id: "zl5p2t",
     url:
       "https://www.reddit.com/r/natureporn/comments/zl5p2t/the_aleutian_islands_look_like_ireland/", // "permalink"
     image: "https://i.redd.it/rzwjiu2rlr5a1.jpg", // "url"
@@ -21,7 +22,7 @@ function Card() {
   card.age = formatAge(card.created);
 
   return (
-    <article className="card">
+    <li className="card">
       <img
         className="card__image"
         src={card.image}
@@ -38,7 +39,7 @@ function Card() {
           <div className="card__upvotes">{`${card.upvotes} upvotes`}</div>
         </div>
       </section>
-    </article>
+    </li>
   );
 }
 

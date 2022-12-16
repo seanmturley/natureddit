@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
 
-import { store } from "./app/store.js";
+import store from "./app/store.js";
 import App from "./app/App.js";
 
 import "normalize.css";
