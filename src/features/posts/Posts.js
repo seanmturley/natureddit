@@ -3,16 +3,16 @@ import React from "react";
 import Card from "../../components/card/Card";
 
 import { useSelector } from "react-redux";
-import { selectPosts } from "./postsSlice";
+import { selectPostIds } from "./postsSlice";
 
 function Posts() {
-  const posts = useSelector(selectPosts);
+  const postIds = useSelector(selectPostIds);
 
   return (
     <section className="posts">
       <ul className="posts__list">
-        {posts.map((post) => (
-          <Card key={post.id} />
+        {postIds.map((id) => (
+          <Card key={id} id={id} />
         ))}
       </ul>
     </section>
