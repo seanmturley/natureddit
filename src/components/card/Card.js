@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectPosts } from "../../features/posts/postsSlice";
 
 import formatAge from "../../utils/ageFormatting";
+import formatNumber from "../../utils/numberFormatting";
 
 import "./Card.css";
 
@@ -11,6 +12,8 @@ function Card({ id }) {
   const posts = useSelector(selectPosts);
   const post = posts[id];
   const age = formatAge(post.created);
+  const formattedNumComments = formatNumber(post.num_comments);
+  const formattedScore = formatNumber(post.score);
 
   return (
     <li className="card">
@@ -26,8 +29,8 @@ function Card({ id }) {
         </div>
         <h1 className="card__title">{post.title}</h1>
         <div className="card__stats">
-          <div className="card__comments">{`${post.num_comments} comments`}</div>
-          <div className="card__upvotes">{`${post.score} upvotes`}</div>
+          <div className="card__comments">{`${formattedNumComments} comments`}</div>
+          <div className="card__upvotes">{`${formattedScore} upvotes`}</div>
         </div>
       </section>
     </li>
