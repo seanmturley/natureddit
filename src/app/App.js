@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import NavBar from "../features/navBar/NavBar";
-import Home from "../features/home/Home";
+import Posts from "../features/posts/Posts";
 
 import "./App.css";
 
@@ -12,7 +12,7 @@ function App() {
     <div className="app">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Posts />} />
       </Routes>
     </div>
   );

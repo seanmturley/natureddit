@@ -1,5 +1,9 @@
 .posts {
+  position: absolute;
+  top: 6em;
+  height: calc(100% - 6em);
   width: 100%;
+  overflow: auto;
   padding: 0.75rem;
 }
 
