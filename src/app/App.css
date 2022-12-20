@@ -1,6 +1,8 @@
 .app {
   --base-unit: 1rem;
 
+  --nav-bar-height: 6em;
+
   --title-font__size: 2.6em;
   --title-font__line-height: 1.15;
   --title-font: 600 var(--title-font__size) / var(--title-font__line-height)
@@ -11,4 +13,9 @@
   --detail-font: 400 var(--detail-font__size) / var(--detail-font__line-height)
     sans-serif;
   --detail-font__emphasis: 600 1em / var(--detail-font__line-height) sans-serif;
+}
+
+.app {
+  height: 100%;
+  font-size: var(--base-unit);
 }

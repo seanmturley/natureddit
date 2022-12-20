@@ -1,7 +1,40 @@
 .card {
   font-size: var(--base-unit);
   height: fit-content;
-  padding: 0.75rem;
+  padding: 0.75em;
+}
+
+.card__image {
+  height: auto;
+  width: 100%;
+}
+
+.card__text {
+  margin: 1em 1em 0.5em;
+}
+.card__details {
+  font: var(--detail-font);
+}
+
+.card__subreddit {
+  font: var(--detail-font__emphasis);
+}
+
+.card__title {
+  font: var(--title-font);
+  margin: 0.6em 0;
+  max-height: calc(
+    var(--title-font__size) * var(--title-font__line-height) * 3
+  );
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card__stats {
+  display: flex;
+  justify-content: space-between;
+  font: var(--detail-font);
 }
 
 /* 1 columns*/
@@ -37,37 +70,4 @@
   .card {
     width: 20%;
   }
-}
-
-.card__image {
-  height: auto;
-  width: 100%;
-}
-
-.card__text {
-  margin: 1rem 1rem 0.5rem;
-}
-.card__details {
-  font: var(--detail-font);
-}
-
-.card__subreddit {
-  font: var(--detail-font__emphasis);
-}
-
-.card__title {
-  font: var(--title-font);
-  margin: 1.5rem 0;
-  max-height: calc(
-    var(--title-font__size) * var(--title-font__line-height) * 3
-  );
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.card__stats {
-  display: flex;
-  justify-content: space-between;
-  font: var(--detail-font);
 }

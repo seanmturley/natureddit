@@ -1,10 +1,11 @@
 .posts {
+  font-size: var(--base-unit);
   position: absolute;
-  top: 6em;
-  height: calc(100% - 6em);
+  top: var(--nav-bar-height);
+  height: calc(100% - var(--nav-bar-height));
   width: 100%;
   overflow: auto;
-  padding: 0.75rem;
+  padding: 0.75em;
 }
 
 .posts__list {

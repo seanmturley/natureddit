@@ -1,7 +1,8 @@
 .nav {
+  font-size: var(--base-unit);
   display: flex;
   position: fixed;
-  height: 6em;
+  height: var(--nav-bar-height);
   width: 100%;
   border-bottom: 1px solid black;
   flex-direction: row;
