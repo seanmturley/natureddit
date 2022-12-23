@@ -19,3 +19,11 @@
   height: 100%;
   font-size: var(--base-unit);
 }
+
+.app__main {
+  position: absolute;
+  top: var(--nav-bar-height);
+  height: calc(100% - var(--nav-bar-height));
+  width: 100%;
+  overflow: auto;
+}
