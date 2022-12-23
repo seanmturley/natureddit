@@ -2,6 +2,8 @@ import React from "react";
 
 import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup";
 
+import "./Filters.css";
+
 function Filters() {
   // In props objects below, the following need to be connected to the store:
   // - options
@@ -17,7 +19,7 @@ function Filters() {
     name: "type",
     options: ["Relevance", "Hot", "New", "Top"],
     disabled: false,
-    selected: "Relevance"
+    selected: "Hot"
     // setState: Action for new API call and updating "selected"
   };
 
@@ -26,7 +28,7 @@ function Filters() {
     hideHeading: true,
     name: "time",
     options: ["Any time", "Past day", "Past week", "Past month", "Past year"],
-    disabled: false,
+    disabled: true,
     selected: "Any time"
     // setState: Action for new API call and updating "selected"
   };

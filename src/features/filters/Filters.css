@@ -1,0 +1,7 @@
+.filters {
+  font-size: var(--base-unit);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 1.5em;
+}

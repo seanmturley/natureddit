@@ -2,13 +2,14 @@
   --base-unit: 1rem;
 
   --nav-bar-height: 6em;
+  --border-width: 0.1em;
 
-  --title-font__size: 2.6em;
+  --title-font__size: 2.4em;
   --title-font__line-height: 1.15;
   --title-font: 600 var(--title-font__size) / var(--title-font__line-height)
     sans-serif;
 
-  --detail-font__size: 1.6em;
+  --detail-font__size: 1.4em;
   --detail-font__line-height: 1.15;
   --detail-font: 400 var(--detail-font__size) / var(--detail-font__line-height)
     sans-serif;
