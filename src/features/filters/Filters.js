@@ -2,35 +2,33 @@ import React from "react";
 
 import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup";
 
+import { useSelector } from "react-redux";
+import { selectTypeFilter, selectTimeFilter } from "./filtersSlice";
+
 import "./Filters.css";
 
 function Filters() {
-  // In props objects below, the following need to be connected to the store:
-  // - options
-  // - disabled (for time filters)
-  // - selected
-  // - setState
-  //
-  // Need to consider whether to pass all of these as props, or hook up RadioButtonGroup directly to the store. Keeping RadioButtonGroup as a standalone reusable component makes sense...
+  const typeFilter = useSelector(selectTypeFilter);
+  const timeFilter = useSelector(selectTimeFilter);
 
   const filtersTypeProps = {
     heading: "Filter type",
     hideHeading: true,
     name: "type",
-    options: ["Relevance", "Hot", "New", "Top"],
+    options: typeFilter.options,
     disabled: false,
-    selected: "Hot"
-    // setState: Action for new API call and updating "selected"
+    selected: typeFilter.selected
+    // setState: Action for new API call and updating "selected" i.e. what happens when the user clicks a filter option.
   };
 
   const filtersTimeProps = {
     heading: "Timeframe",
     hideHeading: true,
     name: "time",
-    options: ["Any time", "Past day", "Past week", "Past month", "Past year"],
-    disabled: true,
-    selected: "Any time"
-    // setState: Action for new API call and updating "selected"
+    options: timeFilter.options,
+    disabled: timeFilter.disabled,
+    selected: timeFilter.selected
+    // setState: Action for new API call and updating "selected" i.e. what happens when the user clicks a filter option.
   };
 
   return (
