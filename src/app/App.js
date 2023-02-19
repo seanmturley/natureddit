@@ -35,7 +35,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<NavBarLayout />}>
       <Route index element={<Posts />} />
       <Route element={<FiltersLayout />}>
-        <Route path=":subreddit" element={<Posts />} />
+        <Route path="r/:subreddit" element={<Posts />} />
         <Route path="search" element={<Posts />} />
       </Route>
     </Route>

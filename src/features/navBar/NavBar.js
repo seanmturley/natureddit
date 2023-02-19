@@ -1,11 +1,23 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 import "./NavBar.css";
 
 function NavBar() {
+  const { pathname, search } = useLocation();
+  let navLocation;
+
+  if (pathname.startsWith("/search")) {
+    const queryParams = new URLSearchParams(search);
+    navLocation = `Results for "${queryParams.get("q")}"`;
+  } else if (pathname.startsWith("/r/")) {
+    navLocation = pathname;
+  }
+
   return (
     <header className="nav">
       <h1 className="nav__logo">Natureddit</h1>
+      {navLocation && <h2 className="nav__location">{navLocation}</h2>}
       <form className="search" role="search">
         <div>
           <input
