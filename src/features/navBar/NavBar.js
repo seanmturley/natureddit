@@ -16,23 +16,24 @@ function NavBar() {
 
   return (
     <header className="nav">
-      <h1 className="nav__logo">Natureddit</h1>
-      {navLocation && <h2 className="nav__location">{navLocation}</h2>}
+      <section className="nav__headings">
+        <div className="nav__logo"></div>
+        <h1 className="nav__brand">Natureddit</h1>
+        {navLocation && <h2 className="nav__location">{navLocation}</h2>}
+      </section>
       <form className="search" role="search">
-        <div>
-          <input
-            type="search"
-            id="search"
-            name="q"
-            placeholder="Search Reddit"
-            aria-label="Search Reddit content"
-          />
-          <button>Search</button>
-        </div>
+        <input
+          className="search__input"
+          type="search"
+          id="search"
+          name="q"
+          placeholder="Search Reddit"
+          aria-label="Search Reddit content"
+        />
       </form>
       <nav className="menu">
         <form className="toggle-switch">Dark mode</form>
-        <a className="menu__link" href="#">
+        <a className="menu__link" href="null">
           Nature subreddits
         </a>
         <a

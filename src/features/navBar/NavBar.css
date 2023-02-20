@@ -1,11 +1,38 @@
 .nav {
   font-size: var(--base-unit);
-  display: flex;
+  display: grid;
   position: fixed;
   height: var(--nav-bar-height);
   width: 100%;
   border-bottom: 1px solid black;
-  flex-direction: row;
-  justify-content: space-between;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   align-items: center;
+}
+
+.nav__headings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav__logo {
+  width: 4rem;
+  height: 4rem;
+  background-color: green;
+  border-radius: 2rem;
+  margin: 1rem;
+}
+
+.nav__location {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.search__input {
+  width: 100%;
+}
+
+.menu {
+  text-align: right;
 }
