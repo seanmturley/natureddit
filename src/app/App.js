@@ -4,35 +4,18 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
-  createRoutesFromElements,
-  Outlet
+  createRoutesFromElements
 } from "react-router-dom";
 
-import NavBar from "../features/navBar/NavBar";
-import Filters from "../features/filters/Filters";
+import MainLayout from "../layouts/mainLayout/MainLayout";
+import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
 import Posts from "../features/posts/Posts";
 
 import "./App.css";
 
-const NavBarLayout = () => (
-  <>
-    <NavBar />
-    <main className="app__main">
-      <Outlet />
-    </main>
-  </>
-);
-
-const FiltersLayout = () => (
-  <>
-    <Filters />
-    <Outlet />
-  </>
-);
-
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<NavBarLayout />}>
+    <Route path="/" element={<MainLayout />}>
       <Route index element={<Posts />} />
       <Route element={<FiltersLayout />}>
         <Route path="r/:subreddit" element={<Posts />} />
