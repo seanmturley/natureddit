@@ -1,36 +1,43 @@
 import React, { useEffect } from "react";
 
-import Card from "../../components/card/Card";
-
-import { useSelector } from "react-redux";
-import { selectPostIds } from "./postsSlice";
-
-import "./Posts.css";
+import { useGetPostsBySubredditQuery } from "../../app/redditApi";
 
 import MagicGrid from "magic-grid";
 
+import Card from "../../components/card/Card";
+
+import "./Posts.css";
+
 function Posts() {
-  const postIds = useSelector(selectPostIds);
+  const { data, isError, isLoading } = useGetPostsBySubredditQuery();
 
   useEffect(() => {
-    let magicGrid = new MagicGrid({
-      container: ".posts__list",
-      items: postIds.length,
-      gutter: 0,
-      // useMin: true,
-      animate: true
-    });
+    if (data) {
+      let magicGrid = new MagicGrid({
+        container: ".posts__list",
+        items: data.length,
+        gutter: 0,
+        // useMin: true,
+        animate: true
+      });
 
-    magicGrid.listen();
+      magicGrid.listen();
+    }
   });
 
   return (
     <section className="posts">
-      <ul className="posts__list">
-        {postIds.map((id) => (
-          <Card key={id} id={id} />
-        ))}
-      </ul>
+      {isError ? (
+        <>Oh no, there was an error</>
+      ) : isLoading ? (
+        <>Loading...</>
+      ) : data ? (
+        <ul className="posts__list">
+          {data.map((post) => (
+            <Card key={post.id} post={post.data} />
+          ))}
+        </ul>
+      ) : null}
     </section>
   );
 }

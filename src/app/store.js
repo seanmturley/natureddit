@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import filtersReducer from "../features/filters/filtersSlice";
-import postsReducer from "../features/posts/postsSlice";
+import { redditApi } from "./redditApi";
 
 const store = configureStore({
   reducer: {
-    filters: filtersReducer,
-    posts: postsReducer
-  }
+    [redditApi.reducerPath]: redditApi.reducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(redditApi.middleware)
 });
 
 export default store;
