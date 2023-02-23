@@ -36,7 +36,7 @@ function Posts() {
       ) : data ? (
         <ul className="posts__list">
           {data.map((post) => (
-            <Card key={post.id} post={post.data} />
+            <Card key={post.data.id} post={post.data} />
           ))}
         </ul>
       ) : null}
