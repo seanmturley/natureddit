@@ -5,7 +5,7 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
     getPostsBySubreddit: builder.query({
-      query: () => `r/EarthPorn.json`,
+      query: (subreddit) => `r/${subreddit}.json`,
       transformResponse: (response, meta, arg) => response.data.children
     })
   })

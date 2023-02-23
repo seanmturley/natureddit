@@ -9,7 +9,9 @@ import Card from "../../components/card/Card";
 import "./Posts.css";
 
 function Posts() {
-  const { data, isError, isLoading } = useGetPostsBySubredditQuery();
+  const subreddit = "EarthPorn"; // This will have additional logic added to extract current location for other subreddits
+
+  const { data, isError, isLoading } = useGetPostsBySubredditQuery(subreddit);
 
   useEffect(() => {
     if (data) {
