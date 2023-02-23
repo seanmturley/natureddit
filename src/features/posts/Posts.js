@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { useGetPostsBySubredditQuery } from "../../app/redditApi";
 
@@ -9,7 +10,8 @@ import Card from "../../components/card/Card";
 import "./Posts.css";
 
 function Posts() {
-  const subreddit = "EarthPorn"; // This will have additional logic added to extract current location for other subreddits
+  let { subreddit } = useParams();
+  subreddit = subreddit ?? "EarthPorn";
 
   const { data, isError, isLoading } = useGetPostsBySubredditQuery(subreddit);
 
