@@ -18,8 +18,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Posts />} />
       <Route element={<FiltersLayout />}>
-        <Route path="r/:subreddit" element={<Posts />} />
-        <Route path="search" element={<Posts />} />
+        <Route path="r/:subreddit/:filter?" element={<Posts />} />
+        <Route path="search/:filter?" element={<Posts />} />
       </Route>
     </Route>
   )

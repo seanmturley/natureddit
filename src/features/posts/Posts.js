@@ -10,10 +10,13 @@ import Card from "../../components/card/Card";
 import "./Posts.css";
 
 function Posts() {
-  let { subreddit } = useParams();
+  let { subreddit, filter } = useParams();
   subreddit = subreddit ?? "EarthPorn";
 
-  const { data, isError, isLoading } = useGetPostsBySubredditQuery(subreddit);
+  const { data, isError, isLoading } = useGetPostsBySubredditQuery({
+    subreddit,
+    filter
+  });
 
   useEffect(() => {
     if (data) {

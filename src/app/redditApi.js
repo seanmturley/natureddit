@@ -5,7 +5,10 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
     getPostsBySubreddit: builder.query({
-      query: (subreddit) => `r/${subreddit}.json`,
+      query: ({ subreddit, filter }) => {
+        let filterString = filter ? `/${filter}` : "";
+        return `r/${subreddit}${filterString}.json`;
+      },
       transformResponse: (response, meta, arg) => response.data.children
     })
   })
