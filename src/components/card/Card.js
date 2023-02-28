@@ -2,6 +2,7 @@ import React from "react";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
+import getImageUrl from "../../utils/imageUrlProcessing";
 
 import "./Card.css";
 
@@ -9,12 +10,13 @@ function Card({ post }) {
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
   const formattedScore = formatNumber(post.score);
+  const imageUrl = getImageUrl(post);
 
   return (
     <li className="card">
       <img
         className="card__image"
-        src={post.url}
+        src={imageUrl}
         alt={`${post.subreddit_name_prefixed} - ${post.title}`}
       />
       <section className="card__text">
