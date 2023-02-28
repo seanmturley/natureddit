@@ -11,7 +11,8 @@ function NavBar() {
     const queryParams = new URLSearchParams(search);
     navLocation = `Results for "${queryParams.get("q")}"`;
   } else if (pathname.startsWith("/r/")) {
-    navLocation = pathname;
+    // Match "r/" followed by any number of alphanumeric values or _ i.e. exclude "/filterType"
+    navLocation = pathname.match(/r\/[\w]+/)[0];
   }
 
   return (
