@@ -4,14 +4,14 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState: {
     typeFilter: {
-      options: ["Relevance", "Hot", "New", "Top"],
-      selected: "Hot"
+      options: ["relevance", "hot", "new", "top"],
+      selected: "hot"
       // setState: Action for new API call and updating "selected" i.e. what happens when the user clicks a filter option. Likely "setState" isn't the appropriate name.
     },
     timeFilter: {
-      options: ["Any time", "Past day", "Past week", "Past month", "Past year"],
+      options: ["any time", "past day", "past week", "past month", "past year"],
       disabled: true,
-      selected: "Any time"
+      selected: "any time"
       // setState: Action for new API call and updating "selected" i.e. what happens when the user clicks a filter option. Likely "setState" isn't the appropriate name.
     }
   },
