@@ -26,6 +26,9 @@ const filtersSlice = createSlice({
     updateSelectedTypeFilter: (state, action) => {
       state.typeFilter.selected = action.payload;
       state.timeFilter.disabled = action.payload !== "top";
+    },
+    updateSelectedTimeFilter: (state, action) => {
+      state.timeFilter.selected = action.payload;
     }
   }
 });
@@ -35,7 +38,8 @@ export const selectTimeFilter = (state) => state.filters.timeFilter;
 
 export const {
   updateTypeFilterOptions,
-  updateSelectedTypeFilter
+  updateSelectedTypeFilter,
+  updateSelectedTimeFilter
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

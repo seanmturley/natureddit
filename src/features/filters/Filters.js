@@ -10,7 +10,8 @@ import {
   selectTypeFilter,
   selectTimeFilter,
   updateTypeFilterOptions,
-  updateSelectedTypeFilter
+  updateSelectedTypeFilter,
+  updateSelectedTimeFilter
 } from "./filtersSlice";
 
 import "./Filters.css";
@@ -34,6 +35,7 @@ function Filters() {
   };
 
   const timeFilterSetState = (timeFilterOption) => {
+    dispatch(updateSelectedTimeFilter(timeFilterOption));
     navigate(`${pathname}?t=${timeFilterOption}`);
   };
 
