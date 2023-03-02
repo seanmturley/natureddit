@@ -25,6 +25,7 @@ const filtersSlice = createSlice({
     },
     updateSelectedTypeFilter: (state, action) => {
       state.typeFilter.selected = action.payload;
+      state.timeFilter.disabled = action.payload !== "top";
     }
   }
 });
