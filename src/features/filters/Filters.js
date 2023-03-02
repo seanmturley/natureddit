@@ -1,5 +1,6 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,18 +9,24 @@ import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup
 import {
   selectTypeFilter,
   selectTimeFilter,
+  updateTypeFilterOptions,
   updateSelectedTypeFilter
 } from "./filtersSlice";
 
 import "./Filters.css";
 
 function Filters() {
+  const navigate = useNavigate();
+  const { subreddit } = useParams();
+  const { pathname } = useLocation();
+
   const dispatch = useDispatch();
   const typeFilter = useSelector(selectTypeFilter);
   const timeFilter = useSelector(selectTimeFilter);
 
-  const navigate = useNavigate();
-  const { subreddit } = useParams();
+  useEffect(() => {
+    dispatch(updateTypeFilterOptions(pathname));
+  }, [dispatch, pathname]);
 
   const typeFilterSetState = (filterOption) => {
     dispatch(updateSelectedTypeFilter(filterOption));

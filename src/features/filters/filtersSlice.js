@@ -4,7 +4,7 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState: {
     typeFilter: {
-      options: ["relevance", "hot", "new", "top"],
+      options: [],
       selected: "hot"
     },
     timeFilter: {
@@ -14,6 +14,15 @@ const filtersSlice = createSlice({
     }
   },
   reducers: {
+    updateTypeFilterOptions: (state, action) => {
+      let typeFilterOptions = ["hot", "new", "top"];
+
+      if (action.payload.startsWith("/search")) {
+        typeFilterOptions = ["relevance", ...typeFilterOptions];
+      }
+
+      state.typeFilter.options = typeFilterOptions;
+    },
     updateSelectedTypeFilter: (state, action) => {
       state.typeFilter.selected = action.payload;
     }
@@ -23,6 +32,9 @@ const filtersSlice = createSlice({
 export const selectTypeFilter = (state) => state.filters.typeFilter;
 export const selectTimeFilter = (state) => state.filters.timeFilter;
 
-export const { updateSelectedTypeFilter } = filtersSlice.actions;
+export const {
+  updateTypeFilterOptions,
+  updateSelectedTypeFilter
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;
