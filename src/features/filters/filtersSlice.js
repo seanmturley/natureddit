@@ -8,9 +8,9 @@ const filtersSlice = createSlice({
       selected: "hot"
     },
     timeFilter: {
-      options: ["any time", "past day", "past week", "past month", "past year"],
+      options: ["hour", "day", "week", "month", "year", "all"],
       disabled: true,
-      selected: "any time"
+      selected: "day"
     }
   },
   reducers: {

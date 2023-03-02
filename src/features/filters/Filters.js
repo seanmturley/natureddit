@@ -28,9 +28,13 @@ function Filters() {
     dispatch(updateTypeFilterOptions(pathname));
   }, [dispatch, pathname]);
 
-  const typeFilterSetState = (filterOption) => {
-    dispatch(updateSelectedTypeFilter(filterOption));
-    navigate(`/r/${subreddit}/${filterOption}`);
+  const typeFilterSetState = (typeFilterOption) => {
+    dispatch(updateSelectedTypeFilter(typeFilterOption));
+    navigate(`/r/${subreddit}/${typeFilterOption}`);
+  };
+
+  const timeFilterSetState = (timeFilterOption) => {
+    navigate(`${pathname}?t=${timeFilterOption}`);
   };
 
   const typeFilterProps = {
@@ -49,8 +53,8 @@ function Filters() {
     name: "time",
     options: timeFilter.options,
     disabled: timeFilter.disabled,
-    selected: timeFilter.selected
-    // setState: Action for new API call and updating "selected" i.e. what happens when the user clicks a filter option.
+    selected: timeFilter.selected,
+    setState: timeFilterSetState
   };
 
   return (
