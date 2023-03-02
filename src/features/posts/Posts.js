@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { useGetPostsBySubredditQuery } from "../../app/redditApi";
 
@@ -14,9 +14,14 @@ function Posts() {
   let { subreddit, filter } = useParams();
   subreddit = subreddit ?? "EarthPorn";
 
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const time = queryParams.get("t");
+
   const { data, isError, isLoading } = useGetPostsBySubredditQuery({
     subreddit,
-    filter
+    filter,
+    time
   });
 
   useEffect(() => {
