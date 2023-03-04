@@ -4,15 +4,23 @@ export const redditApi = createApi({
   reducerPath: "redditApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
-    getPostsBySubreddit: builder.query({
+    getSubredditPosts: builder.query({
       query: ({ subreddit, typeFilter, timeFilter }) => {
         const typeFilterString = typeFilter ? `/${typeFilter}` : "";
         const timeFilterString = timeFilter ? `?t=${timeFilter}` : "";
         return `r/${subreddit}${typeFilterString}.json${timeFilterString}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
+    }),
+    getSearchPosts: builder.query({
+      query: ({ searchTerm, typeFilter, timeFilter }) => {
+        const typeFilterString = typeFilter ? `&sort=${typeFilter}` : "";
+        const timeFilterString = timeFilter ? `&t=${timeFilter}` : "";
+        return `search.json?q=${searchTerm}${typeFilterString}${timeFilterString}`;
+      },
+      transformResponse: (response, meta, arg) => response.data.children
     })
   })
 });
 
-export const { useGetPostsBySubredditQuery } = redditApi;
+export const { useGetSubredditPostsQuery, useGetSearchPostsQuery } = redditApi;

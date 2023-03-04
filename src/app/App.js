@@ -9,17 +9,21 @@ import {
 
 import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
-import Posts from "../components/posts/Posts";
+import GetSubredditPosts from "../components/getSubredditPosts/GetSubredditPosts";
+import GetSearchPosts from "../components/getSearchPosts/GetSearchPosts";
 
 import "./App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route index element={<Posts />} />
+      <Route index element={<GetSubredditPosts />} />
       <Route element={<FiltersLayout />}>
-        <Route path="r/:subreddit/:typeFilter?" element={<Posts />} />
-        <Route path="search/:typeFilter?" element={<Posts />} />
+        <Route
+          path="r/:subreddit/:typeFilter?"
+          element={<GetSubredditPosts />}
+        />
+        <Route path="search" element={<GetSearchPosts />} />
       </Route>
     </Route>
   )

@@ -1,29 +1,12 @@
 import React, { useEffect } from "react";
 
-import { useLocation, useParams } from "react-router-dom";
-
-import { useGetPostsBySubredditQuery } from "../../app/redditApi";
-
 import MagicGrid from "magic-grid";
 
 import Card from "../card/Card";
 
 import "./Posts.css";
 
-function Posts() {
-  let { subreddit, typeFilter } = useParams();
-  subreddit = subreddit ?? "EarthPorn";
-
-  const { search } = useLocation();
-  const queryParams = new URLSearchParams(search);
-  const timeFilter = queryParams.get("t");
-
-  const { data, isError, isLoading } = useGetPostsBySubredditQuery({
-    subreddit,
-    typeFilter,
-    timeFilter
-  });
-
+function Posts({ data, isError, isLoading }) {
   useEffect(() => {
     if (data) {
       let magicGrid = new MagicGrid({
