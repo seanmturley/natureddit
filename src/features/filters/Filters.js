@@ -12,14 +12,15 @@ function Filters() {
   let { subreddit, typeFilter } = useParams();
   const { pathname, search } = useLocation();
   const queryParams = new URLSearchParams(search);
+  let timeFilter = queryParams.get("t");
 
   // typeFilter parameters
+  typeFilter = typeFilter ?? "hot";
+
   let typeFilterOptions = ["hot", "new", "top"];
   if (pathname.startsWith("/search")) {
     typeFilterOptions = ["relevance", ...typeFilterOptions];
   }
-
-  typeFilter = typeFilter ?? "hot";
 
   const typeFilterSetState = (typeFilterOption) => {
     navigate(`/r/${subreddit}/${typeFilterOption}`);
@@ -36,7 +37,6 @@ function Filters() {
   };
 
   // timeFilter parameters
-  let timeFilter = queryParams.get("t");
   timeFilter = timeFilter ?? "day";
 
   const timeFilterSetState = (timeFilterOption) => {
