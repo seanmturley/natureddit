@@ -5,10 +5,10 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
     getPostsBySubreddit: builder.query({
-      query: ({ subreddit, filter, time }) => {
-        const filterString = filter ? `/${filter}` : "";
-        const timeString = time ? `?t=${time}` : "";
-        return `r/${subreddit}${filterString}.json${timeString}`;
+      query: ({ subreddit, typeFilter, timeFilter }) => {
+        const typeFilterString = typeFilter ? `/${typeFilter}` : "";
+        const timeFilterString = timeFilter ? `?t=${timeFilter}` : "";
+        return `r/${subreddit}${typeFilterString}.json${timeFilterString}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     })

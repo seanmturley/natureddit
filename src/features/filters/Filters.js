@@ -1,61 +1,55 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
-
 import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup";
-
-import {
-  selectTypeFilter,
-  selectTimeFilter,
-  updateTypeFilterOptions,
-  updateSelectedTypeFilter,
-  updateSelectedTimeFilter
-} from "./filtersSlice";
 
 import "./Filters.css";
 
 function Filters() {
   const navigate = useNavigate();
-  const { subreddit } = useParams();
-  const { pathname } = useLocation();
 
-  const dispatch = useDispatch();
-  const typeFilter = useSelector(selectTypeFilter);
-  const timeFilter = useSelector(selectTimeFilter);
+  let { subreddit, typeFilter } = useParams();
+  const { pathname, search } = useLocation();
+  const queryParams = new URLSearchParams(search);
 
-  useEffect(() => {
-    dispatch(updateTypeFilterOptions(pathname));
-  }, [dispatch, pathname]);
+  // typeFilter parameters
+  let typeFilterOptions = ["hot", "new", "top"];
+  if (pathname.startsWith("/search")) {
+    typeFilterOptions = ["relevance", ...typeFilterOptions];
+  }
+
+  typeFilter = typeFilter ?? "hot";
 
   const typeFilterSetState = (typeFilterOption) => {
-    dispatch(updateSelectedTypeFilter(typeFilterOption));
     navigate(`/r/${subreddit}/${typeFilterOption}`);
-  };
-
-  const timeFilterSetState = (timeFilterOption) => {
-    dispatch(updateSelectedTimeFilter(timeFilterOption));
-    navigate(`${pathname}?t=${timeFilterOption}`);
   };
 
   const typeFilterProps = {
     heading: "Filter type",
     hideHeading: true,
     name: "type",
-    options: typeFilter.options,
+    options: typeFilterOptions,
     disabled: false,
-    selected: typeFilter.selected,
+    selected: typeFilter,
     setState: typeFilterSetState
+  };
+
+  // timeFilter parameters
+  let timeFilter = queryParams.get("t");
+  timeFilter = timeFilter ?? "day";
+
+  const timeFilterSetState = (timeFilterOption) => {
+    navigate(`${pathname}?t=${timeFilterOption}`);
   };
 
   const timeFilterProps = {
     heading: "Timeframe",
     hideHeading: true,
     name: "time",
-    options: timeFilter.options,
-    disabled: timeFilter.disabled,
-    selected: timeFilter.selected,
+    options: ["hour", "day", "week", "month", "year", "all"],
+    disabled: typeFilter !== "top",
+    selected: timeFilter,
     setState: timeFilterSetState
   };
 

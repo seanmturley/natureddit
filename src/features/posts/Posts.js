@@ -11,17 +11,17 @@ import Card from "../../components/card/Card";
 import "./Posts.css";
 
 function Posts() {
-  let { subreddit, filter } = useParams();
+  let { subreddit, typeFilter } = useParams();
   subreddit = subreddit ?? "EarthPorn";
 
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
-  const time = queryParams.get("t");
+  const timeFilter = queryParams.get("t");
 
   const { data, isError, isLoading } = useGetPostsBySubredditQuery({
     subreddit,
-    filter,
-    time
+    typeFilter,
+    timeFilter
   });
 
   useEffect(() => {
