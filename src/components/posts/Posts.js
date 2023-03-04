@@ -6,7 +6,7 @@ import { useGetPostsBySubredditQuery } from "../../app/redditApi";
 
 import MagicGrid from "magic-grid";
 
-import Card from "../../components/card/Card";
+import Card from "../card/Card";
 
 import "./Posts.css";
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 
-import RadioButtonGroup from "../../components/radioButtonGroup/RadioButtonGroup";
+import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
 
 import "./Filters.css";
 

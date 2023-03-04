@@ -9,7 +9,7 @@ import {
 
 import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
-import Posts from "../features/posts/Posts";
+import Posts from "../components/posts/Posts";
 
 import "./App.css";
 
