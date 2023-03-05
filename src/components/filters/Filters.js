@@ -12,7 +12,7 @@ function Filters() {
   const { pathname, search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const sortFilter = queryParams.get("sort");
-  let timeFilter = queryParams.get("t");
+  const timeFilter = queryParams.get("t");
 
   // sortFilter parameters
   let sortFilterOptions = ["hot", "new", "top"];
