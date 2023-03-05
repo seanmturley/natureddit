@@ -6,17 +6,15 @@ export const redditApi = createApi({
   endpoints: (builder) => ({
     getSubredditPosts: builder.query({
       query: ({ subreddit, sortFilter, timeFilter }) => {
-        const sortFilterString = sortFilter ? `/${sortFilter}` : "";
         const timeFilterString = timeFilter ? `?t=${timeFilter}` : "";
-        return `r/${subreddit}${sortFilterString}.json${timeFilterString}`;
+        return `r/${subreddit}/${sortFilter}.json${timeFilterString}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     }),
     getSearchPosts: builder.query({
       query: ({ searchTerm, sortFilter, timeFilter }) => {
-        const sortFilterString = sortFilter ? `&sort=${sortFilter}` : "";
         const timeFilterString = timeFilter ? `&t=${timeFilter}` : "";
-        return `search.json?q=${searchTerm}${sortFilterString}${timeFilterString}`;
+        return `search.json?q=${searchTerm}&sort=${sortFilter}${timeFilterString}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     })
