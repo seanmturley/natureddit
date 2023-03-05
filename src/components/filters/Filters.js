@@ -11,28 +11,31 @@ function Filters() {
 
   const { pathname, search } = useLocation();
   const queryParams = new URLSearchParams(search);
+  const searchTerm = queryParams.get("q");
   const sortFilter = queryParams.get("sort");
   const timeFilter = queryParams.get("t");
 
-  // sortFilter parameters
+  let baseUrl = `${pathname}?`;
   let sortFilterOptions = ["hot", "new", "top"];
-  if (pathname.startsWith("/search")) {
+  if (pathname === "/search") {
+    baseUrl += `q=${searchTerm}&`;
     sortFilterOptions = ["relevance", ...sortFilterOptions];
   }
 
+  // sortFilter parameters
   const sortFilterSetState = (clickedSortFilter) => {
     let timeFilterString = "";
-    if (clickedSortFilter === "top") {
+    if (clickedSortFilter === "relevance" || clickedSortFilter === "top") {
       timeFilterString = "&t=day";
     }
 
-    navigate(`${pathname}?sort=${clickedSortFilter}${timeFilterString}`);
+    navigate(`${baseUrl}sort=${clickedSortFilter}${timeFilterString}`);
   };
 
   const sortFilterProps = {
-    heading: "Filter type",
+    heading: "Sort",
     hideHeading: true,
-    name: "type",
+    name: "sort",
     options: sortFilterOptions,
     disabled: false,
     selected: sortFilter,
@@ -41,7 +44,7 @@ function Filters() {
 
   // timeFilter parameters
   const timeFilterSetState = (clickedTimeFilter) => {
-    navigate(`${pathname}?sort=${sortFilter}&t=${clickedTimeFilter}`);
+    navigate(`${baseUrl}sort=${sortFilter}&t=${clickedTimeFilter}`);
   };
 
   const timeFilterProps = {
@@ -49,14 +52,14 @@ function Filters() {
     hideHeading: true,
     name: "time",
     options: ["hour", "day", "week", "month", "year", "all"],
-    disabled: sortFilter !== "top",
+    disabled: sortFilter !== "relevance" && sortFilter !== "top",
     selected: timeFilter,
     setState: timeFilterSetState
   };
 
   return (
     <header className="filters">
-      <section className="filters__type">
+      <section className="filters__sort">
         <RadioButtonGroup {...sortFilterProps} />
       </section>
       <section className="filters__time">
