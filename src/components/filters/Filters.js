@@ -26,7 +26,7 @@ function Filters() {
   const sortFilterSetState = (clickedSortFilter) => {
     let timeFilterString = "";
     if (clickedSortFilter === "relevance" || clickedSortFilter === "top") {
-      timeFilterString = "&t=day";
+      timeFilterString = pathname === "/search" ? "&t=all" : "&t=day";
     }
 
     navigate(`${baseUrl}sort=${clickedSortFilter}${timeFilterString}`);
