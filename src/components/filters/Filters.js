@@ -20,13 +20,13 @@ function Filters() {
     sortFilterOptions = ["relevance", ...sortFilterOptions];
   }
 
-  const sortFilterSetState = (sortFilterOption) => {
+  const sortFilterSetState = (clickedSortFilter) => {
     let timeFilterString = "";
-    if (sortFilterOption === "top") {
+    if (clickedSortFilter === "top") {
       timeFilterString = "&t=day";
     }
 
-    navigate(`${pathname}?sort=${sortFilterOption}${timeFilterString}`);
+    navigate(`${pathname}?sort=${clickedSortFilter}${timeFilterString}`);
   };
 
   const sortFilterProps = {
@@ -40,8 +40,8 @@ function Filters() {
   };
 
   // timeFilter parameters
-  const timeFilterSetState = (timeFilterOption) => {
-    navigate(`${pathname}?sort=${sortFilter}&t=${timeFilterOption}`);
+  const timeFilterSetState = (clickedTimeFilter) => {
+    navigate(`${pathname}?sort=${sortFilter}&t=${clickedTimeFilter}`);
   };
 
   const timeFilterProps = {
