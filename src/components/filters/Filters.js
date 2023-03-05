@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
 
@@ -9,21 +9,24 @@ import "./Filters.css";
 function Filters() {
   const navigate = useNavigate();
 
-  let { subreddit, sortFilter } = useParams();
   const { pathname, search } = useLocation();
   const queryParams = new URLSearchParams(search);
+  const sortFilter = queryParams.get("sort");
   let timeFilter = queryParams.get("t");
 
   // sortFilter parameters
-  sortFilter = sortFilter ?? "hot";
-
   let sortFilterOptions = ["hot", "new", "top"];
   if (pathname.startsWith("/search")) {
     sortFilterOptions = ["relevance", ...sortFilterOptions];
   }
 
   const sortFilterSetState = (sortFilterOption) => {
-    navigate(`/r/${subreddit}/${sortFilterOption}`);
+    let timeFilterString = "";
+    if (sortFilterOption === "top") {
+      timeFilterString = "&t=day";
+    }
+
+    navigate(`${pathname}?sort=${sortFilterOption}${timeFilterString}`);
   };
 
   const sortFilterProps = {
@@ -37,10 +40,8 @@ function Filters() {
   };
 
   // timeFilter parameters
-  timeFilter = timeFilter ?? "day";
-
   const timeFilterSetState = (timeFilterOption) => {
-    navigate(`${pathname}?t=${timeFilterOption}`);
+    navigate(`${pathname}?sort=${sortFilter}&t=${timeFilterOption}`);
   };
 
   const timeFilterProps = {

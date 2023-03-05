@@ -7,11 +7,12 @@ import { useGetSubredditPostsQuery } from "../../app/redditApi";
 import Posts from "../posts/Posts";
 
 function GetSubredditPosts() {
-  let { subreddit, sortFilter } = useParams();
+  let { subreddit } = useParams();
   subreddit = subreddit ?? "EarthPorn";
 
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
+  const sortFilter = queryParams.get("sort");
   const timeFilter = queryParams.get("t");
 
   const { data, isError, isLoading } = useGetSubredditPostsQuery({
