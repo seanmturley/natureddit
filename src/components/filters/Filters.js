@@ -9,31 +9,31 @@ import "./Filters.css";
 function Filters() {
   const navigate = useNavigate();
 
-  let { subreddit, typeFilter } = useParams();
+  let { subreddit, sortFilter } = useParams();
   const { pathname, search } = useLocation();
   const queryParams = new URLSearchParams(search);
   let timeFilter = queryParams.get("t");
 
-  // typeFilter parameters
-  typeFilter = typeFilter ?? "hot";
+  // sortFilter parameters
+  sortFilter = sortFilter ?? "hot";
 
-  let typeFilterOptions = ["hot", "new", "top"];
+  let sortFilterOptions = ["hot", "new", "top"];
   if (pathname.startsWith("/search")) {
-    typeFilterOptions = ["relevance", ...typeFilterOptions];
+    sortFilterOptions = ["relevance", ...sortFilterOptions];
   }
 
-  const typeFilterSetState = (typeFilterOption) => {
-    navigate(`/r/${subreddit}/${typeFilterOption}`);
+  const sortFilterSetState = (sortFilterOption) => {
+    navigate(`/r/${subreddit}/${sortFilterOption}`);
   };
 
-  const typeFilterProps = {
+  const sortFilterProps = {
     heading: "Filter type",
     hideHeading: true,
     name: "type",
-    options: typeFilterOptions,
+    options: sortFilterOptions,
     disabled: false,
-    selected: typeFilter,
-    setState: typeFilterSetState
+    selected: sortFilter,
+    setState: sortFilterSetState
   };
 
   // timeFilter parameters
@@ -48,7 +48,7 @@ function Filters() {
     hideHeading: true,
     name: "time",
     options: ["hour", "day", "week", "month", "year", "all"],
-    disabled: typeFilter !== "top",
+    disabled: sortFilter !== "top",
     selected: timeFilter,
     setState: timeFilterSetState
   };
@@ -56,7 +56,7 @@ function Filters() {
   return (
     <header className="filters">
       <section className="filters__type">
-        <RadioButtonGroup {...typeFilterProps} />
+        <RadioButtonGroup {...sortFilterProps} />
       </section>
       <section className="filters__time">
         <RadioButtonGroup {...timeFilterProps} />

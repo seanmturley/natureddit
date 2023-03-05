@@ -10,12 +10,12 @@ function GetSearchPosts() {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const searchTerm = queryParams.get("q");
-  const typeFilter = queryParams.get("sort");
+  const sortFilter = queryParams.get("sort");
   const timeFilter = queryParams.get("t");
 
   const { data, isError, isLoading } = useGetSearchPostsQuery({
     searchTerm,
-    typeFilter,
+    sortFilter,
     timeFilter
   });
 

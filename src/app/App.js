@@ -20,7 +20,7 @@ const router = createBrowserRouter(
       <Route index element={<GetSubredditPosts />} />
       <Route element={<FiltersLayout />}>
         <Route
-          path="r/:subreddit/:typeFilter?"
+          path="r/:subreddit/:sortFilter?"
           element={<GetSubredditPosts />}
         />
         <Route path="search" element={<GetSearchPosts />} />

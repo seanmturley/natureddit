@@ -5,18 +5,18 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
     getSubredditPosts: builder.query({
-      query: ({ subreddit, typeFilter, timeFilter }) => {
-        const typeFilterString = typeFilter ? `/${typeFilter}` : "";
+      query: ({ subreddit, sortFilter, timeFilter }) => {
+        const sortFilterString = sortFilter ? `/${sortFilter}` : "";
         const timeFilterString = timeFilter ? `?t=${timeFilter}` : "";
-        return `r/${subreddit}${typeFilterString}.json${timeFilterString}`;
+        return `r/${subreddit}${sortFilterString}.json${timeFilterString}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     }),
     getSearchPosts: builder.query({
-      query: ({ searchTerm, typeFilter, timeFilter }) => {
-        const typeFilterString = typeFilter ? `&sort=${typeFilter}` : "";
+      query: ({ searchTerm, sortFilter, timeFilter }) => {
+        const sortFilterString = sortFilter ? `&sort=${sortFilter}` : "";
         const timeFilterString = timeFilter ? `&t=${timeFilter}` : "";
-        return `search.json?q=${searchTerm}${typeFilterString}${timeFilterString}`;
+        return `search.json?q=${searchTerm}${sortFilterString}${timeFilterString}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     })
