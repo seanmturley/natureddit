@@ -12,7 +12,7 @@ function GetSubredditPosts() {
 
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
-  const sortFilter = queryParams.get("sort");
+  const sortFilter = queryParams.get("sort") ?? "hot";
   const timeFilter = queryParams.get("t");
 
   const { data, isError, isLoading } = useGetSubredditPostsQuery({
