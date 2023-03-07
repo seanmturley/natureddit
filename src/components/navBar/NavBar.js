@@ -1,9 +1,25 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import SearchBar from "../searchBar/SearchBar";
 
 import "./NavBar.css";
 
 function NavBar() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleInputSubmit = (event) => {
+    event.preventDefault();
+
+    navigate(`/search?q=${searchTerm}&sort=relevance&t=all`);
+  };
+
   const { pathname, search } = useLocation();
   let navLocation;
 
@@ -21,16 +37,11 @@ function NavBar() {
         <h1 className="nav__brand">Natureddit</h1>
         {navLocation && <h2 className="nav__location">{navLocation}</h2>}
       </section>
-      <form className="search" role="search">
-        <input
-          className="search__input"
-          type="search"
-          id="search"
-          name="q"
-          placeholder="Search Reddit"
-          aria-label="Search Reddit content"
-        />
-      </form>
+      <SearchBar
+        searchTerm={searchTerm}
+        handleInputChange={handleInputChange}
+        handleInputSubmit={handleInputSubmit}
+      />
       <nav className="menu">
         <form className="toggle-switch">Dark mode</form>
         <a className="menu__link" href="null">
