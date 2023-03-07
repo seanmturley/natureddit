@@ -1,0 +1,7 @@
+.search {
+  font-size: var(--base-unit);
+}
+
+.search__input {
+  width: 100%;
+}

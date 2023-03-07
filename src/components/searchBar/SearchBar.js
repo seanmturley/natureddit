@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./SearchBar.css";
+
 function SearchBar({ searchTerm, handleInputChange, handleInputSubmit }) {
   return (
     <form className="search" role="search" onSubmit={handleInputSubmit}>
