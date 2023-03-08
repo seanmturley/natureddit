@@ -4,6 +4,8 @@ import { useLocation, useParams } from "react-router-dom";
 
 import { useGetSubredditPostsQuery } from "../../app/redditApi";
 
+import ErrorPage from "../error/Error";
+import Loading from "../loading/Loading";
 import Posts from "../posts/Posts";
 
 function GetSubredditPosts() {
@@ -21,7 +23,11 @@ function GetSubredditPosts() {
     timeFilter
   });
 
-  return <Posts data={data} isError={isError} isLoading={isLoading} />;
+  if (isError) return <ErrorPage />;
+
+  if (isLoading) return <Loading />;
+
+  return <Posts data={data} />;
 }
 
 export default GetSubredditPosts;

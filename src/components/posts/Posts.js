@@ -6,7 +6,9 @@ import Card from "../card/Card";
 
 import "./Posts.css";
 
-function Posts({ data, isError, isLoading }) {
+import PropTypes from "prop-types";
+
+function Posts({ data }) {
   useEffect(() => {
     if (data) {
       let magicGrid = new MagicGrid({
@@ -23,19 +25,17 @@ function Posts({ data, isError, isLoading }) {
 
   return (
     <section className="posts">
-      {isError ? (
-        <>Oh no, there was an error</>
-      ) : isLoading ? (
-        <>Loading...</>
-      ) : data ? (
-        <ul className="posts__list">
-          {data.map((post) => (
-            <Card key={post.data.id} post={post.data} />
-          ))}
-        </ul>
-      ) : null}
+      <ul className="posts__list">
+        {data.map((post) => (
+          <Card key={post.data.id} post={post.data} />
+        ))}
+      </ul>
     </section>
   );
 }
+
+Posts.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Posts;

@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 
 import { useGetSearchPostsQuery } from "../../app/redditApi";
 
+import ErrorPage from "../error/Error";
+import Loading from "../loading/Loading";
 import Posts from "../posts/Posts";
 
 function GetSearchPosts() {
@@ -19,7 +21,11 @@ function GetSearchPosts() {
     timeFilter
   });
 
-  return <Posts data={data} isError={isError} isLoading={isLoading} />;
+  if (isError) return <ErrorPage />;
+
+  if (isLoading) return <Loading />;
+
+  return <Posts data={data} />;
 }
 
 export default GetSearchPosts;
