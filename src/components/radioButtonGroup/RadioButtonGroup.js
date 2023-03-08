@@ -2,7 +2,7 @@ import React from "react";
 
 import "./RadioButtonGroup.css";
 
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 function RadioButtonGroup({
   heading,
@@ -61,14 +61,14 @@ function RadioButtonGroup({
   );
 }
 
-// RadioButtonGroup.propTypes = {
-//   heading: PropTypes.string.isRequired,
-//   // hideHeading
-//   name: PropTypes.string.isRequired,
-//   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-//   disabled: PropTypes.bool.isRequired,
-//   selected: PropTypes.string.isRequired,
-//   setState: PropTypes.func.isRequired
-// };
+RadioButtonGroup.propTypes = {
+  heading: PropTypes.string.isRequired,
+  hideHeading: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  disabled: PropTypes.bool.isRequired,
+  selected: PropTypes.string.isRequired,
+  setState: PropTypes.func.isRequired
+};
 
 export default RadioButtonGroup;
