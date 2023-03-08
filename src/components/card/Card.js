@@ -6,6 +6,8 @@ import getImageUrl from "../../utils/imageUrlProcessing";
 
 import "./Card.css";
 
+import PropTypes from "prop-types";
+
 function Card({ post }) {
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
@@ -36,5 +38,9 @@ function Card({ post }) {
     </li>
   );
 }
+
+Card.propTypes = {
+  post: PropTypes.object.isRequired
+};
 
 export default Card;
