@@ -2,6 +2,8 @@ import React from "react";
 
 import "./SearchBar.css";
 
+import PropTypes from "prop-types";
+
 function SearchBar({ searchTerm, handleInputChange, handleInputSubmit }) {
   return (
     <form className="search" role="search" onSubmit={handleInputSubmit}>
@@ -18,5 +20,11 @@ function SearchBar({ searchTerm, handleInputChange, handleInputSubmit }) {
     </form>
   );
 }
+
+SearchBar.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleInputSubmit: PropTypes.func.isRequired
+};
 
 export default SearchBar;
