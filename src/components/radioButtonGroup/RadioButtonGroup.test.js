@@ -13,6 +13,7 @@ const setup = (buttonGroupProps, disabled) => {
 
 const twoButtonsProps = {
   heading: "WCAG standard",
+  hideHeading: true,
   name: "contrast-standard",
   options: ["aa", "aaa"],
   selected: "aa",
@@ -22,11 +23,11 @@ const twoButtonsProps = {
 describe("Default radio button group", () => {
   it("should render one button for each option", () => {
     setup(twoButtonsProps);
-    const buttons = screen.queryAllByRole(/^radio$/i);
+    const buttons = screen.queryAllByRole("radio");
     expect(buttons.length).toBe(twoButtonsProps.options.length);
   });
 
-  it("should render with the default value input checked", () => {
+  it("should render with the default selected value input checked", () => {
     setup(twoButtonsProps);
     const defaultButtonInput = screen.getByLabelText(twoButtonsProps.selected);
     expect(defaultButtonInput).toHaveAttribute("checked");
@@ -34,9 +35,7 @@ describe("Default radio button group", () => {
 
   it("should render with the default value label styled appropriately", () => {
     setup(twoButtonsProps);
-    const defaultButtonLabel = screen
-      .getByText(twoButtonsProps.selected)
-      .closest("label");
+    const defaultButtonLabel = screen.getByText(twoButtonsProps.selected);
     expect(defaultButtonLabel).toHaveClass(
       "radio-button-group__label--selected"
     );
@@ -44,17 +43,21 @@ describe("Default radio button group", () => {
 });
 
 describe("Selecting a radio button", () => {
-  it("should fire the handleChange function when an unselected button is clicked", () => {
+  it("should fire the handleChange function when an unselected button is clicked", async () => {
+    const user = userEvent.setup();
     setup(twoButtonsProps);
-    const unselectedButtonInput = screen.getByLabelText("aaa");
-    userEvent.click(unselectedButtonInput);
+    const unselectedButtonInput = screen.getByLabelText(
+      twoButtonsProps.options[1]
+    );
+    await user.click(unselectedButtonInput);
     expect(twoButtonsProps.setState).toHaveBeenCalledTimes(1);
   });
 
-  it("should NOT fire the handleChange function when the currently selected button is clicked", () => {
+  it("should NOT fire the handleChange function when the currently selected button is clicked", async () => {
+    const user = userEvent.setup();
     setup(twoButtonsProps);
     const selectedButtonInput = screen.getByLabelText(twoButtonsProps.selected);
-    userEvent.click(selectedButtonInput);
+    await user.click(selectedButtonInput);
     expect(twoButtonsProps.setState).toHaveBeenCalledTimes(0);
   });
 });
@@ -62,22 +65,22 @@ describe("Selecting a radio button", () => {
 describe("The disabled radio button group", () => {
   it("should NOT be styled as clickable", () => {
     setup(twoButtonsProps, true);
-    const radioButtonGroupForm = screen
-      .getByLabelText(twoButtonsProps.heading)
-      .closest("form");
+    const radioButtonGroupForm = screen.getByLabelText(twoButtonsProps.heading);
     expect(radioButtonGroupForm).toHaveClass("radio-button-group--disabled");
   });
 
   it("should NOT have clickable buttons", () => {
     setup(twoButtonsProps, true);
-    const buttons = screen.getAllByRole(/^radio$/i);
+    const buttons = screen.getAllByRole("radio");
     expect(buttons[0]).toHaveAttribute("disabled");
     expect(buttons[1]).toHaveAttribute("disabled");
   });
 
   it("should NOT fire the handleChange function when an unselected button is clicked", () => {
     setup(twoButtonsProps, true);
-    const unselectedButtonInput = screen.getByLabelText("aaa");
+    const unselectedButtonInput = screen.getByLabelText(
+      twoButtonsProps.options[1]
+    );
     userEvent.click(unselectedButtonInput);
     expect(twoButtonsProps.setState).toHaveBeenCalledTimes(0);
   });

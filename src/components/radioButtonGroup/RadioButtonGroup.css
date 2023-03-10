@@ -5,6 +5,8 @@
   --radio-button-group__text: var(--detail-font);
   --radio-button-group__selected-text: var(--detail-font__emphasis);
   --radio-button-group__border-width: var(--border-width);
+  display: flex;
+  align-items: center;
 }
 
 .radio-button-group--clickable {
@@ -13,11 +15,6 @@
 
 .radio-button-group--disabled {
   color: var(--radio-button-group__disabled-color);
-}
-
-.radio-button-group__container {
-  display: flex;
-  align-items: center;
 }
 
 .radio-button-group__heading--visible {
@@ -59,6 +56,7 @@
 }
 
 .radio-button-group__label--selected {
+  font: var(--radio-button-group__selected-text);
   border-style: solid;
   border-width: var(--radio-button-group__border-width);
   border-radius: 1em;
@@ -66,14 +64,6 @@
 
 .radio-button-group--disabled .radio-button-group__label--selected {
   border-color: var(--radio-button-group__disabled-color);
-}
-
-.radio-button-group__label-text {
-  margin: auto;
-}
-
-.radio-button-group__label--selected .radio-button-group__label-text {
-  font: var(--radio-button-group__selected-text);
 }
 
 .radio-button-group__input {
