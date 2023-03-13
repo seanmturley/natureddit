@@ -31,7 +31,7 @@ describe("On search pages", () => {
     expect(all).toHaveClass("radio-button-group__label--selected");
   });
 
-  it("The timeFilter should be enabled", () => {
+  it("The timeFilter should be enabled by default", () => {
     setup(searchDefaultRoute);
     const timeFilter = screen.getByRole("radiogroup", { name: "Timeframe" });
     expect(timeFilter).toHaveClass("radio-button-group--clickable");
@@ -58,14 +58,18 @@ describe("On search pages", () => {
       );
     });
 
-    // it("Should have no timeFilter selected", async () => {
-    //   const {user} =    setup(searchDefaultRoute);
-    //   const aTimeIndependentFilter = screen.getByText("hot");
-    //   await user.click(aTimeIndependentFilter);
-    //   expect(aTimeIndependentFilter).toHaveClass(
-    //     "radio-button-group__label--selected"
-    //   );
-    // });
+    it("Should have no timeFilter selected", async () => {
+      const { user } = setup(searchDefaultRoute);
+      const aTimeIndependentFilter = screen.getByText("hot");
+      await user.click(aTimeIndependentFilter);
+      const timeFilters = ["hour", "day", "week", "month", "year", "all"];
+      timeFilters.forEach((timeFilter) => {
+        const filterLabel = screen.getByText(timeFilter);
+        expect(filterLabel).not.toHaveClass(
+          "radio-button-group__label--selected"
+        );
+      });
+    });
 
     it("Should display the timeFilter as disabled", async () => {
       const { user } = setup(searchDefaultRoute);
