@@ -2,14 +2,46 @@ import React from "react";
 
 import NavBar from "./NavBar";
 
-import { BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  createMemoryRouter,
+  RouterProvider
+} from "react-router-dom";
 
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 const setup = (route = "/") => {
   window.history.pushState({}, "Test page", route);
 
   render(<NavBar />, { wrapper: BrowserRouter });
+};
+
+const setupUrlTest = () => {
+  const router = createMemoryRouter(
+    // An array of routes to be mocked, with the elemement to render for each path
+    [
+      {
+        path: "/",
+        element: <NavBar />
+      },
+      {
+        path: "/search",
+        element: <NavBar />
+      }
+    ],
+    {
+      // An array of routes to manually set the "browser" history
+      initialEntries: ["/"],
+      // The array index of where to start in the history
+      initialIndex: 0
+    }
+  );
+
+  render(<RouterProvider router={router} />);
+
+  // Returning the router allows direct access to its state.location property
+  return router;
 };
 
 describe("The navLocation heading", () => {
@@ -35,5 +67,36 @@ describe("The navLocation heading", () => {
       name: `Results for "${searchTerm}"`
     });
     expect(navLocation).toBeInTheDocument();
+  });
+});
+
+describe("The SearchBar", () => {
+  it("Should display user input", async () => {
+    const user = userEvent.setup();
+    setup();
+    const searchBar = screen.getByRole("searchbox", {
+      name: "Search Reddit content"
+    });
+    const searchTerm = "Earth Porn";
+    await user.type(searchBar, searchTerm);
+    expect(searchBar).toHaveValue(searchTerm);
+  });
+
+  it("Should correctly update the URL upon user submit", async () => {
+    const user = userEvent.setup();
+    const router = setupUrlTest();
+
+    const searchBar = screen.getByRole("searchbox", {
+      name: "Search Reddit content"
+    });
+    const searchTerm = "Earth Porn";
+    await user.type(searchBar, searchTerm);
+
+    fireEvent.submit(searchBar);
+
+    expect(router.state.location.pathname).toBe("/search");
+    expect(router.state.location.search).toBe(
+      `?q=${searchTerm}&sort=relevance&t=all`
+    );
   });
 });
