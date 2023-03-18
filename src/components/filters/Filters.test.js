@@ -2,14 +2,9 @@ import React from "react";
 
 import Filters from "./Filters";
 
-import {
-  BrowserRouter,
-  createMemoryRouter,
-  RouterProvider
-} from "react-router-dom";
+import { screen } from "@testing-library/react";
 
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { setupWithUrl, setupWithRouting } from "../../testingUtilities";
 
 const searchBaseRoute = "/search";
 const searchDefaultRoute = `${searchBaseRoute}?q=EarthPorn&sort=relevance&t=all`;
@@ -31,35 +26,9 @@ const subredditRoutes = [
 ];
 const subredditInitialEntries = [subredditDefaultRoute];
 
-const setup = (route = "/") => {
-  window.history.pushState({}, "Test page", route);
-  return {
-    user: userEvent.setup(),
-    ...render(<Filters />, { wrapper: BrowserRouter })
-  };
-};
-
-const setupUrlTest = (routes, initialEntries, initialIndex = 0) => {
-  const router = createMemoryRouter(
-    // An array of routes to be mocked, with the elemement to render for each path
-    routes,
-    {
-      // An array of URLs to manually set the "browser" history
-      initialEntries: initialEntries,
-      // The array index of where to start in the history
-      initialIndex: initialIndex
-    }
-  );
-
-  render(<RouterProvider router={router} />);
-
-  // Returning the router allows direct access to its state.location property
-  return router;
-};
-
 describe("On search pages", () => {
   it("'relevance' should be selected by default", () => {
-    setup(searchDefaultRoute);
+    setupWithUrl(<Filters />, searchDefaultRoute);
 
     const relevance = screen.getByText("relevance");
 
@@ -67,7 +36,7 @@ describe("On search pages", () => {
   });
 
   it("'all' should be selected by default", () => {
-    setup(searchDefaultRoute);
+    setupWithUrl(<Filters />, searchDefaultRoute);
 
     const all = screen.getByText("all");
 
@@ -75,7 +44,7 @@ describe("On search pages", () => {
   });
 
   it("The timeFilter should be enabled by default", () => {
-    setup(searchDefaultRoute);
+    setupWithUrl(<Filters />, searchDefaultRoute);
 
     const timeFilter = screen.getByRole("radiogroup", { name: "Timeframe" });
 
@@ -84,7 +53,7 @@ describe("On search pages", () => {
 
   describe("Clicking another timeFilter", () => {
     it("Should select that filter", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const anotherTimeFilter = screen.getByText("day");
       await user.click(anotherTimeFilter);
@@ -95,8 +64,10 @@ describe("On search pages", () => {
     });
 
     it("Should correctly update the URL sort parameters", async () => {
-      const user = userEvent.setup();
-      const router = setupUrlTest(searchRoutes, searchInitialEntries);
+      const { user, router } = setupWithRouting(
+        searchRoutes,
+        searchInitialEntries
+      );
 
       const anotherTime = "day";
       const anotherTimeFilter = screen.getByText(anotherTime);
@@ -110,7 +81,7 @@ describe("On search pages", () => {
 
   describe("Clicking a time independent typeFilter", () => {
     it("Should select that filter", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
@@ -121,7 +92,7 @@ describe("On search pages", () => {
     });
 
     it("Should have no timeFilter selected", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
@@ -136,7 +107,7 @@ describe("On search pages", () => {
     });
 
     it("Should display the timeFilter as disabled", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
@@ -146,8 +117,10 @@ describe("On search pages", () => {
     });
 
     it("Should correctly update the URL sort parameters", async () => {
-      const user = userEvent.setup();
-      const router = setupUrlTest(searchRoutes, searchInitialEntries);
+      const { user, router } = setupWithRouting(
+        searchRoutes,
+        searchInitialEntries
+      );
 
       const timeIndependentType = "hot";
       const timeIndependentTypeFilter = screen.getByText(timeIndependentType);
@@ -161,7 +134,7 @@ describe("On search pages", () => {
 
   describe("Clicking 'top'", () => {
     it("Should select 'top'", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -170,7 +143,7 @@ describe("On search pages", () => {
     });
 
     it("Should reset the timeFilter to 'all'", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -180,7 +153,7 @@ describe("On search pages", () => {
     });
 
     it("Should display the timeFilter as enabled", async () => {
-      const { user } = setup(searchDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -194,7 +167,7 @@ describe("On search pages", () => {
 describe("On subreddit pages", () => {
   describe("Clicking 'top'", () => {
     it("Should reset the timeFilter to 'day'", async () => {
-      const { user } = setup(subredditDefaultRoute);
+      const { user } = setupWithUrl(<Filters />, subredditDefaultRoute);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -204,8 +177,10 @@ describe("On subreddit pages", () => {
     });
 
     it("Should correctly update the URL sort parameters", async () => {
-      const user = userEvent.setup();
-      const router = setupUrlTest(subredditRoutes, subredditInitialEntries);
+      const { user, router } = setupWithRouting(
+        subredditRoutes,
+        subredditInitialEntries
+      );
 
       const top = screen.getByText("top");
       await user.click(top);
