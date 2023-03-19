@@ -4,7 +4,7 @@ import Filters from "./Filters";
 
 import { screen } from "@testing-library/react";
 
-import { setupWithUrl, setupWithRouting } from "../../testingUtilities";
+import { setupWithRouting } from "../../testingUtilities";
 
 const searchBaseRoute = "/search";
 const searchDefaultRoute = `${searchBaseRoute}?q=EarthPorn&sort=relevance&t=all`;
@@ -16,11 +16,10 @@ const searchRoutes = [
 ];
 const searchInitialEntries = [searchDefaultRoute];
 
-const subredditBaseRoute = "/r/EarthPorn";
-const subredditDefaultRoute = `${subredditBaseRoute}?sort=hot`;
+const subredditDefaultRoute = "/r/EarthPorn/hot";
 const subredditRoutes = [
   {
-    path: subredditBaseRoute,
+    path: "/r/:subreddit/:sortFilter",
     element: <Filters />
   }
 ];
@@ -28,7 +27,7 @@ const subredditInitialEntries = [subredditDefaultRoute];
 
 describe("On search pages", () => {
   it("'relevance' should be selected by default", () => {
-    setupWithUrl(<Filters />, searchDefaultRoute);
+    setupWithRouting(searchRoutes, searchInitialEntries);
 
     const relevance = screen.getByText("relevance");
 
@@ -36,7 +35,7 @@ describe("On search pages", () => {
   });
 
   it("'all' should be selected by default", () => {
-    setupWithUrl(<Filters />, searchDefaultRoute);
+    setupWithRouting(searchRoutes, searchInitialEntries);
 
     const all = screen.getByText("all");
 
@@ -44,7 +43,7 @@ describe("On search pages", () => {
   });
 
   it("The timeFilter should be enabled by default", () => {
-    setupWithUrl(<Filters />, searchDefaultRoute);
+    setupWithRouting(searchRoutes, searchInitialEntries);
 
     const timeFilter = screen.getByRole("radiogroup", { name: "Timeframe" });
 
@@ -53,7 +52,7 @@ describe("On search pages", () => {
 
   describe("Clicking another timeFilter", () => {
     it("Should select that filter", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const anotherTimeFilter = screen.getByText("day");
       await user.click(anotherTimeFilter);
@@ -81,7 +80,7 @@ describe("On search pages", () => {
 
   describe("Clicking a time independent typeFilter", () => {
     it("Should select that filter", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
@@ -92,7 +91,7 @@ describe("On search pages", () => {
     });
 
     it("Should have no timeFilter selected", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
@@ -107,7 +106,7 @@ describe("On search pages", () => {
     });
 
     it("Should display the timeFilter as disabled", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
@@ -134,7 +133,7 @@ describe("On search pages", () => {
 
   describe("Clicking 'top'", () => {
     it("Should select 'top'", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -143,7 +142,7 @@ describe("On search pages", () => {
     });
 
     it("Should reset the timeFilter to 'all'", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -153,7 +152,7 @@ describe("On search pages", () => {
     });
 
     it("Should display the timeFilter as enabled", async () => {
-      const { user } = setupWithUrl(<Filters />, searchDefaultRoute);
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -167,7 +166,10 @@ describe("On search pages", () => {
 describe("On subreddit pages", () => {
   describe("Clicking 'top'", () => {
     it("Should reset the timeFilter to 'day'", async () => {
-      const { user } = setupWithUrl(<Filters />, subredditDefaultRoute);
+      const { user } = setupWithRouting(
+        subredditRoutes,
+        subredditInitialEntries
+      );
 
       const top = screen.getByText("top");
       await user.click(top);
@@ -185,7 +187,7 @@ describe("On subreddit pages", () => {
       const top = screen.getByText("top");
       await user.click(top);
 
-      expect(router.state.location.search).toBe(`?sort=top&t=day`);
+      expect(router.state.location.search).toBe(`?t=day`);
     });
   });
 });

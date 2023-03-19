@@ -5,9 +5,8 @@ export const redditApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
     getSubredditPosts: builder.query({
-      query: ({ subreddit, sortFilter, timeFilter }) => {
-        const timeFilterString = timeFilter ? `?t=${timeFilter}` : "";
-        return `r/${subreddit}/${sortFilter}.json${timeFilterString}`;
+      query: ({ path, parameters }) => {
+        return `${path}.json${parameters}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     }),

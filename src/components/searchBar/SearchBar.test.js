@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 
 import { fireEvent, screen } from "@testing-library/react";
 
-import { setupWithUrl } from "../../testingUtilities";
+import { setupWithRouting } from "../../testingUtilities";
 
 const searchBarProps = {
   searchTerm: "Earth Porn",
@@ -12,11 +12,16 @@ const searchBarProps = {
   handleInputSubmit: jest.fn()
 };
 
-const searchBarComponent = <SearchBar {...searchBarProps} />;
+const routes = [
+  {
+    path: "/",
+    element: <SearchBar {...searchBarProps} />
+  }
+];
 
 describe("The SearchBar", () => {
   it("Should fire the handleInputSubmit function on submit", () => {
-    setupWithUrl(searchBarComponent);
+    setupWithRouting(routes);
 
     const searchBar = screen.getByRole("searchbox", {
       name: "Search Reddit content"
@@ -27,7 +32,7 @@ describe("The SearchBar", () => {
   });
 
   it("Should fire the handleInputChange function on user input", async () => {
-    const { user } = setupWithUrl(searchBarComponent);
+    const { user } = setupWithRouting(routes);
 
     const searchBar = screen.getByRole("searchbox", {
       name: "Search Reddit content"

@@ -32,7 +32,7 @@ const router = createBrowserRouter(
       />
       <Route element={<FiltersLayout />}>
         <Route
-          path="r/:subreddit"
+          path="r/:subreddit/:sortFilter"
           element={<Posts useQuery={useGetSubredditPostsQuery} />}
           loader={subredditPostsLoader}
         />

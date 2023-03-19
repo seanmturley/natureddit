@@ -11,16 +11,12 @@ const initiateRequest = async (endpoint, query) => {
   return query;
 };
 
-export const subredditPostsLoader = ({ request, params }) => {
-  const subreddit = params.subreddit ?? "EarthPorn";
-
+export const subredditPostsLoader = ({ request }) => {
   const url = new URL(request.url);
-  const queryParams = url.searchParams;
 
   const query = {
-    subreddit: subreddit,
-    sortFilter: queryParams.get("sort") ?? "hot",
-    timeFilter: queryParams.get("t")
+    path: url.pathname === "/" ? "/r/EarthPorn/hot" : url.pathname,
+    parameters: url.search
   };
 
   return initiateRequest("getSubredditPosts", query);

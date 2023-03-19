@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 import SearchBar from "../searchBar/SearchBar";
 
@@ -20,14 +20,15 @@ function NavBar() {
     navigate(`/search?q=${searchTerm}&sort=relevance&t=all`);
   };
 
+  const { subreddit } = useParams();
   const { pathname, search } = useLocation();
   let navLocation;
 
   if (pathname === "/search") {
     const queryParams = new URLSearchParams(search);
     navLocation = `Results for "${queryParams.get("q")}"`;
-  } else if (pathname.startsWith("/r/")) {
-    navLocation = pathname.substring(1);
+  } else if (subreddit) {
+    navLocation = `r/${subreddit}`;
   }
 
   return (

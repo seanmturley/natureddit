@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
 
@@ -9,27 +9,42 @@ import "./Filters.css";
 function Filters() {
   const navigate = useNavigate();
 
+  let { subreddit, sortFilter } = useParams();
   const { pathname, search } = useLocation();
-  const queryParams = new URLSearchParams(search);
-  const searchTerm = queryParams.get("q");
-  const sortFilter = queryParams.get("sort");
-  const timeFilter = queryParams.get("t");
 
-  let baseUrl = `${pathname}?`;
+  const queryParams = new URLSearchParams(search);
+
+  // Relative URLs require a valid base - this is never actually used.
+  const baseUrl = "https://ignore.it";
+
+  // sortFilter parameters
+  sortFilter = sortFilter ?? queryParams.get("sort");
+
   let sortFilterOptions = ["hot", "new", "top"];
   if (pathname === "/search") {
-    baseUrl += `q=${searchTerm}&`;
     sortFilterOptions = ["relevance", ...sortFilterOptions];
   }
 
-  // sortFilter parameters
   const sortFilterSetState = (clickedSortFilter) => {
-    let timeFilterString = "";
-    if (clickedSortFilter === "relevance" || clickedSortFilter === "top") {
-      timeFilterString = pathname === "/search" ? "&t=all" : "&t=day";
+    let newUrl;
+    let defaultTimeFilter;
+
+    if (subreddit) {
+      newUrl = new URL(`/r/${subreddit}/${clickedSortFilter}`, baseUrl);
+      defaultTimeFilter = "day";
+    } else {
+      newUrl = new URL(`${pathname}${search}`, baseUrl);
+      newUrl.searchParams.set("sort", clickedSortFilter);
+      defaultTimeFilter = "all";
     }
 
-    navigate(`${baseUrl}sort=${clickedSortFilter}${timeFilterString}`);
+    if (clickedSortFilter === "relevance" || clickedSortFilter === "top") {
+      newUrl.searchParams.set("t", defaultTimeFilter);
+    } else {
+      newUrl.searchParams.delete("t");
+    }
+
+    navigate(`${newUrl.pathname}${newUrl.search}`);
   };
 
   const sortFilterProps = {
@@ -44,7 +59,11 @@ function Filters() {
 
   // timeFilter parameters
   const timeFilterSetState = (clickedTimeFilter) => {
-    navigate(`${baseUrl}sort=${sortFilter}&t=${clickedTimeFilter}`);
+    const newUrl = new URL(`${pathname}${search}`, baseUrl);
+
+    newUrl.searchParams.set("t", clickedTimeFilter);
+
+    navigate(`${newUrl.pathname}${newUrl.search}`);
   };
 
   const timeFilterProps = {
@@ -53,7 +72,7 @@ function Filters() {
     name: "time",
     options: ["hour", "day", "week", "month", "year", "all"],
     disabled: sortFilter !== "relevance" && sortFilter !== "top",
-    selected: timeFilter ?? "",
+    selected: queryParams.get("t") ?? "",
     setState: timeFilterSetState
   };
 

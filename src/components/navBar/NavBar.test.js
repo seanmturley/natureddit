@@ -4,11 +4,15 @@ import NavBar from "./NavBar";
 
 import { fireEvent, screen } from "@testing-library/react";
 
-import { setupWithUrl, setupWithRouting } from "../../testingUtilities";
+import { setupWithRouting } from "../../testingUtilities";
 
-const searchRoutes = [
+const routes = [
   {
     path: "/",
+    element: <NavBar />
+  },
+  {
+    path: "/r/:subreddit/:sortFilter",
     element: <NavBar />
   },
   {
@@ -19,7 +23,7 @@ const searchRoutes = [
 
 describe("The navLocation heading", () => {
   it("should display nothing on the home page", () => {
-    setupWithUrl(<NavBar />);
+    setupWithRouting(routes);
 
     const headings = screen.getAllByRole("heading");
     // On the homepage there should only be one heading in the NavBar (the h1)
@@ -29,7 +33,8 @@ describe("The navLocation heading", () => {
 
   it("should display 'r/[subreddit]' on subreddit pages", () => {
     const subreddit = "r/EarthPorn";
-    setupWithUrl(<NavBar />, subreddit);
+    const sortFilter = "/hot";
+    setupWithRouting(routes, [`/${subreddit}${sortFilter}`]);
 
     const navLocation = screen.getByRole("heading", { name: subreddit });
     expect(navLocation).toBeInTheDocument();
@@ -37,7 +42,7 @@ describe("The navLocation heading", () => {
 
   it("should display 'Results for \"[searchTerm]\"' on search pages", () => {
     const searchTerm = "EarthPorn";
-    setupWithUrl(<NavBar />, `/search?q=${searchTerm}`);
+    setupWithRouting(routes, [`/search?q=${searchTerm}`]);
 
     const navLocation = screen.getByRole("heading", {
       name: `Results for "${searchTerm}"`
@@ -48,7 +53,7 @@ describe("The navLocation heading", () => {
 
 describe("The SearchBar", () => {
   it("Should display user input", async () => {
-    const { user } = setupWithUrl(<NavBar />);
+    const { user } = setupWithRouting(routes);
 
     const searchBar = screen.getByRole("searchbox", {
       name: "Search Reddit content"
@@ -60,7 +65,7 @@ describe("The SearchBar", () => {
   });
 
   it("Should correctly update the URL upon user submit", async () => {
-    const { user, router } = setupWithRouting(searchRoutes);
+    const { user, router } = setupWithRouting(routes);
 
     const searchBar = screen.getByRole("searchbox", {
       name: "Search Reddit content"
