@@ -12,9 +12,8 @@ export const redditApi = createApi({
       transformResponse: (response, meta, arg) => response.data.children
     }),
     getSearchPosts: builder.query({
-      query: ({ searchTerm, sortFilter, timeFilter }) => {
-        const timeFilterString = timeFilter ? `&t=${timeFilter}` : "";
-        return `search.json?q=${searchTerm}&sort=${sortFilter}${timeFilterString}`;
+      query: ({ path, parameters }) => {
+        return `${path}.json${parameters}`;
       },
       transformResponse: (response, meta, arg) => response.data.children
     })
