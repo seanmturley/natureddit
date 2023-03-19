@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 
 import { useLoaderData } from "react-router-dom";
 
+import { useGetPostsQuery } from "../../services/redditApi";
+
 import MagicGrid from "magic-grid";
 
 import Card from "../card/Card";
 
 import "./Posts.css";
 
-import PropTypes from "prop-types";
-
-function Posts({ useQuery }) {
+function Posts() {
   const query = useLoaderData();
 
-  const { data } = useQuery(query);
+  const { data } = useGetPostsQuery(query);
 
   useEffect(() => {
     if (data) {
@@ -39,9 +39,5 @@ function Posts({ useQuery }) {
     </section>
   );
 }
-
-Posts.propTypes = {
-  useQuery: PropTypes.func.isRequired
-};
 
 export default Posts;

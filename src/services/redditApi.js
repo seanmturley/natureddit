@@ -4,13 +4,7 @@ export const redditApi = createApi({
   reducerPath: "redditApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
-    getSubredditPosts: builder.query({
-      query: ({ path, parameters }) => {
-        return `${path}.json${parameters}`;
-      },
-      transformResponse: (response, meta, arg) => response.data.children
-    }),
-    getSearchPosts: builder.query({
+    getPosts: builder.query({
       query: ({ path, parameters }) => {
         return `${path}.json${parameters}`;
       },
@@ -19,4 +13,4 @@ export const redditApi = createApi({
   })
 });
 
-export const { useGetSubredditPostsQuery, useGetSearchPostsQuery } = redditApi;
+export const { useGetPostsQuery } = redditApi;

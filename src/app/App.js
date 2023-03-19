@@ -11,36 +11,21 @@ import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
 import Posts from "../components/posts/Posts";
 
-import {
-  useGetSubredditPostsQuery,
-  useGetSearchPostsQuery
-} from "../services/redditApi";
-import {
-  searchPostsLoader,
-  subredditPostsLoader
-} from "../services/apiLoaders";
+import { postsLoader } from "../services/apiLoaders";
 
 import "./App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route
-        index
-        element={<Posts useQuery={useGetSubredditPostsQuery} />}
-        loader={subredditPostsLoader}
-      />
+      <Route index element={<Posts />} loader={postsLoader} />
       <Route element={<FiltersLayout />}>
         <Route
           path="r/:subreddit/:sortFilter"
-          element={<Posts useQuery={useGetSubredditPostsQuery} />}
-          loader={subredditPostsLoader}
+          element={<Posts />}
+          loader={postsLoader}
         />
-        <Route
-          path="search"
-          element={<Posts useQuery={useGetSearchPostsQuery} />}
-          loader={searchPostsLoader}
-        />
+        <Route path="search" element={<Posts />} loader={postsLoader} />
       </Route>
       <Route path="error" element={<errorPage />} />
     </Route>

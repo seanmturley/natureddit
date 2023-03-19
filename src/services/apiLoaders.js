@@ -1,17 +1,7 @@
 import store from "../store";
 import { redditApi } from "./redditApi";
 
-const initiateRequest = async (endpoint, query) => {
-  const apiRequest = store.dispatch(
-    redditApi.endpoints[endpoint].initiate(query)
-  );
-  await apiRequest;
-  apiRequest.unsubscribe();
-
-  return query;
-};
-
-export const subredditPostsLoader = ({ request }) => {
+export const postsLoader = async ({ request }) => {
   const url = new URL(request.url);
 
   const query = {
@@ -19,16 +9,11 @@ export const subredditPostsLoader = ({ request }) => {
     parameters: url.search
   };
 
-  return initiateRequest("getSubredditPosts", query);
-};
+  const apiRequest = store.dispatch(
+    redditApi.endpoints.getPosts.initiate(query)
+  );
+  await apiRequest;
+  apiRequest.unsubscribe();
 
-export const searchPostsLoader = ({ request }) => {
-  const url = new URL(request.url);
-
-  const query = {
-    path: url.pathname,
-    parameters: url.search
-  };
-
-  return initiateRequest("getSearchPosts", query);
+  return query;
 };
