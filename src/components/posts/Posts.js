@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 
+import { useLoaderData } from "react-router-dom";
+
 import MagicGrid from "magic-grid";
 
 import Card from "../card/Card";
@@ -8,7 +10,11 @@ import "./Posts.css";
 
 import PropTypes from "prop-types";
 
-function Posts({ data }) {
+function Posts({ useQuery }) {
+  const query = useLoaderData();
+
+  const { data } = useQuery(query);
+
   useEffect(() => {
     if (data) {
       let magicGrid = new MagicGrid({
@@ -35,7 +41,7 @@ function Posts({ data }) {
 }
 
 Posts.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired
+  useQuery: PropTypes.func.isRequired
 };
 
 export default Posts;
