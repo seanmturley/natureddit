@@ -12,8 +12,17 @@ export const postsLoader = async ({ request }) => {
   const apiRequest = store.dispatch(
     redditApi.endpoints.getPosts.initiate(query)
   );
-  await apiRequest;
-  apiRequest.unsubscribe();
+
+  try {
+    await apiRequest.unwrap();
+  } catch (error) {
+    throw new Response(error.data.message, {
+      status: error.status,
+      statusText: error.data.message
+    });
+  } finally {
+    apiRequest.unsubscribe();
+  }
 
   return query;
 };

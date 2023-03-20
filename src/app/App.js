@@ -4,11 +4,13 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
-  createRoutesFromElements
+  createRoutesFromElements,
+  Outlet
 } from "react-router-dom";
 
 import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
+import ErrorPage from "../components/errorPage/ErrorPage";
 import Posts from "../components/posts/Posts";
 
 import { postsLoader } from "../services/apiLoaders";
@@ -17,17 +19,18 @@ import "./App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
-      <Route index element={<Posts />} loader={postsLoader} />
-      <Route element={<FiltersLayout />}>
-        <Route
-          path="r/:subreddit/:sortFilter"
-          element={<Posts />}
-          loader={postsLoader}
-        />
-        <Route path="search" element={<Posts />} loader={postsLoader} />
+    <Route element={<MainLayout />}>
+      <Route element={<Outlet />} errorElement={<ErrorPage />}>
+        <Route path="/" loader={postsLoader} element={<Posts />} />
+        <Route element={<FiltersLayout />}>
+          <Route
+            path="/r/:subreddit/:sortFilter"
+            loader={postsLoader}
+            element={<Posts />}
+          />
+          <Route path="/search" element={<Posts />} loader={postsLoader} />
+        </Route>
       </Route>
-      <Route path="error" element={<errorPage />} />
     </Route>
   )
 );
