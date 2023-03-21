@@ -1,0 +1,18 @@
+.loading-overlay {
+  font-size: var(--base-unit);
+  position: absolute;
+  top: var(--nav-bar-height);
+  height: calc(100% - var(--nav-bar-height));
+  width: 100%;
+  overflow: auto;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.loading-overlay__text {
+  font: var(--title-font);
+  color: #fff;
+}
