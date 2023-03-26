@@ -26,3 +26,7 @@ export const postsLoader = async ({ request }) => {
 
   return query;
 };
+
+export const postLoader = async () => {
+  console.log("Loading post");
+};

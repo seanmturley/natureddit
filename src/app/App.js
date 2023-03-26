@@ -12,8 +12,9 @@ import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
 import ErrorPage from "../components/errorPage/ErrorPage";
 import Posts from "../components/posts/Posts";
+import Post from "../components/post/Post";
 
-import { postsLoader } from "../services/apiLoaders";
+import { postsLoader, postLoader } from "../services/apiLoaders";
 
 import "./App.css";
 
@@ -30,6 +31,11 @@ const router = createBrowserRouter(
           />
           <Route path="/search" element={<Posts />} loader={postsLoader} />
         </Route>
+        <Route
+          path="/r/:subreddit/comments/:id/:title"
+          loader={postLoader}
+          element={<Post />}
+        />
       </Route>
     </Route>
   )
