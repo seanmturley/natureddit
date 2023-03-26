@@ -1,16 +1,9 @@
 import store from "../store";
 import { redditApi } from "./redditApi";
 
-export const postsLoader = async ({ request }) => {
-  const url = new URL(request.url);
-
-  const query = {
-    path: url.pathname === "/" ? "/r/EarthPorn/hot" : url.pathname,
-    parameters: url.search
-  };
-
+const makeApiRequest = async (query, endpoint) => {
   const apiRequest = store.dispatch(
-    redditApi.endpoints.getPosts.initiate(query)
+    redditApi.endpoints[endpoint].initiate(query)
   );
 
   try {
@@ -23,10 +16,27 @@ export const postsLoader = async ({ request }) => {
   } finally {
     apiRequest.unsubscribe();
   }
+};
+
+export const postsLoader = async ({ request }) => {
+  const url = new URL(request.url);
+
+  const query = {
+    path: url.pathname === "/" ? "/r/EarthPorn/hot" : url.pathname,
+    parameters: url.search
+  };
+
+  await makeApiRequest(query, "getPosts");
 
   return query;
 };
 
-export const postLoader = async () => {
-  console.log("Loading post");
+export const postLoader = async ({ request }) => {
+  const url = new URL(request.url);
+
+  const query = url.pathname;
+
+  await makeApiRequest(query, "getPost");
+
+  return query;
 };
