@@ -4,6 +4,8 @@ import { useLoaderData } from "react-router-dom";
 
 import { useGetPostQuery } from "../../services/redditApi";
 
+import ReactMarkdown from "react-markdown";
+
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
@@ -37,6 +39,9 @@ function Post() {
             <span className="post__age">{age}</span> ago
           </div>
           <h1 className="post__title">{post.title}</h1>
+          <div className="post__text">
+            <ReactMarkdown>{post.selftext}</ReactMarkdown>
+          </div>
           <div className="post__stats">
             <div className="post__comments">{`${formattedNumComments} comments`}</div>
             <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
