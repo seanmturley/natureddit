@@ -16,11 +16,13 @@ function Card({ post }) {
 
   return (
     <li className="card">
-      <img
-        className="card__image"
-        src={imageUrl}
-        alt={`${post.subreddit_name_prefixed} - ${post.title}`}
-      />
+      {imageUrl && (
+        <img
+          className="card__image"
+          src={imageUrl}
+          alt={`${post.subreddit_name_prefixed} - ${post.title}`}
+        />
+      )}
       <section className="card__text">
         <div className="card__details">
           Posted in{" "}

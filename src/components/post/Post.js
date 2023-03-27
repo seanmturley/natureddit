@@ -24,11 +24,13 @@ function Post() {
   return (
     <div className="post-container">
       <div className="post">
-        <img
-          className="post__image"
-          src={imageUrl}
-          alt={`${post.subreddit_name_prefixed} - ${post.title}`}
-        />
+        {imageUrl && (
+          <img
+            className="post__image"
+            src={imageUrl}
+            alt={`${post.subreddit_name_prefixed} - ${post.title}`}
+          />
+        )}
         <section>
           <div className="post__details">
             Posted in{" "}
