@@ -19,7 +19,7 @@ function Card({ post }) {
       {imageUrl && (
         <img
           className="card__image"
-          src={imageUrl}
+          src={imageUrl.medium}
           alt={`${post.subreddit_name_prefixed} - ${post.title}`}
         />
       )}

@@ -27,7 +27,7 @@ function Post() {
         {imageUrl && (
           <img
             className="post__image"
-            src={imageUrl}
+            src={imageUrl.large}
             alt={`${post.subreddit_name_prefixed} - ${post.title}`}
           />
         )}
