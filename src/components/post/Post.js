@@ -21,6 +21,10 @@ function Post() {
   const formattedScore = formatNumber(post.score);
   const imageUrl = getImageUrl(post);
 
+  const copyPostLink = async () => {
+    await navigator.clipboard.writeText(document.location.href);
+  };
+
   return (
     <div className="post-container">
       <div className="post">
@@ -47,7 +51,13 @@ function Post() {
           <div className="post__stats">
             <div className="post__comments">{`${formattedNumComments} comments`}</div>
             <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
-            <div className="post__share">share</div>
+            <button
+              type="button"
+              className="post__share"
+              onClick={copyPostLink}
+            >
+              share
+            </button>
           </div>
         </section>
       </div>
