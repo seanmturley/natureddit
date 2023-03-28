@@ -51,6 +51,13 @@ function Post() {
           <div className="post__stats">
             <div className="post__comments">{`${formattedNumComments} comments`}</div>
             <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
+            <a
+              href={`https://www.reddit.com${post.permalink}`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              view on Reddit
+            </a>
             <button
               type="button"
               className="post__share"
