@@ -49,9 +49,11 @@ function Post() {
             <span className="post__age">{age}</span> ago
           </div>
           <h1 className="post__title">{post.title}</h1>
-          <div className="post__text">
-            <ReactMarkdown>{post.selftext}</ReactMarkdown>
-          </div>
+          {post.selftext && (
+            <div className="post__text">
+              <ReactMarkdown>{post.selftext}</ReactMarkdown>
+            </div>
+          )}
           <div className="post__stats-and-cta">
             <div className="post__comments">{`${formattedNumComments} comments`}</div>
             <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
