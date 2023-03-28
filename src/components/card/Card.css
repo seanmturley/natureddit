@@ -9,7 +9,7 @@
   width: 100%;
 }
 
-.card__text {
+.card__body {
   margin: 1em 1em 0.5em;
 }
 .card__details {
@@ -31,6 +31,21 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.card__link {
+  color: unset;
+  text-decoration: unset;
+}
+
+.card__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .card__stats {
   display: flex;
   justify-content: space-between;
