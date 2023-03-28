@@ -10,6 +10,8 @@ import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
 
+import "./Post.css";
+
 function Post() {
   const query = useLoaderData();
 
@@ -29,13 +31,15 @@ function Post() {
     <div className="post-container">
       <div className="post">
         {imageUrl && (
-          <img
-            className="post__image"
-            src={imageUrl.large}
-            alt={`${post.subreddit_name_prefixed} - ${post.title}`}
-          />
+          <div className="post__image-container">
+            <img
+              className="post__image"
+              src={imageUrl.large}
+              alt={`${post.subreddit_name_prefixed} - ${post.title}`}
+            />
+          </div>
         )}
-        <section>
+        <section className="post__body">
           <div className="post__details">
             Posted in{" "}
             <span className="post__subreddit">
@@ -48,7 +52,7 @@ function Post() {
           <div className="post__text">
             <ReactMarkdown>{post.selftext}</ReactMarkdown>
           </div>
-          <div className="post__stats">
+          <div className="post__stats-and-cta">
             <div className="post__comments">{`${formattedNumComments} comments`}</div>
             <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
             <a
