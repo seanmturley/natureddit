@@ -45,7 +45,7 @@ function Post() {
             <span className="post__subreddit">
               {post.subreddit_name_prefixed}
             </span>{" "}
-            by <span>{post.author}</span>{" "}
+            by <span>u/{post.author}</span>{" "}
             <span className="post__age">{age}</span> ago
           </div>
           <h1 className="post__title">{post.title}</h1>
