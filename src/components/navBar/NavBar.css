@@ -24,11 +24,22 @@
   margin: 1rem;
 }
 
+.nav__brand {
+  font: var(--title-font);
+}
+
 .nav__location {
+  font: var(--body-font);
   flex-grow: 1;
   text-align: center;
 }
 
+.nav__location-link {
+  color: unset;
+  text-decoration: unset;
+}
+
 .menu {
+  font: var(--body-font);
   text-align: right;
 }

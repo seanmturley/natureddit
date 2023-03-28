@@ -28,9 +28,12 @@ function Card({ post }) {
       <section className="card__body">
         <div className="card__details">
           Posted in{" "}
-          <span className="card__subreddit">
+          <Link
+            className="card__subreddit"
+            to={`../${post.subreddit_name_prefixed}/hot`}
+          >
             {post.subreddit_name_prefixed}
-          </span>{" "}
+          </Link>{" "}
           <span className="card__age">{age}</span> ago
         </div>
         <h1 className="card__title">

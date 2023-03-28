@@ -18,6 +18,10 @@
 
 .card__subreddit {
   font: var(--detail-font__emphasis);
+  color: unset;
+  text-decoration: unset;
+  position: relative;
+  z-index: 1;
 }
 
 .card__title {

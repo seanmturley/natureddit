@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 import { useGetPostQuery } from "../../services/redditApi";
 
@@ -42,9 +42,12 @@ function Post() {
         <section className="post__body">
           <div className="post__details">
             Posted in{" "}
-            <span className="post__subreddit">
+            <Link
+              className="post__subreddit"
+              to={`../${post.subreddit_name_prefixed}/hot`}
+            >
               {post.subreddit_name_prefixed}
-            </span>{" "}
+            </Link>{" "}
             by <span>u/{post.author}</span>{" "}
             <span className="post__age">{age}</span> ago
           </div>

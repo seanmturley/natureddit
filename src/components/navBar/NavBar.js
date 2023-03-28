@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 
 import SearchBar from "../searchBar/SearchBar";
 
@@ -28,7 +28,11 @@ function NavBar() {
     const queryParams = new URLSearchParams(search);
     navLocation = `Results for "${queryParams.get("q")}"`;
   } else if (subreddit) {
-    navLocation = `r/${subreddit}`;
+    navLocation = (
+      <Link className="nav__location-link" to={`../r/${subreddit}/hot`}>
+        {`r/${subreddit}`}
+      </Link>
+    );
   }
 
   return (
