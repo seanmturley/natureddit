@@ -6,6 +6,8 @@ import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import copyShareLink from "../../utils/copyShareLink";
 
+import "./Comment.css";
+
 function Comment({ comment }) {
   const age = formatAge(comment.created);
   const formattedScore = formatNumber(comment.score);
@@ -20,25 +22,13 @@ function Comment({ comment }) {
   return (
     <li className="comment">
       <div className="comment__details">
-        <span className="comment__author">{comment.author}</span>
+        <div className="comment__author">{comment.author}</div>
         {comment.distinguished === "moderator" && (
-          <>
-            <span className="comment__mod">MOD</span>{" "}
-          </>
+          <div className="comment__mod">MOD</div>
         )}
-        {comment.is_submitter && (
-          <>
-            <span className="comment__op">OP</span>{" "}
-          </>
-        )}
-        <span> · </span>
-        <span className="comment__age">{age}</span> ago
-        {comment.stickied && (
-          <>
-            <span> · </span>
-            <span className="comment__mod">Stickied</span>{" "}
-          </>
-        )}
+        {comment.is_submitter && <div className="comment__op">OP</div>}
+        <div className="comment__age">{age} ago</div>
+        {comment.stickied && <div className="comment__mod">Stickied</div>}
       </div>
       <div className="comment__text">
         <ReactMarkdown>{commentText}</ReactMarkdown>

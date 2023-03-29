@@ -12,7 +12,8 @@
 }
 
 .post {
-  padding: 1.5em;
+  margin: 1.5em;
+  border: 1px black solid;
 }
 
 .post__image-container {
@@ -27,7 +28,6 @@
 
 .post__body {
   padding: 1em;
-  border: 1px black solid;
 }
 .post__title {
   font: var(--title-font);

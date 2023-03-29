@@ -6,6 +6,8 @@ import { useGetPostQuery } from "../../services/redditApi";
 
 import Comment from "../comment/Comment";
 
+import "./Comments.css";
+
 function Comments() {
   const query = useLoaderData();
 
