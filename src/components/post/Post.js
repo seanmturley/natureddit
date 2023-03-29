@@ -6,9 +6,12 @@ import { useGetPostQuery } from "../../services/redditApi";
 
 import ReactMarkdown from "react-markdown";
 
+import Comments from "../comments/Comments";
+
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
+import copyShareLink from "../../utils/copyShareLink";
 
 import "./Post.css";
 
@@ -23,13 +26,13 @@ function Post() {
   const formattedScore = formatNumber(post.score);
   const imageUrl = getImageUrl(post);
 
-  const copyPostLink = async () => {
-    await navigator.clipboard.writeText(document.location.href);
+  const shareOnClick = async () => {
+    await copyShareLink(post.permalink);
   };
 
   return (
     <div className="post-container">
-      <div className="post">
+      <section className="post">
         {imageUrl && (
           <div className="post__image-container">
             <img
@@ -39,7 +42,7 @@ function Post() {
             />
           </div>
         )}
-        <section className="post__body">
+        <div className="post__body">
           <div className="post__details">
             Posted in{" "}
             <Link
@@ -70,14 +73,14 @@ function Post() {
             <button
               type="button"
               className="post__share"
-              onClick={copyPostLink}
+              onClick={shareOnClick}
             >
               share
             </button>
           </div>
-        </section>
-      </div>
-      {/* Render Comments */}
+        </div>
+      </section>
+      <Comments />
     </div>
   );
 }
