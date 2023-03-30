@@ -13,6 +13,9 @@ import "./Comment.css";
 import PropTypes from "prop-types";
 
 function Comment({ comment }) {
+  // Gaurd clause for empty posts that crash the whole page
+  if (!comment.created) return;
+
   const replyComments = comment.replies ? comment.replies.data.children : null;
 
   const age = formatAge(comment.created);
