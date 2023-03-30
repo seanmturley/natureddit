@@ -56,3 +56,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.comments__no-comments {
+  font: var(--title-font);
+  width: fit-content;
+  margin: 4.9em auto;
+}

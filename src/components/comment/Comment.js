@@ -2,13 +2,19 @@ import React from "react";
 
 import ReactMarkdown from "react-markdown";
 
+import Comments from "../comments/Comments";
+
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import copyShareLink from "../../utils/copyShareLink";
 
 import "./Comment.css";
 
+import PropTypes from "prop-types";
+
 function Comment({ comment }) {
+  const replyComments = comment.replies ? comment.replies.data.children : null;
+
   const age = formatAge(comment.created);
   const formattedScore = formatNumber(comment.score);
 
@@ -44,9 +50,14 @@ function Comment({ comment }) {
             share
           </button>
         </div>
+        {replyComments && <Comments comments={replyComments} />}
       </div>
     </li>
   );
 }
+
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired
+};
 
 export default Comment;

@@ -20,6 +20,7 @@ function Post() {
 
   const { data } = useGetPostQuery(query);
   const post = data.post;
+  const comments = data.comments;
 
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
@@ -81,7 +82,11 @@ function Post() {
         </div>
       </section>
       <section className="comments">
-        <Comments />
+        {comments.length ? (
+          <Comments comments={comments} />
+        ) : (
+          <div className="comments__no-comments">No comments yet</div>
+        )}
       </section>
     </div>
   );

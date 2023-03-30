@@ -1,19 +1,12 @@
 import React from "react";
 
-import { useLoaderData } from "react-router-dom";
-
-import { useGetPostQuery } from "../../services/redditApi";
-
 import Comment from "../comment/Comment";
 
 import "./Comments.css";
 
-function Comments() {
-  const query = useLoaderData();
+import PropTypes from "prop-types";
 
-  const { data } = useGetPostQuery(query);
-  const comments = data.comments;
-
+function Comments({ comments }) {
   return (
     <ul className="comments__list">
       {comments.map((comment) => (
@@ -22,5 +15,9 @@ function Comments() {
     </ul>
   );
 }
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Comments;
