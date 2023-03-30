@@ -1,9 +1,4 @@
-.comments {
-  font-size: var(--base-unit);
-  margin: 1.5em;
-}
-
 .comments__list {
-  margin: 0;
-  padding-left: 2em;
+  margin: 2em 0 0;
+  padding: 0;
 }

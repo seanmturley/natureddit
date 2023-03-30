@@ -80,7 +80,9 @@ function Post() {
           </div>
         </div>
       </section>
-      <Comments />
+      <section className="comments">
+        <Comments />
+      </section>
     </div>
   );
 }

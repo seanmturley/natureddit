@@ -30,14 +30,20 @@ function Comment({ comment }) {
         <div className="comment__age">{age} ago</div>
         {comment.stickied && <div className="comment__mod">Stickied</div>}
       </div>
-      <div className="comment__text">
-        <ReactMarkdown>{commentText}</ReactMarkdown>
-      </div>
-      <div className="comment__stats-and-cta">
-        <div className="comment__score">{`${formattedScore} upvotes`}</div>
-        <button type="button" className="comment__share" onClick={shareOnClick}>
-          share
-        </button>
+      <div className="comment__body">
+        <div className="comment__text">
+          <ReactMarkdown>{commentText}</ReactMarkdown>
+        </div>
+        <div className="comment__stats-and-cta">
+          <div className="comment__score">{`${formattedScore} upvotes`}</div>
+          <button
+            type="button"
+            className="comment__share"
+            onClick={shareOnClick}
+          >
+            share
+          </button>
+        </div>
       </div>
     </li>
   );

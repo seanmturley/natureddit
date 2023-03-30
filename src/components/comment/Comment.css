@@ -10,7 +10,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 1em;
-  margin: 1em 0;
+  margin-bottom: 1em;
 }
 
 .comment__author {
@@ -25,13 +25,18 @@
   font: var(--detail-font__emphasis);
 }
 
+.comment__body {
+  border-left: 0.2em solid lightgrey;
+  padding-left: 2em;
+  margin-left: 0.4em;
+}
+
 .comment__text {
   font: var(--body-font);
 }
 
 .comment__text p {
   margin: 0 0 1em;
-  /* padding-bottom: 1em; */
 }
 
 .comment__text blockquote {

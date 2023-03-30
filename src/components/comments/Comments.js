@@ -15,13 +15,11 @@ function Comments() {
   const comments = data.comments;
 
   return (
-    <section className="comments">
-      <ul className="comments__list">
-        {comments.map((comment) => (
-          <Comment key={comment.data.id} comment={comment.data} />
-        ))}
-      </ul>
-    </section>
+    <ul className="comments__list">
+      {comments.map((comment) => (
+        <Comment key={comment.data.id} comment={comment.data} />
+      ))}
+    </ul>
   );
 }
 
