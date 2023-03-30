@@ -41,7 +41,9 @@ function Comment({ comment }) {
           <ReactMarkdown>{commentText}</ReactMarkdown>
         </div>
         <div className="comment__stats-and-cta">
-          <div className="comment__score">{`${formattedScore} upvotes`}</div>
+          {!comment.score_hidden && (
+            <div className="comment__score">{`${formattedScore} upvotes`}</div>
+          )}
           <button
             type="button"
             className="comment__share"
