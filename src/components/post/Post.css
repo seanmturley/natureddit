@@ -13,8 +13,8 @@
 }
 
 .post {
-  /* margin: 1.5em; */
   border: 1px black solid;
+  margin-bottom: 2em;
 }
 
 .post__image-container {

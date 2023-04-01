@@ -1,4 +1,10 @@
 .comments__list {
-  margin: 2em 0 0;
   padding: 0;
+  margin: 0;
+}
+
+.comments__list--reply {
+  border-left: 0.2em solid lightgrey;
+  padding-left: 2em;
+  margin-left: 0.4em;
 }

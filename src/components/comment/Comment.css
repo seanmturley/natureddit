@@ -1,7 +1,16 @@
 .comment {
   font-size: var(--base-unit);
   list-style: none;
-  margin-bottom: 4em;
+}
+
+.comment--new {
+  margin-bottom: 2em;
+}
+
+.comment__container--selected {
+  background: rgba(211, 211, 211, 0.5); /*i.e. semi-transparent lightgrey */
+  margin: 0 -2em;
+  padding-left: 2em;
 }
 
 .comment__details {
@@ -10,6 +19,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 1em;
+  padding-top: 1em;
   margin-bottom: 1em;
 }
 
@@ -27,8 +37,9 @@
 
 .comment__body {
   border-left: 0.2em solid lightgrey;
-  padding-left: 2em;
   margin-left: 0.4em;
+  padding-left: 2em;
+  padding-bottom: 1em;
 }
 
 .comment__text {

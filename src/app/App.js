@@ -32,7 +32,7 @@ const router = createBrowserRouter(
           <Route path="/search" element={<Posts />} loader={postsLoader} />
         </Route>
         <Route
-          path="/r/:subreddit/comments/:id/:title"
+          path="/r/:subreddit/comments/:id/:title/:commentId?"
           loader={postLoader}
           element={<Post />}
         />
