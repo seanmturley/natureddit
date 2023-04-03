@@ -10,11 +10,11 @@ import "./Card.css";
 
 import PropTypes from "prop-types";
 
-function Card({ post }) {
-  const age = formatAge(post.created);
-  const formattedNumComments = formatNumber(post.num_comments);
-  const formattedScore = formatNumber(post.score);
-  const imageUrl = getImageUrl(post);
+function Card({ card }) {
+  const age = formatAge(card.created);
+  const formattedNumComments = formatNumber(card.num_comments);
+  const formattedScore = formatNumber(card.score);
+  const imageUrl = getImageUrl(card);
 
   return (
     <li className="card">
@@ -22,23 +22,23 @@ function Card({ post }) {
         <img
           className="card__image"
           src={imageUrl.medium}
-          alt={`${post.subreddit_name_prefixed} - ${post.title}`}
+          alt={`${card.subreddit_name_prefixed} - ${card.title}`}
         />
       )}
       <section className="card__body">
         <div className="card__details">
-          Posted in{" "}
+          carded in{" "}
           <Link
             className="card__subreddit"
-            to={`../${post.subreddit_name_prefixed}/hot`}
+            to={`../${card.subreddit_name_prefixed}/hot`}
           >
-            {post.subreddit_name_prefixed}
+            {card.subreddit_name_prefixed}
           </Link>{" "}
           <span className="card__age">{age}</span> ago
         </div>
         <h1 className="card__title">
-          <Link className="card__link" to={`..${post.permalink}`}>
-            {post.title}
+          <Link className="card__link" to={`..${card.permalink}`}>
+            {card.title}
           </Link>
         </h1>
         <div className="card__stats">
@@ -51,7 +51,7 @@ function Card({ post }) {
 }
 
 Card.propTypes = {
-  post: PropTypes.object.isRequired
+  card: PropTypes.object.isRequired
 };
 
 export default Card;

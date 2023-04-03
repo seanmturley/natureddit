@@ -2,23 +2,23 @@ import React, { useEffect } from "react";
 
 import { useLoaderData } from "react-router-dom";
 
-import { useGetPostsQuery } from "../../services/redditApi";
+import { useGetCardsQuery } from "../../services/redditApi";
 
 import MagicGrid from "magic-grid";
 
 import Card from "../card/Card";
 
-import "./Posts.css";
+import "./Cards.css";
 
-function Posts() {
+function Cards() {
   const query = useLoaderData();
 
-  const { data } = useGetPostsQuery(query);
+  const { data } = useGetCardsQuery(query);
 
   useEffect(() => {
     if (data) {
       let magicGrid = new MagicGrid({
-        container: ".posts__list",
+        container: ".cards__list",
         items: data.length,
         gutter: 0,
         // useMin: true,
@@ -30,14 +30,14 @@ function Posts() {
   });
 
   return (
-    <section className="posts">
-      <ul className="posts__list">
-        {data.map((post) => (
-          <Card key={post.data.id} post={post.data} />
+    <section className="cards">
+      <ul className="cards__list">
+        {data.map((card) => (
+          <Card key={card.data.id} card={card.data} />
         ))}
       </ul>
     </section>
   );
 }
 
-export default Posts;
+export default Cards;

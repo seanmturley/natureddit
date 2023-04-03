@@ -22,7 +22,7 @@ const makeApiRequest = async (query, endpoint) => {
   }
 };
 
-export const postsLoader = async ({ request }) => {
+export const cardsLoader = async ({ request }) => {
   const url = new URL(request.url);
 
   const path = removeBasename(url.pathname);
@@ -32,7 +32,7 @@ export const postsLoader = async ({ request }) => {
     parameters: url.search
   };
 
-  await makeApiRequest(query, "getPosts");
+  await makeApiRequest(query, "getCards");
 
   return query;
 };

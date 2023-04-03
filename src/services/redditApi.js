@@ -4,7 +4,7 @@ export const redditApi = createApi({
   reducerPath: "redditApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
   endpoints: (builder) => ({
-    getPosts: builder.query({
+    getCards: builder.query({
       query: ({ path, parameters }) => {
         return `${path}.json${parameters}`;
       },
@@ -25,4 +25,4 @@ export const redditApi = createApi({
   })
 });
 
-export const { useGetPostsQuery, useGetPostQuery } = redditApi;
+export const { useGetCardsQuery, useGetPostQuery } = redditApi;

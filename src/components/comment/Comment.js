@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
 function Comment({ comment }) {
   const { commentId } = useParams();
 
-  // Gaurd clause for empty posts that crash the whole page
+  // Gaurd clause for empty comments that crash the whole page
   if (!comment.created) return;
 
   const replyComments = comment.replies ? comment.replies.data.children : null;
