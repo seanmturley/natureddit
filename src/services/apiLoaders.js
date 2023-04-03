@@ -1,6 +1,10 @@
 import store from "../store";
 import { redditApi } from "./redditApi";
 
+import basename from "../utils/baseName";
+
+const removeBasename = (pathname) => pathname.replace(basename, "");
+
 const makeApiRequest = async (query, endpoint) => {
   const apiRequest = store.dispatch(
     redditApi.endpoints[endpoint].initiate(query)
@@ -21,8 +25,10 @@ const makeApiRequest = async (query, endpoint) => {
 export const postsLoader = async ({ request }) => {
   const url = new URL(request.url);
 
+  const path = removeBasename(url.pathname);
+
   const query = {
-    path: url.pathname === "/" ? "/r/EarthPorn/hot" : url.pathname,
+    path: path === "/" ? "/r/EarthPorn/hot" : path,
     parameters: url.search
   };
 
@@ -34,7 +40,7 @@ export const postsLoader = async ({ request }) => {
 export const postLoader = async ({ request }) => {
   const url = new URL(request.url);
 
-  const query = url.pathname;
+  const query = removeBasename(url.pathname);
 
   await makeApiRequest(query, "getPost");
 

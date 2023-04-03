@@ -16,6 +16,8 @@ import Post from "../components/post/Post";
 
 import { postsLoader, postLoader } from "../services/apiLoaders";
 
+import basename from "../utils/baseName";
+
 import "./App.css";
 
 const router = createBrowserRouter(
@@ -38,7 +40,10 @@ const router = createBrowserRouter(
         />
       </Route>
     </Route>
-  )
+  ),
+  {
+    basename: basename
+  }
 );
 
 function App() {
