@@ -63,3 +63,14 @@
   align-items: center;
   gap: 1.5em;
 }
+
+.comment__view-replies-container {
+  font: var(--detail-font);
+  padding-top: 1em;
+}
+
+.comment__view-replies-link {
+  font: var(--detail-font__emphasis);
+  color: green;
+  text-decoration: none;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import ReactMarkdown from "react-markdown";
 
@@ -36,6 +36,8 @@ function Comment({ comment }) {
 
   const commentStatus = commentId === comment.id ? "selected" : "normal";
 
+  const replyDepthLimitReached = comment.depth === 4;
+
   return (
     <li className={`comment comment--${isReply}`}>
       <div
@@ -66,9 +68,19 @@ function Comment({ comment }) {
               share
             </button>
           </div>
+          {replyDepthLimitReached && replyComments && (
+            <div className="comment__view-replies-container">
+              <Link
+                className="comment__view-replies-link"
+                to={`../${comment.permalink}`}
+              >
+                View replies
+              </Link>
+            </div>
+          )}
         </div>
       </div>
-      {replyComments && (
+      {replyComments && !replyDepthLimitReached && (
         <Comments comments={replyComments} depth={comment.depth + 1} />
       )}
     </li>
