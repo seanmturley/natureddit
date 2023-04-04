@@ -17,6 +17,10 @@
   font: var(--detail-font);
 }
 
+.card__author {
+  font: var(--detail-font__emphasis);
+}
+
 .card__subreddit {
   font: var(--detail-font__emphasis);
   color: unset;

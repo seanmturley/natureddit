@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
@@ -11,10 +11,33 @@ import "./Card.css";
 import PropTypes from "prop-types";
 
 function Card({ card }) {
+  const { subreddit } = useParams();
+
   const age = formatAge(card.created);
   const formattedNumComments = formatNumber(card.num_comments);
   const formattedScore = formatNumber(card.score);
   const imageUrl = getImageUrl(card);
+
+  let authorOrSubreddit;
+  if (subreddit) {
+    authorOrSubreddit = (
+      <>
+        Posted by <span className="card__author">u/{card.author}</span>
+      </>
+    );
+  } else {
+    authorOrSubreddit = (
+      <>
+        Posted in{" "}
+        <Link
+          className="card__subreddit"
+          to={`../${card.subreddit_name_prefixed}/hot`}
+        >
+          {card.subreddit_name_prefixed}
+        </Link>
+      </>
+    );
+  }
 
   return (
     <li className="card">
@@ -27,14 +50,7 @@ function Card({ card }) {
       )}
       <section className="card__body">
         <div className="card__details">
-          Posted in{" "}
-          <Link
-            className="card__subreddit"
-            to={`../${card.subreddit_name_prefixed}/hot`}
-          >
-            {card.subreddit_name_prefixed}
-          </Link>{" "}
-          <span className="card__age">{age}</span> ago
+          {authorOrSubreddit} <span className="card__age">{age}</span> ago
         </div>
         <h1 className="card__title">
           <Link className="card__link" to={`..${card.permalink}`}>
