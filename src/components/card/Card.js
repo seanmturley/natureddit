@@ -27,7 +27,7 @@ function Card({ card }) {
       )}
       <section className="card__body">
         <div className="card__details">
-          carded in{" "}
+          Posted in{" "}
           <Link
             className="card__subreddit"
             to={`../${card.subreddit_name_prefixed}/hot`}
