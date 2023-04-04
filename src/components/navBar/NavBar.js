@@ -38,8 +38,11 @@ function NavBar() {
   return (
     <header className="nav">
       <section className="nav__headings">
-        <div className="nav__logo"></div>
-        <h1 className="nav__brand">Natureddit</h1>
+        <Link className="nav__homepage" to="/">
+          <div className="nav__logo"></div>
+          <h1 className="nav__title">Natureddit</h1>
+        </Link>
+
         {navLocation && <h2 className="nav__location">{navLocation}</h2>}
       </section>
       <SearchBar

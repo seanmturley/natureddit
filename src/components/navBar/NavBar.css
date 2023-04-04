@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.nav__homepage {
+  display: flex;
+  text-decoration: none;
+}
+
 .nav__logo {
   width: 4rem;
   height: 4rem;
@@ -24,8 +29,9 @@
   margin: 1rem;
 }
 
-.nav__brand {
+.nav__title {
   font: var(--title-font);
+  color: #000;
 }
 
 .nav__location {

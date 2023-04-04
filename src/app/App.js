@@ -42,7 +42,7 @@ const router = createBrowserRouter(
     </Route>
   ),
   {
-    basename: basename
+    basename: `${basename}/`
   }
 );
 
