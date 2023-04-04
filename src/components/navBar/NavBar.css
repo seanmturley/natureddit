@@ -18,7 +18,8 @@
 
 .nav__homepage {
   display: flex;
-  text-decoration: none;
+  color: unset;
+  text-decoration: unset;
 }
 
 .nav__logo {
@@ -31,7 +32,6 @@
 
 .nav__title {
   font: var(--title-font);
-  color: #000;
 }
 
 .nav__location {
