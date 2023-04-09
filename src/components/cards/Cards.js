@@ -21,7 +21,7 @@ function Cards() {
         container: ".cards__list",
         items: data.length,
         gutter: 0,
-        // useMin: true,
+        useMin: true,
         animate: true
       });
 
