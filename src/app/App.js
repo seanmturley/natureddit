@@ -4,8 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
-  createRoutesFromElements,
-  Outlet
+  createRoutesFromElements
 } from "react-router-dom";
 
 import MainLayout from "../layouts/mainLayout/MainLayout";
@@ -23,7 +22,7 @@ import "./App.css";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<MainLayout />}>
-      <Route element={<Outlet />} errorElement={<ErrorPage />}>
+      <Route errorElement={<ErrorPage />}>
         <Route path="/" loader={cardsLoader} element={<Cards />} />
         <Route element={<FiltersLayout />}>
           <Route
