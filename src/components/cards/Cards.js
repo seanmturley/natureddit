@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router-dom";
 import { useGetCardsQuery } from "../../services/redditApi";
 
 import MagicGrid from "magic-grid";
+import imagesloaded from "imagesloaded";
 
 import Card from "../card/Card";
 
@@ -16,8 +17,10 @@ function Cards() {
   const { data } = useGetCardsQuery(query);
 
   useEffect(() => {
-    if (data) {
-      let magicGrid = new MagicGrid({
+    // Checks if all images in ".cards__list" are
+    // loaded before applying MagicGrid formatting
+    imagesloaded(".cards__list", () => {
+      const magicGrid = new MagicGrid({
         container: ".cards__list",
         items: data.length,
         gutter: 0,
@@ -26,7 +29,7 @@ function Cards() {
       });
 
       magicGrid.listen();
-    }
+    });
   });
 
   return (
