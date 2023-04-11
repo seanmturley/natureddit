@@ -57,6 +57,7 @@
 
 .radio-button-group__label--selected {
   font: var(--radio-button-group__selected-text);
+  cursor: default !important;
   border-style: solid;
   border-width: var(--radio-button-group__border-width);
   border-radius: 1em;
