@@ -12,6 +12,23 @@
   }
 }
 
+/* Start of CSS intended for modal display */
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.post-container {
+  background: white;
+  height: 100%;
+  overflow-y: scroll;
+}
+/* End of CSS intended for modal display */
+
 .post {
   border: 1px black solid;
   margin-bottom: 2em;

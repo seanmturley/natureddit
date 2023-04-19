@@ -19,21 +19,35 @@ import basename from "../utils/baseName";
 
 import "./App.css";
 
+const modalRoute = (
+  <Route
+    path="modal/r/:subreddit/comments/:id/:title/:commentId?"
+    loader={postLoader}
+    element={<Post />}
+  />
+);
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<MainLayout />}>
       <Route errorElement={<ErrorPage />}>
-        <Route path="/" loader={cardsLoader} element={<Cards />} />
+        <Route path="/" loader={cardsLoader} element={<Cards />}>
+          {modalRoute}
+        </Route>
         <Route element={<FiltersLayout />}>
           <Route
             path="/r/:subreddit/:sortFilter"
             loader={cardsLoader}
             element={<Cards />}
-          />
-          <Route path="/search" element={<Cards />} loader={cardsLoader} />
+          >
+            {modalRoute}
+          </Route>
+          <Route path="/search" element={<Cards />} loader={cardsLoader}>
+            {modalRoute}
+          </Route>
         </Route>
         <Route
-          path="/r/:subreddit/comments/:id/:title/:commentId?"
+          path="/fullpage/r/:subreddit/comments/:id/:title/:commentId?"
           loader={postLoader}
           element={<Post />}
         />

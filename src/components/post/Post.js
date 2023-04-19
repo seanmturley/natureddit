@@ -32,62 +32,64 @@ function Post() {
   };
 
   return (
-    <div className="post-container">
-      <section className="post">
-        {imageUrl && (
-          <div className="post__image-container">
-            <img
-              className="post__image"
-              src={imageUrl.large}
-              alt={`${post.subreddit_name_prefixed} - ${post.title}`}
-            />
-          </div>
-        )}
-        <div className="post__body">
-          <div className="post__details">
-            Posted in{" "}
-            <Link
-              className="post__subreddit"
-              to={`../${post.subreddit_name_prefixed}/hot`}
-            >
-              {post.subreddit_name_prefixed}
-            </Link>{" "}
-            by <span>u/{post.author}</span>{" "}
-            <span className="post__age">{age}</span> ago
-          </div>
-          <h1 className="post__title">{post.title}</h1>
-          {post.selftext && (
-            <div className="post__text">
-              <ReactMarkdown>{post.selftext}</ReactMarkdown>
+    <div className="overlay">
+      <div className="post-container">
+        <section className="post">
+          {imageUrl && (
+            <div className="post__image-container">
+              <img
+                className="post__image"
+                src={imageUrl.large}
+                alt={`${post.subreddit_name_prefixed} - ${post.title}`}
+              />
             </div>
           )}
-          <div className="post__stats-and-cta">
-            <div className="post__comments">{`${formattedNumComments} comments`}</div>
-            <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
-            <a
-              href={`https://www.reddit.com${post.permalink}`}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              view on Reddit
-            </a>
-            <button
-              type="button"
-              className="post__share"
-              onClick={shareOnClick}
-            >
-              share
-            </button>
+          <div className="post__body">
+            <div className="post__details">
+              Posted in{" "}
+              <Link
+                className="post__subreddit"
+                to={`../${post.subreddit_name_prefixed}/hot`}
+              >
+                {post.subreddit_name_prefixed}
+              </Link>{" "}
+              by <span>u/{post.author}</span>{" "}
+              <span className="post__age">{age}</span> ago
+            </div>
+            <h1 className="post__title">{post.title}</h1>
+            {post.selftext && (
+              <div className="post__text">
+                <ReactMarkdown>{post.selftext}</ReactMarkdown>
+              </div>
+            )}
+            <div className="post__stats-and-cta">
+              <div className="post__comments">{`${formattedNumComments} comments`}</div>
+              <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
+              <a
+                href={`https://www.reddit.com${post.permalink}`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                view on Reddit
+              </a>
+              <button
+                type="button"
+                className="post__share"
+                onClick={shareOnClick}
+              >
+                share
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="comments">
-        {comments.length ? (
-          <Comments comments={comments} />
-        ) : (
-          <div className="comments__no-comments">No comments yet</div>
-        )}
-      </section>
+        </section>
+        <section className="comments">
+          {comments.length ? (
+            <Comments comments={comments} />
+          ) : (
+            <div className="comments__no-comments">No comments yet</div>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

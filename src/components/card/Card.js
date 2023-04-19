@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useParams, Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 
 function Card({ card }) {
   const { subreddit } = useParams();
+  const { search } = useLocation();
 
   const age = formatAge(card.created);
   const formattedNumComments = formatNumber(card.num_comments);
@@ -53,7 +54,11 @@ function Card({ card }) {
           {authorOrSubreddit} <span className="card__age">{age}</span> ago
         </div>
         <h1 className="card__title">
-          <Link className="card__link" to={`..${card.permalink}`}>
+          <Link
+            className="card__link"
+            to={`modal${card.permalink}${search}`}
+            state={{ modal: true }}
+          >
             {card.title}
           </Link>
         </h1>

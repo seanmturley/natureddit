@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 
 import { useGetCardsQuery } from "../../services/redditApi";
 
@@ -33,13 +33,16 @@ function Cards() {
   });
 
   return (
-    <section className="cards">
-      <ul className="cards__list">
-        {data.map((card) => (
-          <Card key={card.data.id} card={card.data} />
-        ))}
-      </ul>
-    </section>
+    <>
+      <section className="cards">
+        <ul className="cards__list">
+          {data.map((card) => (
+            <Card key={card.data.id} card={card.data} />
+          ))}
+        </ul>
+      </section>
+      <Outlet />
+    </>
   );
 }
 
