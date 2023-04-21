@@ -1,5 +1,3 @@
-import { redirect } from "react-router-dom";
-
 import store from "../store";
 import { redditApi } from "./redditApi";
 
@@ -67,7 +65,10 @@ export const cardsLoader = async ({ request }) => {
     // If the modal state isn't true, redirect to the fullpage
     // version of the post
 
-    return redirect(`/fullpage/${postPath}`);
+    // The redirect uses window.location.replace because React
+    // Router's native redirect function doesn't support replac-
+    // -ing the current entry in the browser's history stack
+    return window.location.replace(`${basename}/fullpage/${postPath}`);
   }
 
   const query = {
