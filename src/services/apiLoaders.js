@@ -4,32 +4,40 @@ import { redditApi } from "./redditApi";
 import basename from "../utils/baseName";
 
 const extractPaths = (pathname) => {
-  // Remove the site's basename and "fullpage" from the pathname
-  // as neither of these are used for the API request
-  const re = new RegExp(`${basename}|/fullpage/`, "gi");
+  // The start of the pathname can be removed as it doesn't
+  // participate in the API query i.e. the basename (possibly
+  // followed by "fullpage/" or "modal/").
+  const re = new RegExp(`^${basename}/(?:fullpage/|modal/)?`, "gi");
   const truncatedPathname = pathname.replace(re, "");
 
-  // When a post is presented in fullpage view there's
-  // no need to extract the background and modal query
-  // paths from the pathname. The pathname (after RegExp
-  // replacements) is the postPath.
-  if (pathname.includes("/fullpage/")) {
-    return { postPath: truncatedPathname };
+  // When the pathname starts with the basename directly
+  // followed by "fullpage/" or "modal/", the pathname
+  // doesn't need to be divided into background and modal
+  // queries.
+
+  // The cardsPath (i.e. background) is an empty string,
+  // and the postPath is simply the truncatedPathname.
+  if (
+    pathname.startsWith(`${basename}/fullpage/`) ||
+    pathname.startsWith(`${basename}/modal/`)
+  ) {
+    return {
+      cardsPath: "",
+      postPath: truncatedPathname
+    };
   }
 
-  // When a post is presented in modal view it's necessary
-  // to extract background and modal query paths from the
-  // pathname
+  // Otherwise, it is necessary to extract background and
+  // modal query paths from the pathname.
 
-  // The "modal/" in the path effectively divides it in two:
+  // The "/modal/" in the path effectively divides it in two:
 
-  // Before "modal/" is the path for fetching cards i.e.
-  // the background of the modal
+  // Before "/modal/" is the path for fetching cards i.e.
+  // the background of the modal.
 
-  // After "modal/" is the path for the post itself i.e.
-  // the data presented in the modal
-
-  const paths = truncatedPathname.split("modal/");
+  // After "/modal/" is the path for the post itself i.e.
+  // the data presented in the modal.
+  const paths = truncatedPathname.split("/modal/");
   return {
     cardsPath: paths[0],
     postPath: paths[1]
@@ -61,9 +69,13 @@ export const cardsLoader = async ({ request }) => {
 
   const { cardsPath, postPath } = extractPaths(pathname);
 
-  if (!modal && pathname.includes("/comments/")) {
-    // If the modal state isn't true, redirect to the fullpage
-    // version of the post
+  if (
+    !modal &&
+    pathname.includes("/modal/") &&
+    pathname.includes("/comments/")
+  ) {
+    // If the modal state isn't true, redirect to the modal view to
+    // the fullpage version of the post
 
     // The redirect uses window.location.replace because React
     // Router's native redirect function doesn't support replac-
@@ -72,11 +84,12 @@ export const cardsLoader = async ({ request }) => {
   }
 
   const query = {
-    // On the homepage, the query for cards defaults to the
-    // "EarthPorn" subreddit
-    path: cardsPath === "/" ? "/r/EarthPorn/hot" : cardsPath,
+    // On the homepage (i.e. the cardsPath is an empty string),
+    // the query for cards defaults to the "EarthPorn" subreddit
+    path: cardsPath || "r/EarthPorn/hot",
     parameters: url.search
   };
+  console.log(query);
 
   await makeApiRequest(query, "getCards");
 
@@ -88,6 +101,7 @@ export const postLoader = async ({ request }) => {
   const pathname = url.pathname;
 
   const query = extractPaths(pathname).postPath;
+  console.log(query);
 
   await makeApiRequest(query, "getPost");
 
