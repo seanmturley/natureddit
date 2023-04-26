@@ -89,7 +89,6 @@ export const cardsLoader = async ({ request }) => {
     path: cardsPath || "r/EarthPorn/hot",
     parameters: url.search
   };
-  console.log(query);
 
   await makeApiRequest(query, "getCards");
 
@@ -101,7 +100,6 @@ export const postLoader = async ({ request }) => {
   const pathname = url.pathname;
 
   const query = extractPaths(pathname).postPath;
-  console.log(query);
 
   await makeApiRequest(query, "getPost");
 
