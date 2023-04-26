@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 import { useGetPostQuery } from "../../services/redditApi";
 
@@ -15,7 +15,8 @@ import copyShareLink from "../../utils/copyShareLink";
 
 import "./Post.css";
 
-function Post() {
+function Post({ modal }) {
+  const navigate = useNavigate();
   const query = useLoaderData();
 
   const { data } = useGetPostQuery(query);
@@ -31,9 +32,12 @@ function Post() {
     await copyShareLink(post.permalink);
   };
 
+  const isModal = modal ? " post-container--modal" : "";
+
   return (
-    <div className="overlay">
-      <div className="post-container">
+    <>
+      {modal && <div className="overlay" onClick={() => navigate(-1)}></div>}
+      <div className={`post-container${isModal}`}>
         <section className="post">
           {imageUrl && (
             <div className="post__image-container">
@@ -90,7 +94,7 @@ function Post() {
           )}
         </section>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -23,7 +23,7 @@ const modalRoute = (
   <Route
     path="modal/r/:subreddit/comments/:id/:title/:commentId?"
     loader={postLoader}
-    element={<Post />}
+    element={<Post modal={true} />}
   />
 );
 
@@ -49,7 +49,7 @@ const router = createBrowserRouter(
         <Route
           path="/fullpage/r/:subreddit/comments/:id/:title/:commentId?"
           loader={postLoader}
-          element={<Post />}
+          element={<Post modal={false} />}
         />
       </Route>
     </Route>
