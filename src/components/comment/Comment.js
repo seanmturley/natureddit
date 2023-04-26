@@ -72,7 +72,7 @@ function Comment({ comment }) {
             <div className="comment__view-replies-container">
               <Link
                 className="comment__view-replies-link"
-                to={`../${comment.permalink}`}
+                to={`../fullpage/${comment.permalink}`}
               >
                 View replies
               </Link>
