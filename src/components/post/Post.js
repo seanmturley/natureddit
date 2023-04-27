@@ -15,6 +15,8 @@ import copyShareLink from "../../utils/copyShareLink";
 
 import "./Post.css";
 
+import PropTypes from "prop-types";
+
 function Post({ modal }) {
   const navigate = useNavigate();
   const query = useLoaderData();
@@ -97,5 +99,9 @@ function Post({ modal }) {
     </>
   );
 }
+
+Post.propTypes = {
+  modal: PropTypes.bool.isRequired
+};
 
 export default Post;
