@@ -55,7 +55,7 @@ function Post({ modal }) {
               Posted in{" "}
               <Link
                 className="post__subreddit"
-                to={`../${post.subreddit_name_prefixed}/hot`}
+                to={`/${post.subreddit_name_prefixed}/hot`}
               >
                 {post.subreddit_name_prefixed}
               </Link>{" "}
