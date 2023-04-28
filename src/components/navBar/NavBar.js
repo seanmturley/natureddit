@@ -24,10 +24,13 @@ function NavBar() {
   const { pathname, search } = useLocation();
   let navLocation;
 
-  if (pathname === "/search") {
+  if (pathname.startsWith("/search")) {
     const queryParams = new URLSearchParams(search);
     navLocation = `Results for "${queryParams.get("q")}"`;
-  } else if (subreddit) {
+  } else if (
+    pathname.startsWith("/r/") ||
+    pathname.startsWith("/fullpage/r/")
+  ) {
     navLocation = (
       <Link className="nav__location-link" to={`../r/${subreddit}/hot`}>
         {`r/${subreddit}`}
