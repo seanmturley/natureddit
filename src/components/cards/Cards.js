@@ -30,7 +30,8 @@ function Cards() {
 
       magicGrid.listen();
     });
-  });
+    // }
+  }, [data]);
 
   return (
     <>
