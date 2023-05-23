@@ -44,8 +44,3 @@
   color: unset;
   text-decoration: unset;
 }
-
-.menu {
-  font: var(--body-font);
-  text-align: right;
-}

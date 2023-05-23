@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 
 import SearchBar from "../searchBar/SearchBar";
+import DropdownMenu from "../dropdownMenu/DropdownMenu";
 
 import "./NavBar.css";
 
@@ -53,21 +54,7 @@ function NavBar() {
         handleInputChange={handleInputChange}
         handleInputSubmit={handleInputSubmit}
       />
-      <nav className="menu">
-        <form className="toggle-switch">Dark mode</form>
-        <a className="menu__link" href="null">
-          Nature subreddits
-        </a>
-        <a
-          className="menu__link"
-          href="https://github.com/seanmturley/natureddit"
-        >
-          About
-        </a>
-        <a className="menu__link" href="https://www.reddit.com">
-          Reddit official
-        </a>
-      </nav>
+      <DropdownMenu />
     </header>
   );
 }
