@@ -1,0 +1,161 @@
+.toggle-switch {
+  font-size: var(--base-unit);
+  --toggle-switch__primary-color: black;
+  --toggle-switch__accent-color: green;
+  /* --toggle-switch__disabled-color: var(--disabled-color); */
+  --toggle-switch__text: var(--detail-font);
+  --toggle-switch__selected-text: var(--detail-font);
+  --toggle-switch__button-height: 3em;
+  --toggle-switch__border-width: var(--border-width);
+}
+
+.toggle-switch__label {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-switch--clickable .toggle-switch__label:hover {
+  cursor: pointer;
+}
+
+.toggle-switch__heading {
+  font: var(--toggle-switch__text);
+  color: var(--toggle-switch__primary-color);
+  white-space: pre-line;
+  margin: 0;
+  margin-right: 1em;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.toggle-switch--disabled .toggle-switch__heading {
+  transition: color 0.1s ease;
+  color: var(--toggle-switch__disabled-color);
+}
+
+.toggle-switch__input {
+  display: none;
+}
+
+.toggle-switch__container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: calc(2 * var(--toggle-switch__button-height));
+  height: var(--toggle-switch__button-height);
+  border-radius: calc(0.5 * var(--toggle-switch__button-height));
+}
+
+.toggle-switch--false .toggle-switch__container {
+  transition: border 0.1s ease;
+  border: var(--toggle-switch__border-width) solid
+    var(--toggle-switch__primary-color);
+}
+
+.toggle-switch--true .toggle-switch__container,
+.toggle-switch--disabled .toggle-switch__container {
+  transition: border 0.1s ease;
+  border: none;
+}
+
+.toggle-switch__sliding-container {
+  display: inline-flex;
+  align-items: center;
+  height: var(--toggle-switch__button-height);
+  position: relative;
+}
+
+.toggle-switch--true .toggle-switch__sliding-container {
+  transition: all 0.1s ease;
+  left: 0;
+  background-color: var(--toggle-switch__accent-color);
+}
+
+.toggle-switch--false .toggle-switch__sliding-container {
+  transition: all 0.1s ease;
+  left: calc(
+    -1 * (var(--toggle-switch__button-height) +
+          var(--toggle-switch__border-width))
+  );
+  background-color: transparent;
+}
+
+.toggle-switch--disabled .toggle-switch__sliding-container {
+  transition: all 0.1s ease;
+  left: calc(-1 * var(--toggle-switch__button-height));
+  background-color: var(--toggle-switch__disabled-color);
+}
+
+.toggle-switch__text-container {
+  display: flex;
+  width: var(--toggle-switch__button-height);
+  height: var(--toggle-switch__button-height);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.toggle-switch__text-true,
+.toggle-switch__text-false {
+  font: var(--toggle-switch__text);
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.toggle-switch__text-true {
+  margin: auto 0.2em auto auto;
+  font: var(--toggle-switch__selected-text);
+}
+
+.toggle-switch__text-false {
+  margin: auto auto auto 0;
+}
+
+.toggle-switch--true .toggle-switch__text-true {
+  transition: color 0.1s ease;
+  color: white;
+}
+
+.toggle-switch--false .toggle-switch__text-true {
+  transition: color 0.1s ease;
+  color: transparent;
+}
+
+.toggle-switch--true .toggle-switch__text-false {
+  transition: color 0.1s ease;
+  color: transparent;
+}
+
+.toggle-switch--false .toggle-switch__text-false {
+  transition: color 0.1s ease;
+  color: var(--toggle-switch__primary-color);
+}
+
+.toggle-switch--disabled .toggle-switch__text-false {
+  transition: color 0.1s ease;
+  color: white;
+}
+
+.toggle-switch__circle {
+  --circle-diameter: calc(var(--toggle-switch__button-height) - 0.6em);
+  width: var(--circle-diameter);
+  height: var(--circle-diameter);
+  border-radius: calc(0.5 * var(--circle-diameter));
+  margin: 0.3em;
+  background-color: white;
+}
+
+.toggle-switch--false .toggle-switch__circle {
+  transition: border 0.1s ease;
+  border: var(--toggle-switch__border-width) solid
+    var(--toggle-switch__primary-color);
+}
+
+.toggle-switch--true .toggle-switch__circle,
+.toggle-switch--disabled .toggle-switch__circle {
+  transition: border 0.1s ease;
+  border: none;
+}
