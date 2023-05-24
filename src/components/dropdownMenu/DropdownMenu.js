@@ -33,12 +33,19 @@ function DropdownMenu() {
           <a
             className="menu__link"
             href="https://github.com/seanmturley/natureddit"
+            target="_blank"
+            rel="noreferrer noopener"
           >
             About
           </a>
         </li>
         <li className="menu__list-item">
-          <a className="menu__link" href="https://www.reddit.com">
+          <a
+            className="menu__link"
+            href="https://www.reddit.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             Reddit official
           </a>
         </li>
