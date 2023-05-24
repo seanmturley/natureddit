@@ -2,3 +2,7 @@
   font: var(--body-font);
   text-align: right;
 }
+
+.menu__list-item {
+  display: block;
+}
