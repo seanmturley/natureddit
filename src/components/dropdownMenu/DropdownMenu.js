@@ -18,21 +18,13 @@ function DropdownMenu() {
     setState: setDarkmode
   };
 
-  const clickHandler = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const leaveHandler = () => {
-    setMenuOpen(false);
-  };
-
   return (
-    <section className="menu" onMouseLeave={leaveHandler}>
-      <div className="menu__button" onClick={clickHandler}>
+    <section className="menu">
+      <div className="menu__button" onClick={() => setMenuOpen(!menuOpen)}>
         Menu
       </div>
       {menuOpen && (
-        <ul className="menu__list">
+        <ul className="menu__list" onMouseLeave={() => setMenuOpen(false)}>
           <li className="menu__list-item">
             <ToggleSwitch {...themeSwitchProps} />
           </li>
