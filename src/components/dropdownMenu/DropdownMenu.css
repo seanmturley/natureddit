@@ -1,15 +1,17 @@
 .menu {
   font: var(--body-font);
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .menu__list {
-  position: relative;
-  top: 1.2em;
+  position: absolute;
+  top: 4.1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+  width: 14em;
   height: 10em;
   background: white;
   border: 1px solid black;
