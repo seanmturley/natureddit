@@ -4,6 +4,10 @@
   justify-content: flex-end;
 }
 
+.menu__button:hover {
+  cursor: pointer;
+}
+
 .menu__list {
   position: absolute;
   top: 4.1rem;
