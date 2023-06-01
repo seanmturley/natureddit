@@ -13,8 +13,8 @@
 
 /* Start of CSS intended for modal display */
 .overlay {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: var(--nav-bar-height);
   right: 0;
   bottom: 0;
   left: 0;
@@ -22,13 +22,12 @@
 }
 
 .post-container--modal {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: var(--nav-bar-height);
   right: 0;
   bottom: 0;
   left: 0;
   background: white;
-  height: 100%;
   overflow-y: scroll;
 }
 /* End of CSS intended for modal display */
