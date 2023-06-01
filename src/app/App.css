@@ -2,7 +2,9 @@
   --base-unit: 1rem;
 
   --nav-bar-height: 6rem;
+
   --border-width: 0.1rem;
+  --border: var(--border-width) solid black;
 
   --title-font__size: 2.4em;
   --title-font__line-height: 1.15;

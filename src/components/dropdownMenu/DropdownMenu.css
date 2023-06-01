@@ -30,7 +30,7 @@
   width: 14em;
   height: 10em;
   background: white;
-  border: var(--border-width) solid black;
+  border: var(--border);
 }
 
 .menu__list-item {

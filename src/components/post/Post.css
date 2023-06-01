@@ -3,7 +3,7 @@
   width: 73rem;
   margin: 0 auto;
   padding: 2em;
-  border: 1px black solid;
+  border: var(--border);
 }
 
 @media screen and (max-width: 730px) {
@@ -35,7 +35,7 @@
 /* End of CSS intended for modal display */
 
 .post {
-  border: 1px black solid;
+  border: var(--border);
   margin-bottom: 2em;
 }
 
