@@ -4,7 +4,7 @@
 }
 
 .comments__list--reply {
-  border-left: 0.2em solid lightgrey;
-  padding-left: 2em;
-  margin-left: 0.4em;
+  border-left: 0.2rem solid lightgrey;
+  padding-left: 2rem;
+  margin-left: 0.4rem;
 }

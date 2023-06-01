@@ -1,11 +1,11 @@
 .post-container {
-  width: 73rem;
+  width: 90rem;
   margin: 0 auto;
-  padding: 2em;
+  padding: 2rem;
   border: var(--border);
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 900px) {
   .post-container {
     width: 100%;
   }
@@ -35,7 +35,7 @@
 
 .post {
   border: var(--border);
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 
 .post__image-container {
@@ -49,7 +49,7 @@
 }
 
 .post__body {
-  padding: 1em;
+  padding: 1rem;
 }
 .post__title {
   font: var(--title-font);
@@ -81,5 +81,5 @@
 .comments__no-comments {
   font: var(--title-font);
   width: fit-content;
-  margin: 4.9em auto;
+  margin: 4em auto calc(4em - 2rem);
 }
