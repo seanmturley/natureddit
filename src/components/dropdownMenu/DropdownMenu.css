@@ -4,13 +4,25 @@
   justify-content: flex-end;
 }
 
+.menu__button {
+  z-index: 1;
+}
+
 .menu__button:hover {
   cursor: pointer;
 }
 
-.menu__list {
+.menu__underlay {
   position: absolute;
-  top: 4.1rem;
+  top: 0;
+}
+
+.menu__underlay-nav-placeholder {
+  height: var(--nav-bar-height);
+}
+
+.menu__list {
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -18,7 +30,7 @@
   width: 14em;
   height: 10em;
   background: white;
-  border: 1px solid black;
+  border: var(--border-width) solid black;
 }
 
 .menu__list-item {

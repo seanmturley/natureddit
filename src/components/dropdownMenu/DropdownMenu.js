@@ -18,42 +18,52 @@ function DropdownMenu() {
     setState: setDarkmode
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <section className="menu">
-      <div className="menu__button" onClick={() => setMenuOpen(!menuOpen)}>
+      <div className="menu__button" onClick={toggleMenu}>
         Menu
       </div>
       {menuOpen && (
-        <ul className="menu__list" onMouseLeave={() => setMenuOpen(false)}>
-          <li className="menu__list-item">
-            <ToggleSwitch {...themeSwitchProps} />
-          </li>
-          <li className="menu__list-item">
-            <a className="menu__link" href="null">
-              Nature subreddits
-            </a>
-          </li>
-          <li className="menu__list-item">
-            <a
-              className="menu__link"
-              href="https://github.com/seanmturley/natureddit"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              About
-            </a>
-          </li>
-          <li className="menu__list-item">
-            <a
-              className="menu__link"
-              href="https://www.reddit.com"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Reddit official
-            </a>
-          </li>
-        </ul>
+        <div className="menu__underlay" onMouseLeave={toggleMenu}>
+          <div
+            className="menu__underlay-nav-placeholder"
+            onClick={toggleMenu}
+          ></div>
+          <ul className="menu__list" onMouseLeave={toggleMenu}>
+            <li className="menu__list-item">
+              <ToggleSwitch {...themeSwitchProps} />
+            </li>
+            <li className="menu__list-item">
+              <a className="menu__link" href="null">
+                Nature subreddits
+              </a>
+            </li>
+            <li className="menu__list-item">
+              <a
+                className="menu__link"
+                href="https://github.com/seanmturley/natureddit"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                About
+              </a>
+            </li>
+            <li className="menu__list-item">
+              <a
+                className="menu__link"
+                href="https://www.reddit.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Reddit official
+              </a>
+            </li>
+          </ul>
+        </div>
       )}
     </section>
   );
