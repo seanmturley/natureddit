@@ -1,5 +1,4 @@
 .nav {
-  font-size: var(--base-unit);
   display: grid;
   position: fixed;
   height: var(--nav-bar-height);

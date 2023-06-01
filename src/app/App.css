@@ -1,6 +1,4 @@
 .app {
-  --base-unit: 1rem;
-
   --nav-bar-height: 6rem;
 
   --border-width: 0.1rem;
@@ -26,5 +24,4 @@
 
 .app {
   height: 100%;
-  font-size: var(--base-unit);
 }

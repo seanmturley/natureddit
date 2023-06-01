@@ -1,5 +1,5 @@
 .toggle-switch {
-  font-size: var(--base-unit);
+  font-size: 1rem;
   --toggle-switch__primary-color: black;
   --toggle-switch__accent-color: green;
   /* --toggle-switch__disabled-color: var(--disabled-color); */

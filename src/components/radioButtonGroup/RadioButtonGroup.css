@@ -1,5 +1,5 @@
 .radio-button-group {
-  font-size: var(--base-unit);
+  font-size: 1rem;
   --radio-button-group__primary-color: black;
   --radio-button-group__disabled-color: lightgrey;
   --radio-button-group__text: var(--detail-font);

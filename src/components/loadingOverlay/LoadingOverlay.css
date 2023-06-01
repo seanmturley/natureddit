@@ -1,5 +1,4 @@
 .loading-overlay {
-  font-size: var(--base-unit);
   position: absolute;
   top: var(--nav-bar-height);
   height: calc(100% - var(--nav-bar-height));
