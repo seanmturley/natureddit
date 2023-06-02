@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import SearchBar from "../searchBar/SearchBar";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
@@ -7,20 +7,6 @@ import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import "./NavBar.css";
 
 function NavBar() {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const navigate = useNavigate();
-
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
-
-    navigate(`/search?q=${searchTerm}&sort=relevance&t=all`);
-  };
-
   const { subreddit } = useParams();
   const { pathname, search } = useLocation();
   let navLocation;
@@ -49,11 +35,7 @@ function NavBar() {
 
         {navLocation && <h2 className="nav__location">{navLocation}</h2>}
       </section>
-      <SearchBar
-        searchTerm={searchTerm}
-        handleInputChange={handleInputChange}
-        handleInputSubmit={handleInputSubmit}
-      />
+      <SearchBar />
       <DropdownMenu />
     </header>
   );

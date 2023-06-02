@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./SearchBar.css";
 
-import PropTypes from "prop-types";
+function SearchBar() {
+  const navigate = useNavigate();
 
-function SearchBar({ searchTerm, handleInputChange, handleInputSubmit }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleInputSubmit = (event) => {
+    event.preventDefault();
+
+    navigate(`/search?q=${searchTerm}&sort=relevance&t=all`);
+  };
   return (
     <form className="search" role="search" onSubmit={handleInputSubmit}>
       <input
@@ -20,11 +32,5 @@ function SearchBar({ searchTerm, handleInputChange, handleInputSubmit }) {
     </form>
   );
 }
-
-SearchBar.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
-  handleInputSubmit: PropTypes.func.isRequired
-};
 
 export default SearchBar;
