@@ -1,0 +1,34 @@
+.page-headings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.page-headings__homepage {
+  display: flex;
+  color: unset;
+  text-decoration: unset;
+}
+
+.page-headings__logo {
+  width: 4rem;
+  height: 4rem;
+  background-color: green;
+  border-radius: 2rem;
+  margin: 1rem;
+}
+
+.page-headings__title {
+  font: var(--title-font);
+}
+
+.page-headings__location {
+  font: var(--body-font);
+  flex-grow: 1;
+  text-align: center;
+}
+
+.page-headings__location-link {
+  color: unset;
+  text-decoration: unset;
+}

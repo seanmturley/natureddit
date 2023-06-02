@@ -9,38 +9,3 @@
   align-items: center;
   z-index: 1;
 }
-
-.nav__headings {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.nav__homepage {
-  display: flex;
-  color: unset;
-  text-decoration: unset;
-}
-
-.nav__logo {
-  width: 4rem;
-  height: 4rem;
-  background-color: green;
-  border-radius: 2rem;
-  margin: 1rem;
-}
-
-.nav__title {
-  font: var(--title-font);
-}
-
-.nav__location {
-  font: var(--body-font);
-  flex-grow: 1;
-  text-align: center;
-}
-
-.nav__location-link {
-  color: unset;
-  text-decoration: unset;
-}
