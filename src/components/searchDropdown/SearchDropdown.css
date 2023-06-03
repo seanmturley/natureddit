@@ -1,0 +1,12 @@
+.search-dropdown {
+  background-color: white;
+  border: var(--border);
+}
+
+.subreddit {
+  display: flex;
+}
+
+.subreddit--focused {
+  background-color: red;
+}

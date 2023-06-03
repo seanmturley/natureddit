@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import SearchDropdown from "../searchDropdown/SearchDropdown";
@@ -9,6 +9,8 @@ function SearchBar() {
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  const searchInput = useRef(null);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -24,6 +26,7 @@ function SearchBar() {
     <section className="search">
       <form className="search__form" role="search" onSubmit={handleInputSubmit}>
         <input
+          ref={searchInput}
           className="search__input"
           type="search"
           id="search"
@@ -36,7 +39,7 @@ function SearchBar() {
         />
       </form>
 
-      <SearchDropdown />
+      <SearchDropdown searchInput={searchInput} />
     </section>
   );
 }
