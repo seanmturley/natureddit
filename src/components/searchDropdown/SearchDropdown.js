@@ -11,14 +11,14 @@ const results = [
   { name: "r/Pathfinder_RPG", members: "141k" }
 ];
 
-function SearchDropdown({ searchInput }) {
+function SearchDropdown({ searchInput, handleInputSubmit }) {
   const [focus, setFocus] = useState(0);
 
   const downPress = useKeyPress("ArrowDown", searchInput, focus);
   useEffect(() => {
     if (results.length && downPress) {
       setFocus((prevState) => {
-        return prevState < results.length ? prevState + 1 : prevState;
+        return prevState < results.length + 1 ? prevState + 1 : prevState;
       });
     }
   }, [downPress]);
@@ -34,9 +34,13 @@ function SearchDropdown({ searchInput }) {
   const navigate = useNavigate();
   useEffect(() => {
     if (results.length && focus && enterPress) {
-      navigate(`/${results[focus - 1].name}/hot`);
+      if (focus === results.length + 1) {
+        handleInputSubmit();
+      } else {
+        navigate(`/${results[focus - 1].name}/hot`);
+      }
     }
-  }, [enterPress, navigate, focus]);
+  }, [enterPress, focus, handleInputSubmit, navigate]);
 
   return (
     <div className="search-dropdown">
@@ -58,7 +62,11 @@ function SearchDropdown({ searchInput }) {
           </Link>
         ))}
       </section>
-      <section className="search-dropdown__search">
+      <section
+        className={`search-dropdown__search ${
+          focus === results.length + 1 && "search-dropdown__search--focused"
+        }`}
+      >
         <div className="search-dropdown__magnifying-glass"></div>
         Search posts for "term"
       </section>

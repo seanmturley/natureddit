@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import SearchDropdown from "../searchDropdown/SearchDropdown";
@@ -16,15 +16,18 @@ function SearchBar() {
     setSearchTerm(event.target.value);
   };
 
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
+  const handleInputSubmit = useCallback(
+    (event) => {
+      event?.preventDefault();
 
-    const trimmedSearchTerm = searchTerm.trim();
+      const trimmedSearchTerm = searchTerm.trim();
 
-    if (trimmedSearchTerm) {
-      navigate(`/search?q=${trimmedSearchTerm}&sort=relevance&t=all`);
-    }
-  };
+      if (trimmedSearchTerm) {
+        navigate(`/search?q=${trimmedSearchTerm}&sort=relevance&t=all`);
+      }
+    },
+    [navigate, searchTerm]
+  );
 
   return (
     <section className="search">
@@ -43,7 +46,10 @@ function SearchBar() {
         />
       </form>
 
-      <SearchDropdown searchInput={searchInput} />
+      <SearchDropdown
+        searchInput={searchInput}
+        handleInputSubmit={handleInputSubmit}
+      />
     </section>
   );
 }
