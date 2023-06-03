@@ -19,7 +19,11 @@ function SearchBar() {
   const handleInputSubmit = (event) => {
     event.preventDefault();
 
-    navigate(`/search?q=${searchTerm}&sort=relevance&t=all`);
+    const trimmedSearchTerm = searchTerm.trim();
+
+    if (trimmedSearchTerm) {
+      navigate(`/search?q=${trimmedSearchTerm}&sort=relevance&t=all`);
+    }
   };
 
   return (
