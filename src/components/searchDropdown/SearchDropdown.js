@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useKeyPress from "../../utils/useKeyPress";
 
@@ -15,8 +15,6 @@ function SearchDropdown({ searchInput }) {
   const [focus, setFocus] = useState(0);
 
   const downPress = useKeyPress("ArrowDown", searchInput);
-  const upPress = useKeyPress("ArrowUp", searchInput);
-
   useEffect(() => {
     if (results.length && downPress) {
       setFocus((prevState) =>
@@ -25,11 +23,21 @@ function SearchDropdown({ searchInput }) {
     }
   }, [downPress]);
 
+  const upPress = useKeyPress("ArrowUp", searchInput);
   useEffect(() => {
     if (results.length && upPress) {
       setFocus((prevState) => (prevState > 0 ? prevState - 1 : prevState));
     }
   }, [upPress]);
+
+  const enterPress = useKeyPress("Enter", searchInput);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (results.length && enterPress) {
+      console.log("Trying to navigate...");
+      navigate(`/${results[focus].name}/hot`);
+    }
+  }, [enterPress, navigate, focus]);
 
   return (
     <div className="search-dropdown">
@@ -38,7 +46,7 @@ function SearchDropdown({ searchInput }) {
         {results.map((result, index) => (
           <Link
             className={`subreddit ${index === focus && "subreddit--focused"}`}
-            to={`../${result.name}/hot`}
+            to={`/${result.name}/hot`}
             key={index}
           >
             <div className="subreddit__icon"></div>
