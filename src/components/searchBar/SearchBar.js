@@ -30,6 +30,7 @@ function SearchBar() {
           name="q"
           placeholder="Search Reddit"
           aria-label="Search Reddit content"
+          autoComplete="off"
           value={searchTerm}
           onChange={handleInputChange}
         />
