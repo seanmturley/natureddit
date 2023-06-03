@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 
 import "./SearchDropdownOptions.css";
 
-function SearchDropdownOptions({ focus, handleInputSubmit, results }) {
+function SearchDropdownOptions({
+  results,
+  focus,
+  setFocus,
+  handleInputSubmit
+}) {
   const options = results.map((result) => (
     <Link className="sr-option" to={`/${result.name}/hot`}>
       <div className="sr-option__icon"></div>
@@ -26,6 +31,8 @@ function SearchDropdownOptions({ focus, handleInputSubmit, results }) {
     <li
       key={index}
       className={`option ${index === focus - 1 && "option--focused"}`}
+      onMouseEnter={() => setFocus(index + 1)}
+      onMouseLeave={() => setFocus(0)}
     >
       {option}
     </li>

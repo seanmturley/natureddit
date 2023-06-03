@@ -49,9 +49,10 @@ function SearchDropdown({ searchInput, handleInputSubmit }) {
       <h1 className="search-dropdown__sr-heading">Subreddits</h1>
       <ul className="search-dropdown__options">
         <SearchDropdownOptions
-          focus={focus}
-          handleInputSubmit={handleInputSubmit}
           results={results}
+          focus={focus}
+          setFocus={setFocus}
+          handleInputSubmit={handleInputSubmit}
         />
       </ul>
     </div>
