@@ -1,0 +1,11 @@
+.option {
+  display: flex;
+}
+
+.option--focused {
+  background-color: red;
+}
+
+.search-option {
+  cursor: pointer;
+}

@@ -2,16 +2,3 @@
   background-color: white;
   border: var(--border);
 }
-
-.subreddit {
-  display: flex;
-}
-
-.search-dropdown__search {
-  cursor: pointer;
-}
-
-.subreddit--focused,
-.search-dropdown__search--focused {
-  background-color: red;
-}
