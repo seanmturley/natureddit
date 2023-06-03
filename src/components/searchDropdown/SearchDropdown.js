@@ -14,28 +14,27 @@ const results = [
 function SearchDropdown({ searchInput }) {
   const [focus, setFocus] = useState(0);
 
-  const downPress = useKeyPress("ArrowDown", searchInput);
+  const downPress = useKeyPress("ArrowDown", searchInput, focus);
   useEffect(() => {
     if (results.length && downPress) {
-      setFocus((prevState) =>
-        prevState < results.length - 1 ? prevState + 1 : prevState
-      );
+      setFocus((prevState) => {
+        return prevState < results.length ? prevState + 1 : prevState;
+      });
     }
   }, [downPress]);
 
-  const upPress = useKeyPress("ArrowUp", searchInput);
+  const upPress = useKeyPress("ArrowUp", searchInput, focus);
   useEffect(() => {
     if (results.length && upPress) {
       setFocus((prevState) => (prevState > 0 ? prevState - 1 : prevState));
     }
   }, [upPress]);
 
-  const enterPress = useKeyPress("Enter", searchInput);
+  const enterPress = useKeyPress("Enter", searchInput, focus);
   const navigate = useNavigate();
   useEffect(() => {
-    if (results.length && enterPress) {
-      console.log("Trying to navigate...");
-      navigate(`/${results[focus].name}/hot`);
+    if (results.length && focus && enterPress) {
+      navigate(`/${results[focus - 1].name}/hot`);
     }
   }, [enterPress, navigate, focus]);
 
@@ -45,7 +44,9 @@ function SearchDropdown({ searchInput }) {
         <h1 className="search-dropdown__subreddits-heading">Subreddits</h1>
         {results.map((result, index) => (
           <Link
-            className={`subreddit ${index === focus && "subreddit--focused"}`}
+            className={`subreddit ${
+              index === focus - 1 && "subreddit--focused"
+            }`}
             to={`/${result.name}/hot`}
             key={index}
           >
