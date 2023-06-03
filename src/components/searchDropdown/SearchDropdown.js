@@ -66,6 +66,7 @@ function SearchDropdown({ searchInput, handleInputSubmit }) {
         className={`search-dropdown__search ${
           focus === results.length + 1 && "search-dropdown__search--focused"
         }`}
+        onClick={handleInputSubmit}
       >
         <div className="search-dropdown__magnifying-glass"></div>
         Search posts for "term"
