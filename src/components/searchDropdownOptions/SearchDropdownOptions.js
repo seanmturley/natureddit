@@ -7,13 +7,13 @@ import "./SearchDropdownOptions.css";
 import PropTypes from "prop-types";
 
 function SearchDropdownOptions({
-  results,
+  data,
   focus,
   setFocus,
   handleInputSubmit,
   trimmedSearchTerm
 }) {
-  const options = results.map((result) => (
+  const options = data.map((result) => (
     <Link className="sr-option" to={`/${result.name}/hot`}>
       <div className="sr-option__icon"></div>
       <div className="sr-option__details">
@@ -43,7 +43,7 @@ function SearchDropdownOptions({
 }
 
 SearchDropdownOptions.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   focus: PropTypes.number,
   setFocus: PropTypes.func.isRequired,
   handleInputSubmit: PropTypes.func.isRequired,
