@@ -26,7 +26,8 @@ export const redditApi = createApi({
       query: (query) => {
         return `search.json?q=${query}&type=sr&limit=5`;
       },
-      transformResponse: (response, meta, arg) => response.data?.children
+      transformResponse: (response, meta, arg) =>
+        response.data?.children.length > 0 ? response.data.children : null
     })
   })
 });
