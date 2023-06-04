@@ -6,7 +6,7 @@ import useKeyPress from "../../utils/useKeyPress";
 
 import { useGetSubredditsQuery } from "../../services/redditApi";
 
-import SearchDropdownOptions from "../searchDropdownOptions/SearchDropdownOptions";
+import SearchDropdownOption from "../searchDropdownOption/SearchDropdownOption";
 
 import "./SearchDropdown.css";
 
@@ -49,12 +49,25 @@ function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
   return (
     <div className="search-dropdown">
       <ul className="search-dropdown__options">
-        <SearchDropdownOptions
-          focus={focus}
-          setFocus={setFocus}
-          handleInputSubmit={handleInputSubmit}
-          trimmedSearchTerm={trimmedSearchTerm}
-        />
+        {data.map((subreddit, index) => (
+          <li
+            key={index}
+            className={`option ${index === focus && "option--focused"}`}
+            onMouseEnter={() => setFocus(index)}
+            onMouseLeave={() => setFocus(null)}
+          >
+            <SearchDropdownOption
+              key={subreddit.data.id}
+              subreddit={subreddit.data}
+            />
+          </li>
+        ))}
+        <li className={`option ${data.length === focus && "option--focused"}`}>
+          <div className="search-option" onClick={handleInputSubmit}>
+            <div className="search-option__icon"></div>
+            Search posts for "{trimmedSearchTerm}"
+          </div>
+        </li>
       </ul>
     </div>
   );

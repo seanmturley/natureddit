@@ -1,0 +1,16 @@
+.sr-option {
+  color: unset;
+  text-decoration: unset;
+}
+
+.sr-option__icon {
+  color: green;
+  width: 2em;
+  height: 2em;
+  margin: 0 0.5em;
+  border-radius: 1em;
+}
+
+.sr-option__name {
+  font: var(--detail-font__emphasis);
+}
