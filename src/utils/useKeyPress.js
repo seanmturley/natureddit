@@ -17,12 +17,16 @@ function useKeyPress(targetKey, ref, focus) {
       }
     };
 
-    ref.current?.addEventListener("keydown", downHandler);
-    ref.current?.addEventListener("keyup", upHandler);
+    // Copy ref.current to a variable inside the effect to ensure
+    // the correct value is used in the cleanup function.
+    const reference = ref.current;
+
+    reference?.addEventListener("keydown", downHandler);
+    reference?.addEventListener("keyup", upHandler);
 
     return () => {
-      ref.current?.removeEventListener("keydown", downHandler);
-      ref.current?.removeEventListener("keyup", upHandler);
+      reference?.removeEventListener("keydown", downHandler);
+      reference?.removeEventListener("keyup", upHandler);
     };
   });
 
