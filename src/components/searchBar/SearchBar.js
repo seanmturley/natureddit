@@ -1,5 +1,8 @@
 import React, { useCallback, useRef, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
+
+import { useGetSubredditsQuery } from "../../services/redditApi";
 
 import SearchDropdown from "../searchDropdown/SearchDropdown";
 
@@ -10,8 +13,6 @@ function SearchBar() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const trimmedSearchTerm = searchTerm.trim();
-
-  const searchInput = useRef(null);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -27,6 +28,10 @@ function SearchBar() {
     },
     [trimmedSearchTerm, navigate]
   );
+
+  const { data } = useGetSubredditsQuery(trimmedSearchTerm);
+
+  const searchInput = useRef(null);
 
   return (
     <section className="search">
@@ -45,11 +50,13 @@ function SearchBar() {
         />
       </form>
 
-      <SearchDropdown
-        searchInput={searchInput}
-        handleInputSubmit={handleInputSubmit}
-        trimmedSearchTerm={trimmedSearchTerm}
-      />
+      {data && (
+        <SearchDropdown
+          searchInput={searchInput}
+          handleInputSubmit={handleInputSubmit}
+          trimmedSearchTerm={trimmedSearchTerm}
+        />
+      )}
     </section>
   );
 }
