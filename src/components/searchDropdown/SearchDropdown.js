@@ -14,32 +14,33 @@ const results = [
 ];
 
 function SearchDropdown({ searchInput, handleInputSubmit }) {
-  const [focus, setFocus] = useState(0);
+  const [focus, setFocus] = useState(null);
 
   const downPress = useKeyPress("ArrowDown", searchInput, focus);
   useEffect(() => {
-    if (results.length && downPress) {
+    if (results && downPress) {
       setFocus((prevState) => {
-        return prevState < results.length + 1 ? prevState + 1 : prevState;
+        if (prevState === null) return 0;
+        return prevState < results.length ? prevState + 1 : prevState;
       });
     }
   }, [downPress]);
 
   const upPress = useKeyPress("ArrowUp", searchInput, focus);
   useEffect(() => {
-    if (results.length && upPress) {
-      setFocus((prevState) => (prevState > 0 ? prevState - 1 : prevState));
+    if (results && upPress) {
+      setFocus((prevState) => (prevState ? prevState - 1 : null));
     }
   }, [upPress]);
 
   const enterPress = useKeyPress("Enter", searchInput, focus);
   const navigate = useNavigate();
   useEffect(() => {
-    if (results.length && focus && enterPress) {
-      if (focus === results.length + 1) {
+    if (results && focus && enterPress) {
+      if (focus === results.length) {
         handleInputSubmit();
       } else {
-        navigate(`/${results[focus - 1].name}/hot`);
+        navigate(`/${results[focus].name}/hot`);
       }
     }
   }, [enterPress, focus, handleInputSubmit, navigate]);

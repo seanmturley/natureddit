@@ -30,9 +30,9 @@ function SearchDropdownOptions({
   return options.map((option, index) => (
     <li
       key={index}
-      className={`option ${index === focus - 1 && "option--focused"}`}
-      onMouseEnter={() => setFocus(index + 1)}
-      onMouseLeave={() => setFocus(0)}
+      className={`option ${index === focus && "option--focused"}`}
+      onMouseEnter={() => setFocus(index)}
+      onMouseLeave={() => setFocus(null)}
     >
       {option}
     </li>
