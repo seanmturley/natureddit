@@ -21,8 +21,15 @@ export const redditApi = createApi({
         };
         return transformedResponse;
       }
+    }),
+    getSubreddits: builder.query({
+      query: (query) => {
+        return `search.json?q=${query}&type=sr&limit=5`;
+      },
+      transformResponse: (response, meta, arg) => response.data?.children
     })
   })
 });
 
-export const { useGetCardsQuery, useGetPostQuery } = redditApi;
+export const { useGetCardsQuery, useGetPostQuery, useGetSubredditsQuery } =
+  redditApi;
