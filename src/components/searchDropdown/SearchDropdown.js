@@ -50,7 +50,6 @@ function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
 
   return (
     <div className="search-dropdown">
-      <h1 className="search-dropdown__sr-heading">Subreddits</h1>
       <ul className="search-dropdown__options">
         <SearchDropdownOptions
           results={results}

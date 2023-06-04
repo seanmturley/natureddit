@@ -1,4 +1,11 @@
 .search-dropdown {
+  position: absolute;
+  width: 40rem;
   background-color: white;
   border: var(--border);
+}
+
+.search-dropdown__options {
+  margin: 0;
+  padding: 0;
 }

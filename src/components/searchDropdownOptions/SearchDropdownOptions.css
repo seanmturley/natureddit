@@ -1,11 +1,44 @@
 .option {
-  display: flex;
+  display: block;
+  font-size: var(--detail-font__size);
 }
 
 .option--focused {
-  background-color: red;
+  background-color: lightgrey;
+}
+
+.sr-option {
+  color: unset;
+  text-decoration: unset;
 }
 
 .search-option {
   cursor: pointer;
+  border-top: var(--border);
+}
+
+.sr-option,
+.search-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 3.3em;
+}
+
+.sr-option__icon,
+.search-option__icon {
+  width: 2em;
+  height: 2em;
+  margin: 0 0.5em;
+  background-color: grey;
+  border-radius: 1em;
+}
+
+.sr-option__name {
+  font: var(--detail-font__emphasis);
+}
+
+.sr-option__members,
+.search-option {
+  font: var(--detail-font);
 }
