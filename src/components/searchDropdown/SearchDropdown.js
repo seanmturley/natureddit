@@ -36,7 +36,7 @@ function SearchDropdown({ searchInput, handleInputSubmit }) {
   const enterPress = useKeyPress("Enter", searchInput, focus);
   const navigate = useNavigate();
   useEffect(() => {
-    if (results && focus && enterPress) {
+    if (results && focus !== null && enterPress) {
       if (focus === results.length) {
         handleInputSubmit();
       } else {

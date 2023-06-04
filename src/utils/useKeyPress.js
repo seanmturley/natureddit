@@ -6,7 +6,7 @@ function useKeyPress(targetKey, ref, focus) {
   useEffect(() => {
     const downHandler = (event) => {
       if (event.key === targetKey) {
-        if (focus) event.preventDefault();
+        if (focus !== null) event.preventDefault();
         setKeyPressed(true);
       }
     };
