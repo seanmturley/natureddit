@@ -25,12 +25,19 @@
   height: 3.3em;
 }
 
-.sr-option__icon,
-.search-option__icon {
+.sr-option__icon {
+  color: green;
   width: 2em;
   height: 2em;
   margin: 0 0.5em;
+  border-radius: 1em;
+}
+
+.search-option__icon {
   background-color: grey;
+  width: 2em;
+  height: 2em;
+  margin: 0 0.5em;
   border-radius: 1em;
 }
 

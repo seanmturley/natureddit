@@ -50,7 +50,6 @@ function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
     <div className="search-dropdown">
       <ul className="search-dropdown__options">
         <SearchDropdownOptions
-          data={data}
           focus={focus}
           setFocus={setFocus}
           handleInputSubmit={handleInputSubmit}

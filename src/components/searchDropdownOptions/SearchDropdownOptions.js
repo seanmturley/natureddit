@@ -2,23 +2,38 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import { useGetSubredditsQuery } from "../../services/redditApi";
+
+import formatNumber from "../../utils/numberFormatting";
+
+import { ReactComponent as DefaultSubredditIcon } from "../../assets/defaultSubredditIcon.svg";
 import "./SearchDropdownOptions.css";
 
 import PropTypes from "prop-types";
 
 function SearchDropdownOptions({
-  data,
   focus,
   setFocus,
   handleInputSubmit,
   trimmedSearchTerm
 }) {
-  const options = data.map((result) => (
-    <Link className="sr-option" to={`/${result.name}/hot`}>
-      <div className="sr-option__icon"></div>
+  const { data } = useGetSubredditsQuery(trimmedSearchTerm);
+
+  const options = data.map((subreddit) => (
+    <Link className="sr-option" to={subreddit.data.url}>
+      {subreddit.data.icon_img ? (
+        <img className="sr-option__icon" src={subreddit.data.icon_img} alt="" />
+      ) : (
+        <DefaultSubredditIcon className="sr-option__icon" />
+      )}
+
       <div className="sr-option__details">
-        <div className="sr-option__name">{result.name}</div>
-        <div className="sr-option__members">{result.members} members</div>
+        <div className="sr-option__name">
+          {subreddit.data.display_name_prefixed}
+        </div>
+        <div className="sr-option__members">
+          {formatNumber(subreddit.data.subscribers)} members
+        </div>
       </div>
     </Link>
   ));
@@ -43,7 +58,6 @@ function SearchDropdownOptions({
 }
 
 SearchDropdownOptions.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   focus: PropTypes.number,
   setFocus: PropTypes.func.isRequired,
   handleInputSubmit: PropTypes.func.isRequired,
