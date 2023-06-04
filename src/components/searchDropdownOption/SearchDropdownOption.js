@@ -17,7 +17,7 @@ function SearchDropdownOption({ subreddit }) {
       {subreddit.icon_img ? (
         <img className="sr-option__icon" src={subreddit.icon_img} alt="" />
       ) : (
-        <DefaultSubredditIcon className="sr-option__icon" />
+        <DefaultSubredditIcon className="sr-option__icon" alt="" />
       )}
       <div className="sr-option__details">
         <div className="sr-option__name">{subreddit.display_name_prefixed}</div>
