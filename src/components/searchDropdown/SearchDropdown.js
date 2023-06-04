@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import useKeyPress from "../../utils/useKeyPress";
 
-import "./SearchDropdown.css";
 import SearchDropdownOptions from "../searchDropdownOptions/SearchDropdownOptions";
+
+import "./SearchDropdown.css";
+
+import PropTypes from "prop-types";
 
 const results = [
   { name: "r/PATH", members: "124" },
@@ -13,7 +16,7 @@ const results = [
   { name: "r/Pathfinder_RPG", members: "141k" }
 ];
 
-function SearchDropdown({ searchInput, handleInputSubmit }) {
+function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
   const [focus, setFocus] = useState(null);
 
   const downPress = useKeyPress("ArrowDown", searchInput, focus);
@@ -54,10 +57,17 @@ function SearchDropdown({ searchInput, handleInputSubmit }) {
           focus={focus}
           setFocus={setFocus}
           handleInputSubmit={handleInputSubmit}
+          trimmedSearchTerm={trimmedSearchTerm}
         />
       </ul>
     </div>
   );
 }
+
+SearchDropdown.propTypes = {
+  searchInput: PropTypes.object.isRequired,
+  handleInputSubmit: PropTypes.func.isRequired,
+  trimmedSearchTerm: PropTypes.string.isRequired
+};
 
 export default SearchDropdown;

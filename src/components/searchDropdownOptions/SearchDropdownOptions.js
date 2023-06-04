@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 
 import "./SearchDropdownOptions.css";
 
+import PropTypes from "prop-types";
+
 function SearchDropdownOptions({
   results,
   focus,
   setFocus,
-  handleInputSubmit
+  handleInputSubmit,
+  trimmedSearchTerm
 }) {
   const options = results.map((result) => (
     <Link className="sr-option" to={`/${result.name}/hot`}>
@@ -23,7 +26,7 @@ function SearchDropdownOptions({
   options.push(
     <div className="search-option" onClick={handleInputSubmit}>
       <div className="search-option__icon"></div>
-      Search posts for "term"
+      Search posts for "{trimmedSearchTerm}"
     </div>
   );
 
@@ -38,5 +41,13 @@ function SearchDropdownOptions({
     </li>
   ));
 }
+
+SearchDropdownOptions.propTypes = {
+  results: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  focus: PropTypes.number,
+  setFocus: PropTypes.func.isRequired,
+  handleInputSubmit: PropTypes.func.isRequired,
+  trimmedSearchTerm: PropTypes.string.isRequired
+};
 
 export default SearchDropdownOptions;

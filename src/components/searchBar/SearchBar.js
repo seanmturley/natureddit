@@ -9,6 +9,7 @@ function SearchBar() {
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
+  const trimmedSearchTerm = searchTerm.trim();
 
   const searchInput = useRef(null);
 
@@ -20,13 +21,11 @@ function SearchBar() {
     (event) => {
       event?.preventDefault();
 
-      const trimmedSearchTerm = searchTerm.trim();
-
       if (trimmedSearchTerm) {
         navigate(`/search?q=${trimmedSearchTerm}&sort=relevance&t=all`);
       }
     },
-    [navigate, searchTerm]
+    [trimmedSearchTerm, navigate]
   );
 
   return (
@@ -49,6 +48,7 @@ function SearchBar() {
       <SearchDropdown
         searchInput={searchInput}
         handleInputSubmit={handleInputSubmit}
+        trimmedSearchTerm={trimmedSearchTerm}
       />
     </section>
   );
