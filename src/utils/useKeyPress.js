@@ -28,7 +28,7 @@ function useKeyPress(targetKey, ref, focus) {
       reference?.removeEventListener("keydown", downHandler);
       reference?.removeEventListener("keyup", upHandler);
     };
-  });
+  }, [targetKey, ref, focus]);
 
   return keyPressed;
 }
