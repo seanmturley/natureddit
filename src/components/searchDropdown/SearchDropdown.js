@@ -53,7 +53,7 @@ function SearchDropdown({ handleInputSubmit, searchInput, trimmedSearchTerm }) {
         {data.map((subreddit, index) => (
           <li
             key={index}
-            className={`option ${index === focus && "option--focused"}`}
+            className={`option${index === focus ? " option--focused" : ""}`}
             onMouseEnter={() => setFocus(index)}
             onMouseLeave={() => setFocus(null)}
           >
@@ -64,7 +64,9 @@ function SearchDropdown({ handleInputSubmit, searchInput, trimmedSearchTerm }) {
             />
           </li>
         ))}
-        <li className={`option ${data.length === focus && "option--focused"}`}>
+        <li
+          className={`option${data.length === focus ? " option--focused" : ""}`}
+        >
           <div
             className="search-option"
             onMouseDown={(event) => event.preventDefault()}
