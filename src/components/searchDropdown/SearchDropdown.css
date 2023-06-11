@@ -3,6 +3,7 @@
   width: 100%;
   background-color: white;
   border: var(--border);
+  border-top: none;
 }
 
 .search-dropdown__options {

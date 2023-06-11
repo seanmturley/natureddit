@@ -35,12 +35,16 @@ function SearchBar() {
     [navigate, searchInput, trimmedSearchTerm]
   );
 
+  const dropdownVisible = inputFocused && data;
+
   return (
     <section className="search">
       <form className="search__form" role="search" onSubmit={handleInputSubmit}>
         <input
           ref={searchInput}
-          className="search__input"
+          className={`search__input ${
+            dropdownVisible && "search__input--dropdown"
+          }`}
           type="search"
           id="search"
           name="q"
@@ -54,7 +58,7 @@ function SearchBar() {
         />
       </form>
 
-      {inputFocused && data && (
+      {dropdownVisible && (
         <SearchDropdown
           handleInputSubmit={handleInputSubmit}
           searchInput={searchInput}
