@@ -33,6 +33,7 @@ function SearchDropdownOption({ searchInput, subreddit }) {
 }
 
 SearchDropdownOption.propTypes = {
+  searchInput: PropTypes.object.isRequired,
   subreddit: PropTypes.object.isRequired
 };
 

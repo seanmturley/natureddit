@@ -80,8 +80,8 @@ function SearchDropdown({ handleInputSubmit, searchInput, trimmedSearchTerm }) {
 }
 
 SearchDropdown.propTypes = {
-  searchInput: PropTypes.object.isRequired,
   handleInputSubmit: PropTypes.func.isRequired,
+  searchInput: PropTypes.object.isRequired,
   trimmedSearchTerm: PropTypes.string.isRequired
 };
 
