@@ -12,7 +12,7 @@ import "./SearchDropdown.css";
 
 import PropTypes from "prop-types";
 
-function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
+function SearchDropdown({ handleInputSubmit, searchInput, trimmedSearchTerm }) {
   const [focus, setFocus] = useState(null);
 
   const { data } = useGetSubredditsQuery(trimmedSearchTerm);
@@ -42,9 +42,10 @@ function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
         handleInputSubmit();
       } else {
         navigate(`${data[focus]?.data.url}hot`);
+        searchInput.current.blur();
       }
     }
-  }, [enterPress, data, focus, handleInputSubmit, navigate]);
+  }, [data, enterPress, focus, handleInputSubmit, navigate, searchInput]);
 
   return (
     <div className="search-dropdown">
@@ -58,12 +59,17 @@ function SearchDropdown({ searchInput, handleInputSubmit, trimmedSearchTerm }) {
           >
             <SearchDropdownOption
               key={subreddit.data.id}
+              searchInput={searchInput}
               subreddit={subreddit.data}
             />
           </li>
         ))}
         <li className={`option ${data.length === focus && "option--focused"}`}>
-          <div className="search-option" onClick={handleInputSubmit}>
+          <div
+            className="search-option"
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={handleInputSubmit}
+          >
             <div className="search-option__icon"></div>
             Search posts for "{trimmedSearchTerm}"
           </div>

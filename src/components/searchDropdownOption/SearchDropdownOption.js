@@ -9,11 +9,16 @@ import "./SearchDropdownOption.css";
 
 import PropTypes from "prop-types";
 
-function SearchDropdownOption({ subreddit }) {
+function SearchDropdownOption({ searchInput, subreddit }) {
   const formattedSubscribers = formatNumber(subreddit.subscribers);
 
   return (
-    <Link className="sr-option" to={`${subreddit.url}hot`}>
+    <Link
+      className="sr-option"
+      to={`${subreddit.url}hot`}
+      onMouseDown={(event) => event.preventDefault()}
+      onClick={() => searchInput.current.blur()}
+    >
       {subreddit.icon_img ? (
         <img className="sr-option__icon" src={subreddit.icon_img} alt="" />
       ) : (

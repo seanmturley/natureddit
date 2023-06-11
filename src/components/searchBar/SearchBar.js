@@ -11,8 +11,12 @@ import "./SearchBar.css";
 function SearchBar() {
   const navigate = useNavigate();
 
+  const searchInput = useRef(null);
+  const [inputFocused, setInputFocused] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState("");
   const trimmedSearchTerm = searchTerm.trim();
+  const { data } = useGetSubredditsQuery(trimmedSearchTerm);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -25,13 +29,11 @@ function SearchBar() {
       if (trimmedSearchTerm) {
         navigate(`/search?q=${trimmedSearchTerm}&sort=relevance&t=all`);
       }
+
+      searchInput.current.blur();
     },
-    [trimmedSearchTerm, navigate]
+    [navigate, searchInput, trimmedSearchTerm]
   );
-
-  const { data } = useGetSubredditsQuery(trimmedSearchTerm);
-
-  const searchInput = useRef(null);
 
   return (
     <section className="search">
@@ -46,14 +48,16 @@ function SearchBar() {
           aria-label="Search Reddit content"
           autoComplete="off"
           value={searchTerm}
+          onFocus={() => setInputFocused(true)}
+          onBlur={() => setInputFocused(false)}
           onChange={handleInputChange}
         />
       </form>
 
-      {data && (
+      {inputFocused && data && (
         <SearchDropdown
-          searchInput={searchInput}
           handleInputSubmit={handleInputSubmit}
+          searchInput={searchInput}
           trimmedSearchTerm={trimmedSearchTerm}
         />
       )}
