@@ -13,7 +13,7 @@ function SearchDropdownOption({ subreddit }) {
   const formattedSubscribers = formatNumber(subreddit.subscribers);
 
   return (
-    <Link className="sr-option" to={subreddit.url}>
+    <Link className="sr-option" to={`${subreddit.url}hot`}>
       {subreddit.icon_img ? (
         <img className="sr-option__icon" src={subreddit.icon_img} alt="" />
       ) : (
