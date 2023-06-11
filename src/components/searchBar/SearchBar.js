@@ -35,16 +35,28 @@ function SearchBar() {
     [navigate, searchInput, trimmedSearchTerm]
   );
 
+  const handleInputReset = () => {
+    searchInput.current.focus();
+    setSearchTerm("");
+  };
+
   const dropdownVisible = inputFocused && data;
+
+  let formModifiers = "";
+  if (inputFocused) formModifiers += " search__form--focused";
+  if (dropdownVisible) formModifiers += " search__form--dropdown";
 
   return (
     <section className="search">
-      <form className="search__form" role="search" onSubmit={handleInputSubmit}>
+      <form
+        className={`search__form${formModifiers}`}
+        role="search"
+        onSubmit={handleInputSubmit}
+        onReset={handleInputReset}
+      >
         <input
           ref={searchInput}
-          className={`search__input ${
-            dropdownVisible && "search__input--dropdown"
-          }`}
+          className="search__input"
           type="search"
           id="search"
           name="q"
@@ -56,6 +68,9 @@ function SearchBar() {
           onBlur={() => setInputFocused(false)}
           onChange={handleInputChange}
         />
+        {searchTerm && (
+          <input className="search__clear" type="reset" value="x" />
+        )}
       </form>
 
       {dropdownVisible && (
