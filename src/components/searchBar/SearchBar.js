@@ -54,6 +54,7 @@ function SearchBar() {
         onSubmit={handleInputSubmit}
         onReset={handleInputReset}
       >
+        <label className="search__icon" htmlFor="search"></label>
         <input
           ref={searchInput}
           className="search__input"

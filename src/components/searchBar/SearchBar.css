@@ -4,11 +4,13 @@
 
 .search__form {
   display: flex;
+  align-items: center;
   font: var(--detail-font);
+  box-sizing: content-box;
   height: 2em;
   background-color: whitesmoke;
   border: var(--border-width) solid whitesmoke;
-  border-radius: 1em;
+  border-radius: 1.1em;
 }
 
 .search__form:hover,
@@ -18,13 +20,22 @@
 }
 
 .search__form--dropdown {
-  border-radius: 1em 1em 0 0;
+  border-radius: 1.1em 1.1em 0 0;
+}
+
+.search__icon {
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: 0.25em;
+  border-radius: 0.75em;
+  background-color: lightgrey;
 }
 
 .search__input {
   background-color: transparent;
   border: none;
   outline: none;
+  height: 2em;
   flex-grow: 1;
   padding: 0 0 0 1em;
 }
