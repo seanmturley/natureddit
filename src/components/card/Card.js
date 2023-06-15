@@ -32,7 +32,7 @@ function Card({ card }) {
         Posted in{" "}
         <Link
           className="card__subreddit"
-          to={`../${card.subreddit_name_prefixed}/hot`}
+          to={`/${card.subreddit_name_prefixed}/hot`}
         >
           {card.subreddit_name_prefixed}
         </Link>
