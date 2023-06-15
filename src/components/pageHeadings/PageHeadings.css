@@ -20,10 +20,12 @@
 
 .page-headings__title {
   font: var(--title-font);
+  color: var(--front);
 }
 
 .page-headings__location {
   font: var(--body-font);
+  color: var(--front-weak);
   flex-grow: 1;
   text-align: center;
 }
