@@ -8,4 +8,5 @@
   grid-auto-columns: 1fr;
   align-items: center;
   z-index: 1;
+  background-color: var(--mid-weak);
 }
