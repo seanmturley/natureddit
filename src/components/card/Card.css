@@ -9,10 +9,12 @@
 
 .card__body {
   padding: 1rem 1rem 0.5rem;
+  background-color: var(--mid-weak);
 }
 
 .card__details {
   font: var(--detail-font);
+  color: var(--front-weak);
 }
 
 .card__author {
@@ -29,6 +31,7 @@
 
 .card__title {
   font: var(--title-font);
+  color: var(--front);
   margin: 0.6em 0;
   max-height: calc(
     var(--title-font__size) * var(--title-font__line-height) * 3
@@ -57,6 +60,7 @@
   display: flex;
   justify-content: space-between;
   font: var(--detail-font);
+  color: var(--front-weak);
 }
 
 /* 1 columns*/
