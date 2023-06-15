@@ -2,8 +2,7 @@
   position: absolute;
   width: 100%;
   background-color: var(--mid-weak);
-  border: var(--border);
-  border-top: none;
+  padding: 0 1rem;
 }
 
 .search-dropdown__options {
@@ -23,7 +22,8 @@
 
 .search-option {
   cursor: pointer;
-  border-top: var(--border);
+  border-top: var(--border-width) solid var(--front-weak);
+  box-sizing: content-box;
 }
 
 .sr-option,
@@ -38,6 +38,6 @@
   background-color: var(--front-weak);
   width: 2em;
   height: 2em;
-  margin: 0 0.5em;
+  margin-right: 0.5em;
   border-radius: 1em;
 }
