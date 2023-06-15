@@ -4,7 +4,7 @@
 }
 
 .sr-option__icon {
-  color: green;
+  color: var(--accent);
   width: 2em;
   height: 2em;
   margin: 0 0.5em;
@@ -13,4 +13,8 @@
 
 .sr-option__name {
   font: var(--detail-font__emphasis);
+}
+
+.sr-option__members {
+  color: var(--front-weak);
 }

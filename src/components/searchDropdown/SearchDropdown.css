@@ -1,7 +1,7 @@
 .search-dropdown {
   position: absolute;
   width: 100%;
-  background-color: white;
+  background-color: var(--mid-weak);
   border: var(--border);
   border-top: none;
 }
@@ -14,10 +14,11 @@
 .option {
   display: block;
   font: var(--detail-font);
+  color: var(--front);
 }
 
 .option--focused {
-  background-color: lightgrey;
+  background-color: var(--mid);
 }
 
 .search-option {
@@ -34,7 +35,7 @@
 }
 
 .search-option__icon {
-  background-color: grey;
+  background-color: var(--front-weak);
   width: 2em;
   height: 2em;
   margin: 0 0.5em;
