@@ -1,10 +1,10 @@
 .app {
-  --back: hsl(120 10% 12%);
-  --mid-weak: hsl(120 25% 18%);
-  --mid: hsl(120 20% 24%);
-  --front-weak: hsl(120 5% 90%);
+  --back: hsl(120 5% 12%);
+  --mid-weak: hsl(120 14% 16%);
+  --mid: hsl(120 11% 22%);
+  --front-weak: hsl(120 18% 88%);
   --front: white;
-  --accent: hsl(120 60% 60%);
+  --accent: hsl(120 43% 42%);
 
   --nav-bar-height: 6rem;
 
