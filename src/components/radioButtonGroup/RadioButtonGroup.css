@@ -1,7 +1,5 @@
 .radio-button-group {
   font-size: 1rem;
-  --radio-button-group__primary-color: black;
-  --radio-button-group__disabled-color: lightgrey;
   --radio-button-group__text: var(--detail-font);
   --radio-button-group__selected-text: var(--detail-font__emphasis);
   --radio-button-group__border-width: var(--border-width);
@@ -10,11 +8,7 @@
 }
 
 .radio-button-group--clickable {
-  color: var(--radio-button-group__primary-color);
-}
-
-.radio-button-group--disabled {
-  color: var(--radio-button-group__disabled-color);
+  color: var(--front-weak);
 }
 
 .radio-button-group__heading--visible {
@@ -43,8 +37,12 @@
 .radio-button-group__label {
   display: flex;
   align-items: center;
-  padding: 0.2em 1em;
   font: var(--radio-button-group__text);
+  height: 2.2em;
+  border-radius: 1.1em;
+  border: var(--radio-button-group__border-width) solid var(--mid);
+  padding: 0 1em 0 0.4em;
+  margin: 0 1em;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -55,16 +53,44 @@
   cursor: pointer;
 }
 
+.radio-button-group__icon {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.6em;
+  border: var(--radio-button-group__border-width) solid var(--accent);
+  margin-right: 0.5em;
+}
+
 .radio-button-group__label--selected {
   font: var(--radio-button-group__selected-text);
+  color: var(--front);
   cursor: default !important;
-  border-style: solid;
-  border-width: var(--radio-button-group__border-width);
-  border-radius: 1em;
+}
+
+.radio-button-group__label--selected .radio-button-group__icon {
+  border: none;
+  background-color: var(--accent);
+}
+
+.radio-button-group--disabled {
+  color: var(--mid);
+}
+
+.radio-button-group--disabled .radio-button-group__icon {
+  border-color: var(--mid);
 }
 
 .radio-button-group--disabled .radio-button-group__label--selected {
-  border-color: var(--radio-button-group__disabled-color);
+  color: var(--back);
+  background-color: var(--mid);
+  border: none;
+}
+
+.radio-button-group--disabled
+  .radio-button-group__label--selected
+  .radio-button-group__icon {
+  border: none;
+  background-color: var(--back);
 }
 
 .radio-button-group__input {

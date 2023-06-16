@@ -41,6 +41,7 @@ function RadioButtonGroup({
             htmlFor={option}
             className={`radio-button-group__label${isSelected}`}
           >
+            <div className="radio-button-group__icon"></div>
             <input
               className="radio-button-group__input"
               type="radio"

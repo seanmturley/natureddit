@@ -72,7 +72,7 @@ function Filters() {
     name: "time",
     options: ["hour", "day", "week", "month", "year", "all"],
     disabled: sortFilter !== "relevance" && sortFilter !== "top",
-    selected: queryParams.get("t") ?? "",
+    selected: queryParams.get("t") ?? "all",
     setState: timeFilterSetState
   };
 
