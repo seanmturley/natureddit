@@ -1,5 +1,6 @@
 .app {
   --back: hsl(120 5% 12%);
+  --back-transparent: hsla(120 5% 12% / 0.8);
   --mid-weak: hsl(120 14% 16%);
   --mid: hsl(120 11% 22%);
   --front-weak: hsl(120 18% 88%);
