@@ -36,9 +36,11 @@ function DropdownMenu() {
           <ul className="menu__list" onMouseLeave={toggleMenu}>
             <li className="menu__list-item">
               <ToggleSwitch {...themeSwitchProps} />
+              <span className="menu__list-icon"></span>
             </li>
             <li className="menu__list-item">
               <a className="menu__link" href="null">
+                <span className="menu__list-icon"></span>
                 Nature subreddits
               </a>
             </li>
@@ -49,6 +51,7 @@ function DropdownMenu() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
+                <span className="menu__list-icon"></span>
                 About
               </a>
             </li>
@@ -59,6 +62,7 @@ function DropdownMenu() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
+                <span className="menu__list-icon"></span>
                 Reddit official
               </a>
             </li>
