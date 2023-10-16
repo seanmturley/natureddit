@@ -2,7 +2,6 @@
   width: 90rem;
   margin: 0 auto;
   padding: 2rem;
-  border: var(--border);
 }
 
 @media screen and (max-width: 900px) {
@@ -18,7 +17,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--back-transparent);
 }
 
 .post-container--modal {
@@ -27,14 +26,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: white;
+  background: var(--back);
   overflow-y: scroll;
 }
 /* End of CSS intended for modal display */
 
 .post {
-  border: var(--border);
   margin-bottom: 2rem;
+  background: var(--mid-weak);
 }
 
 .post__image-container {
@@ -51,19 +50,23 @@
 .post__body {
   padding: 1rem;
 }
+
 .post__title {
   font: var(--title-font);
+  color: var(--front);
   margin: 0.6em 0;
 }
 
 .post__text {
   font: var(--body-font);
+  color: var(--front);
   margin-bottom: 0.8em;
 }
 
 .post__details,
 .post__stats-and-cta {
   font: var(--detail-font);
+  color: var(--front-weak);
 }
 
 .post__subreddit {
@@ -78,8 +81,13 @@
   align-items: center;
 }
 
+.post__view-on-reddit {
+  text-decoration: unset;
+  color: unset;
+}
 .comments__no-comments {
   font: var(--title-font);
+  color: var(--front);
   width: fit-content;
   margin: 4em auto calc(4em - 2rem);
 }

@@ -72,6 +72,7 @@ function Post({ modal }) {
               <div className="post__comments">{`${formattedNumComments} comments`}</div>
               <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
               <a
+                className="post__view-on-reddit"
                 href={`https://www.reddit.com${post.permalink}`}
                 target="_blank"
                 rel="noreferrer noopener"
