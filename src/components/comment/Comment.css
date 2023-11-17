@@ -7,7 +7,7 @@
 }
 
 .comment__container--selected {
-  background: rgba(211, 211, 211, 0.5); /*i.e. semi-transparent lightgrey */
+  background-color: var(--mid);
   margin: 0 -2rem;
   padding: 0 2rem;
 }
@@ -24,14 +24,18 @@
 
 .comment__author {
   font: var(--detail-font__emphasis);
+  color: var(--front);
 }
 
-.comment__mod {
-  font: var(--detail-font__emphasis);
-}
-
+.comment__mod,
+.comment__stickied,
 .comment__op {
   font: var(--detail-font__emphasis);
+  color: var(--accent);
+}
+
+.comment__age {
+  color: var(--front-weak);
 }
 
 .comment__body {
@@ -43,10 +47,19 @@
 
 .comment__text {
   font: var(--body-font);
+  color: var(--front);
 }
 
 .comment__text p {
   margin: 0 0 1em;
+}
+
+.comment__text a {
+  color: var(--accent);
+}
+
+.comment__text a:visited {
+  color: var(--front-weak);
 }
 
 .comment__text blockquote {
@@ -63,6 +76,10 @@
   gap: 1.5em;
 }
 
+.comment__score {
+  color: var(--front-weak);
+}
+
 .comment__view-replies-container {
   font: var(--detail-font);
   padding-top: 1em;
@@ -70,6 +87,6 @@
 
 .comment__view-replies-link {
   font: var(--detail-font__emphasis);
-  color: green;
+  color: var(--accent);
   text-decoration: none;
 }

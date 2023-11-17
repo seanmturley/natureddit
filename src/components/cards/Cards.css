@@ -1,5 +1,6 @@
 .cards {
   padding: 0.75rem;
+  background-color: var(--back);
 }
 
 .cards__list {

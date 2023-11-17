@@ -50,7 +50,9 @@ function Comment({ comment }) {
           )}
           {comment.is_submitter && <div className="comment__op">OP</div>}
           <div className="comment__age">{age} ago</div>
-          {comment.stickied && <div className="comment__mod">Stickied</div>}
+          {comment.stickied && (
+            <div className="comment__stickied">Stickied</div>
+          )}
         </div>
         <div className="comment__body">
           <div className="comment__text">
