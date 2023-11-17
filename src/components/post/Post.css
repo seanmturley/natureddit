@@ -66,6 +66,14 @@
   margin-bottom: 0.8em;
 }
 
+.post__text a {
+  color: var(--accent);
+}
+
+.post__text a:visited {
+  color: var(--front-weak);
+}
+
 .post__details,
 .post__stats-and-cta {
   font: var(--detail-font);
