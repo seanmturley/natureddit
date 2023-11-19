@@ -6,16 +6,16 @@ import "./DropdownMenu.css";
 
 function DropdownMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkmode, setDarkmode] = useState(true);
+  const [lightmode, setLightmode] = useState(false);
 
   const themeSwitchProps = {
     heading: "Theme",
     name: "theme",
-    optionLabels: { true: "D", false: "L" },
+    optionLabels: { true: "L", false: "D" },
     showLabels: true,
     disabled: false,
-    state: darkmode,
-    setState: setDarkmode
+    state: lightmode,
+    setState: setLightmode
   };
 
   const toggleMenu = () => {
@@ -36,7 +36,6 @@ function DropdownMenu() {
           <ul className="menu__list" onMouseLeave={toggleMenu}>
             <li className="menu__list-item">
               <ToggleSwitch {...themeSwitchProps} />
-              <span className="menu__list-icon"></span>
             </li>
             <li className="menu__list-item">
               <a className="menu__link" href="null">

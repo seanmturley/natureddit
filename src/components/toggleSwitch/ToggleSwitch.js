@@ -24,6 +24,7 @@ function ToggleSwitch({
       className={`toggle-switch toggle-switch--${state} toggle-switch--${clickability}`}
     >
       <label htmlFor={name} className="toggle-switch__label">
+        <span className="toggle-switch__icon"></span>
         <h1 className="toggle-switch__heading">{heading}</h1>
         <input
           className="toggle-switch__input"
