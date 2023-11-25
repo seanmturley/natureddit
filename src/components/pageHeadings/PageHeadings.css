@@ -13,7 +13,7 @@
 .page-headings__logo {
   width: 4rem;
   height: 4rem;
-  background-color: green;
+  background-color: var(--accent);
   border-radius: 2rem;
   margin: 1rem;
 }
