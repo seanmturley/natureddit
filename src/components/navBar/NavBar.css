@@ -3,7 +3,6 @@
   position: fixed;
   height: var(--nav-bar-height);
   width: 100%;
-  border-bottom: var(--border);
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   align-items: center;
