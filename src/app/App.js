@@ -59,9 +59,11 @@ const router = createBrowserRouter(
   }
 );
 
+const theme = "light";
+
 function App() {
   return (
-    <div className="app">
+    <div className="app" data-theme={theme}>
       <RouterProvider router={router} />
     </div>
   );

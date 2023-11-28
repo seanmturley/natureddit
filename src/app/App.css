@@ -1,4 +1,7 @@
 .app {
+  /* Default dark theme
+     See [data-theme="light"] below for light theme
+  */
   --black: hsl(120 4% 6%);
   --back: hsl(120 4% 11%);
   --back-transparent: hsla(120 4% 8% / 0.9);
@@ -29,6 +32,18 @@
     sans-serif;
   --detail-font__emphasis: 600 var(--detail-font__size) /
     var(--detail-font__line-height) sans-serif;
+}
+
+[data-theme="light"] {
+  --black: hsl(120 4% 6%);
+  --back: hsl(120 4% 11%);
+  --back-transparent: hsla(120 4% 8% / 0.9);
+  --mid-weak: hsl(120 9% 16%);
+  --mid: hsl(120 7% 21%);
+  --front-weak: hsl(120 15% 88%);
+  --front: white;
+  /* --accent: hsl(120 39% 41%); */
+  --accent: red;
 }
 
 .app {
