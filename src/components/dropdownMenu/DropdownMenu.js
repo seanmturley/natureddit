@@ -4,9 +4,8 @@ import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
 import "./DropdownMenu.css";
 
-function DropdownMenu() {
+function DropdownMenu({ lightTheme, setLightTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [lightmode, setLightmode] = useState(false);
 
   const themeSwitchProps = {
     heading: "Theme",
@@ -14,8 +13,8 @@ function DropdownMenu() {
     optionLabels: { true: "L", false: "D" },
     showLabels: true,
     disabled: false,
-    state: lightmode,
-    setState: setLightmode
+    state: lightTheme,
+    setState: setLightTheme
   };
 
   const toggleMenu = () => {

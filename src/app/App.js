@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   createBrowserRouter,
@@ -27,44 +27,49 @@ const modalRoute = (
   />
 );
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<MainLayout />}>
-      <Route errorElement={<ErrorPage />}>
-        <Route path="/" loader={cardsLoader} element={<Cards />}>
-          {modalRoute}
-        </Route>
-        <Route element={<FiltersLayout />}>
+const router = (lightTheme, setLightTheme) =>
+  createBrowserRouter(
+    createRoutesFromElements(
+      <Route
+        element={
+          <MainLayout lightTheme={lightTheme} setLightTheme={setLightTheme} />
+        }
+      >
+        <Route errorElement={<ErrorPage />}>
+          <Route path="/" loader={cardsLoader} element={<Cards />}>
+            {modalRoute}
+          </Route>
+          <Route element={<FiltersLayout />}>
+            <Route
+              path="/r/:subreddit/:sortFilter"
+              loader={cardsLoader}
+              element={<Cards />}
+            >
+              {modalRoute}
+            </Route>
+            <Route path="/search" element={<Cards />} loader={cardsLoader}>
+              {modalRoute}
+            </Route>
+          </Route>
           <Route
-            path="/r/:subreddit/:sortFilter"
-            loader={cardsLoader}
-            element={<Cards />}
-          >
-            {modalRoute}
-          </Route>
-          <Route path="/search" element={<Cards />} loader={cardsLoader}>
-            {modalRoute}
-          </Route>
+            path="/fullpage/r/:subreddit/comments/:id/:title/:commentId?"
+            loader={postLoader}
+            element={<Post modal={false} />}
+          />
         </Route>
-        <Route
-          path="/fullpage/r/:subreddit/comments/:id/:title/:commentId?"
-          loader={postLoader}
-          element={<Post modal={false} />}
-        />
       </Route>
-    </Route>
-  ),
-  {
-    basename: `${basename}/`
-  }
-);
-
-const theme = "light";
+    ),
+    {
+      basename: `${basename}/`
+    }
+  );
 
 function App() {
+  const [lightTheme, setLightTheme] = useState(false);
+
   return (
-    <div className="app" data-theme={theme}>
-      <RouterProvider router={router} />
+    <div className="app" data-light-theme={lightTheme}>
+      <RouterProvider router={router(lightTheme, setLightTheme)} />
     </div>
   );
 }

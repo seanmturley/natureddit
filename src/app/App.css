@@ -34,7 +34,7 @@
     var(--detail-font__line-height) sans-serif;
 }
 
-[data-theme="light"] {
+[data-light-theme="true"] {
   --black: hsl(120 4% 6%);
   --back: hsl(120 4% 11%);
   --back-transparent: hsla(120 4% 8% / 0.9);
