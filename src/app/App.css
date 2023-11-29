@@ -36,14 +36,13 @@
 
 [data-light-theme="true"] {
   --black: hsl(120 4% 6%);
-  --back: hsl(120 4% 11%);
+  --back: white;
   --back-transparent: hsla(120 4% 8% / 0.9);
-  --mid-weak: hsl(120 9% 16%);
-  --mid: hsl(120 7% 21%);
-  --front-weak: hsl(120 15% 88%);
-  --front: white;
-  /* --accent: hsl(120 39% 41%); */
-  --accent: red;
+  --mid-weak: hsl(120 15% 88%);
+  --mid: hsl(120 12% 96%);
+  --front-weak: hsl(120 7% 21%);
+  --front: hsl(120 9% 16%);
+  --accent: hsl(120 39% 41%);
 }
 
 .app {
