@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   createBrowserRouter,
@@ -6,6 +6,8 @@ import {
   Route,
   createRoutesFromElements
 } from "react-router-dom";
+
+import useLocalStorage from "use-local-storage";
 
 import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
@@ -65,7 +67,7 @@ const router = (lightTheme, setLightTheme) =>
   );
 
 function App() {
-  const [lightTheme, setLightTheme] = useState(false);
+  const [lightTheme, setLightTheme] = useLocalStorage("lightTheme", false);
 
   return (
     <div className="app" data-light-theme={lightTheme}>
