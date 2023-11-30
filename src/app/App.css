@@ -2,7 +2,6 @@
   /* Default dark theme
      See [data-theme="light"] below for light theme
   */
-  --black: hsl(120 4% 6%);
   --back: hsl(120 4% 11%);
   --back-transparent: hsla(120 4% 8% / 0.9);
   --mid-weak: hsl(120 9% 16%);
@@ -35,7 +34,6 @@
 }
 
 [data-light-theme="true"] {
-  --black: hsl(120 4% 6%);
   --back: white;
   --back-transparent: hsla(120 4% 8% / 0.9);
   --mid-weak: hsl(120 15% 88%);

@@ -16,5 +16,5 @@
   height: calc(100% - var(--nav-bar-height));
   width: 100%;
   overflow: auto;
-  background-color: var(--black);
+  background-color: var(--back);
 }
