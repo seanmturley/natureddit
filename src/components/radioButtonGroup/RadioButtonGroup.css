@@ -96,3 +96,24 @@
 .radio-button-group__input {
   display: none;
 }
+
+/* lightTheme overrides */
+[data-light-theme="true"] .radio-button-group__label {
+  border-color: var(--mid-weak);
+}
+
+[data-light-theme="true"] .radio-button-group--disabled {
+  color: var(--mid-weak);
+}
+
+[data-light-theme="true"]
+  .radio-button-group--disabled
+  .radio-button-group__icon {
+  border-color: var(--mid-weak);
+}
+
+[data-light-theme="true"]
+  .radio-button-group--disabled
+  .radio-button-group__label--selected {
+  background-color: var(--mid-weak);
+}
