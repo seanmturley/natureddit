@@ -15,3 +15,7 @@
   font: var(--title-font);
   color: var(--front);
 }
+
+[data-light-theme="true"] .loading-overlay__text {
+  color: var(--back);
+}
