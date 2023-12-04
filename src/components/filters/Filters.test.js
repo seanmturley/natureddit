@@ -78,7 +78,7 @@ describe("On search pages", () => {
     });
   });
 
-  describe("Clicking a time independent typeFilter", () => {
+  describe("Clicking a time-independent typeFilter", () => {
     it("Should select that filter", async () => {
       const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
@@ -90,19 +90,14 @@ describe("On search pages", () => {
       );
     });
 
-    it("Should have no timeFilter selected", async () => {
+    it("Should select the 'all' timeFilter'", async () => {
       const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
       const timeIndependentTypeFilter = screen.getByText("hot");
       await user.click(timeIndependentTypeFilter);
 
-      const timeFilters = ["hour", "day", "week", "month", "year", "all"];
-      timeFilters.forEach((timeFilter) => {
-        const filterLabel = screen.getByText(timeFilter);
-        expect(filterLabel).not.toHaveClass(
-          "radio-button-group__label--selected"
-        );
-      });
+      const all = screen.getByText("all");
+      expect(all).toHaveClass("radio-button-group__label--selected");
     });
 
     it("Should display the timeFilter as disabled", async () => {
@@ -131,7 +126,7 @@ describe("On search pages", () => {
     });
   });
 
-  describe("Clicking 'top'", () => {
+  describe("Clicking a time-dependent sortFilter e.g. 'top'", () => {
     it("Should select 'top'", async () => {
       const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
 
@@ -139,16 +134,6 @@ describe("On search pages", () => {
       await user.click(top);
 
       expect(top).toHaveClass("radio-button-group__label--selected");
-    });
-
-    it("Should reset the timeFilter to 'all'", async () => {
-      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
-
-      const top = screen.getByText("top");
-      await user.click(top);
-
-      const all = screen.getByText("all");
-      expect(all).toHaveClass("radio-button-group__label--selected");
     });
 
     it("Should display the timeFilter as enabled", async () => {
@@ -160,12 +145,55 @@ describe("On search pages", () => {
       const timeFilter = screen.getByRole("radiogroup", { name: "Timeframe" });
       expect(timeFilter).toHaveClass("radio-button-group--clickable");
     });
+
+    it("Should on subsequent clicks remember the previous timeFilter value", async () => {
+      const { user } = setupWithRouting(searchRoutes, searchInitialEntries);
+
+      const top = screen.getByText("top");
+      await user.click(top);
+
+      const week = screen.getByText("week");
+      await user.click(week);
+
+      const hot = screen.getByText("hot");
+      await user.click(hot);
+
+      const all = screen.getByText("all");
+      await user.click(all);
+
+      await user.click(top);
+      expect(week).toHaveClass("radio-button-group__label--selected");
+    });
   });
 });
 
 describe("On subreddit pages", () => {
+  it("'hot' should be selected by default", () => {
+    setupWithRouting(subredditRoutes, subredditInitialEntries);
+
+    const hot = screen.getByText("hot");
+
+    expect(hot).toHaveClass("radio-button-group__label--selected");
+  });
+
+  it("'all' should be selected by default", () => {
+    setupWithRouting(subredditRoutes, subredditInitialEntries);
+
+    const all = screen.getByText("all");
+
+    expect(all).toHaveClass("radio-button-group__label--selected");
+  });
+
+  it("The timeFilter should be disabled by default", () => {
+    setupWithRouting(subredditRoutes, subredditInitialEntries);
+
+    const timeFilter = screen.getByRole("radiogroup", { name: "Timeframe" });
+
+    expect(timeFilter).toHaveClass("radio-button-group--disabled");
+  });
+
   describe("Clicking 'top'", () => {
-    it("Should reset the timeFilter to 'day'", async () => {
+    it("Should initially default to the timeFilter to 'day'", async () => {
       const { user } = setupWithRouting(
         subredditRoutes,
         subredditInitialEntries
