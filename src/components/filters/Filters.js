@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 
@@ -15,6 +15,11 @@ function Filters() {
   const { pathname, search } = useLocation();
 
   const queryParams = new URLSearchParams(search);
+
+  const timeQueryParam = queryParams.get("t");
+  useEffect(() => {
+    setStoredTimeFilter((s) => timeQueryParam ?? s);
+  }, [timeQueryParam]);
 
   // Relative URLs require a valid base - this is never actually used.
   const baseUrl = "https://ignore.it";
@@ -64,7 +69,6 @@ function Filters() {
     const newUrl = new URL(`${pathname}${search}`, baseUrl);
 
     newUrl.searchParams.set("t", clickedTimeFilter);
-    setStoredTimeFilter(clickedTimeFilter);
 
     navigate(`${newUrl.pathname}${newUrl.search}`);
   };
