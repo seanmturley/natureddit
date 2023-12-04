@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 
@@ -7,6 +7,8 @@ import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
 import "./Filters.css";
 
 function Filters() {
+  const [storedTimeFilter, setStoredTimeFilter] = useState(null);
+
   const navigate = useNavigate();
 
   let { subreddit, sortFilter } = useParams();
@@ -39,7 +41,7 @@ function Filters() {
     }
 
     if (clickedSortFilter === "relevance" || clickedSortFilter === "top") {
-      newUrl.searchParams.set("t", defaultTimeFilter);
+      newUrl.searchParams.set("t", storedTimeFilter ?? defaultTimeFilter);
     } else {
       newUrl.searchParams.delete("t");
     }
@@ -62,6 +64,7 @@ function Filters() {
     const newUrl = new URL(`${pathname}${search}`, baseUrl);
 
     newUrl.searchParams.set("t", clickedTimeFilter);
+    setStoredTimeFilter(clickedTimeFilter);
 
     navigate(`${newUrl.pathname}${newUrl.search}`);
   };
