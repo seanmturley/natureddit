@@ -7,8 +7,6 @@ import RadioButtonGroup from "../radioButtonGroup/RadioButtonGroup";
 import "./Filters.css";
 
 function Filters() {
-  const [storedTimeFilter, setStoredTimeFilter] = useState(null);
-
   const navigate = useNavigate();
 
   let { subreddit, sortFilter } = useParams();
@@ -16,10 +14,20 @@ function Filters() {
 
   const queryParams = new URLSearchParams(search);
 
+  const [storedTimeFilter, setStoredTimeFilter] = useState(null);
+  // useEffects for resetting the storedTimeFilter...
+  // ... on search pages, whenever query parameter t changes
   const timeQueryParam = queryParams.get("t");
   useEffect(() => {
     setStoredTimeFilter((s) => timeQueryParam ?? s);
   }, [timeQueryParam]);
+
+  // ... on new subreddit load, based on change in the subreddit URL param
+  useEffect(() => {
+    if (subreddit) {
+      setStoredTimeFilter("day"); // i.e. defaults to "day" on new subreddit load
+    }
+  }, [subreddit]);
 
   // Relative URLs require a valid base - this is never actually used.
   const baseUrl = "https://ignore.it";
@@ -34,19 +42,16 @@ function Filters() {
 
   const sortFilterSetState = (clickedSortFilter) => {
     let newUrl;
-    let defaultTimeFilter;
 
     if (subreddit) {
       newUrl = new URL(`/r/${subreddit}/${clickedSortFilter}`, baseUrl);
-      defaultTimeFilter = "day";
     } else {
       newUrl = new URL(`${pathname}${search}`, baseUrl);
       newUrl.searchParams.set("sort", clickedSortFilter);
-      defaultTimeFilter = "all";
     }
 
     if (clickedSortFilter === "relevance" || clickedSortFilter === "top") {
-      newUrl.searchParams.set("t", storedTimeFilter ?? defaultTimeFilter);
+      newUrl.searchParams.set("t", storedTimeFilter);
     } else {
       newUrl.searchParams.delete("t");
     }
