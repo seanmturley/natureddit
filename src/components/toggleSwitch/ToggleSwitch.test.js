@@ -44,20 +44,20 @@ describe("Toggle switch", () => {
 
   it("should fire the setState function on click", () => {
     setup(switchProps);
-    const switchCheckbox = screen.getByRole(/^checkbox$/i);
+    const switchCheckbox = screen.getByRole("checkbox");
     userEvent.click(switchCheckbox);
     expect(switchProps.setState).toHaveBeenCalledTimes(1);
   });
 
   it("should be styled as 'off' when state is 'false'", () => {
     setup(switchProps, false);
-    const switchForm = screen.getByRole(/^checkbox$/i).closest("form");
+    const switchForm = screen.getByRole("checkbox").closest("form");
     expect(switchForm).toHaveClass("toggle-switch--false");
   });
 
   it("should be styled as 'on' when state is 'true'", () => {
     setup(switchProps, true);
-    const switchForm = screen.getByRole(/^checkbox$/i).closest("form");
+    const switchForm = screen.getByRole("checkbox").closest("form");
     expect(switchForm).toHaveClass("toggle-switch--true");
   });
 });
@@ -65,19 +65,19 @@ describe("Toggle switch", () => {
 describe("The disabled toggle switch", () => {
   it("should NOT be styled as clickable", () => {
     setup(switchProps, false, true);
-    const switchForm = screen.getByRole(/^checkbox$/i).closest("form");
+    const switchForm = screen.getByRole("checkbox").closest("form");
     expect(switchForm).toHaveClass("toggle-switch--disabled");
   });
 
   it("should NOT be clickable", () => {
     setup(switchProps, false, true);
-    const switchCheckbox = screen.getByRole(/^checkbox$/i);
+    const switchCheckbox = screen.getByRole("checkbox");
     expect(switchCheckbox).toHaveAttribute("disabled");
   });
 
   it("should NOT fire the setState function on click", () => {
     setup(switchProps, false, true);
-    const switchCheckbox = screen.getByRole(/^checkbox$/i);
+    const switchCheckbox = screen.getByRole("checkbox");
     userEvent.click(switchCheckbox);
     expect(switchProps.setState).toHaveBeenCalledTimes(0);
   });
