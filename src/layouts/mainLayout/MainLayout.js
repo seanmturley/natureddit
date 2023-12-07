@@ -9,6 +9,8 @@ import LoadingOverlay from "../../components/loadingOverlay/LoadingOverlay";
 
 import "./MainLayout.css";
 
+import PropTypes from "prop-types";
+
 function MainLayout({ lightTheme, setLightTheme }) {
   const navigation = useNavigation();
 
@@ -26,5 +28,10 @@ function MainLayout({ lightTheme, setLightTheme }) {
     </>
   );
 }
+
+DropdownMenu.propTypes = {
+  lightTheme: PropTypes.bool.isRequired,
+  setLightTheme: PropTypes.func.isRequired
+};
 
 export default MainLayout;

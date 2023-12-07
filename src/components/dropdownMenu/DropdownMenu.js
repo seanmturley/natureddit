@@ -4,6 +4,8 @@ import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
 import "./DropdownMenu.css";
 
+import PropTypes from "prop-types";
+
 function DropdownMenu({ lightTheme, setLightTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -70,5 +72,10 @@ function DropdownMenu({ lightTheme, setLightTheme }) {
     </section>
   );
 }
+
+DropdownMenu.propTypes = {
+  lightTheme: PropTypes.bool.isRequired,
+  setLightTheme: PropTypes.func.isRequired
+};
 
 export default DropdownMenu;
