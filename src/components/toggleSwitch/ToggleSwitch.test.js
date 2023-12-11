@@ -51,13 +51,13 @@ describe("Toggle switch", () => {
 
   it("should be styled as 'off' when state is 'false'", () => {
     setup(switchProps, false);
-    const switchForm = screen.getByRole("checkbox").closest("form");
+    const switchForm = screen.getByRole("form", { name: "toggle-switch" });
     expect(switchForm).toHaveClass("toggle-switch--false");
   });
 
   it("should be styled as 'on' when state is 'true'", () => {
     setup(switchProps, true);
-    const switchForm = screen.getByRole("checkbox").closest("form");
+    const switchForm = screen.getByRole("form", { name: "toggle-switch" });
     expect(switchForm).toHaveClass("toggle-switch--true");
   });
 });
@@ -65,7 +65,7 @@ describe("Toggle switch", () => {
 describe("The disabled toggle switch", () => {
   it("should NOT be styled as clickable", () => {
     setup(switchProps, false, true);
-    const switchForm = screen.getByRole("checkbox").closest("form");
+    const switchForm = screen.getByRole("form", { name: "toggle-switch" });
     expect(switchForm).toHaveClass("toggle-switch--disabled");
   });
 

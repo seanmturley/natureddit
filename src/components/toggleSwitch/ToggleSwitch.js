@@ -22,6 +22,7 @@ function ToggleSwitch({
   return (
     <form
       className={`toggle-switch toggle-switch--${state} toggle-switch--${clickability}`}
+      aria-label="toggle-switch"
     >
       <label htmlFor={name} className="toggle-switch__label">
         <span className="toggle-switch__icon"></span>
