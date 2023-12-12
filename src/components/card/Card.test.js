@@ -10,7 +10,7 @@ const cardExample = {
   title:
     "One of the more bizarre formations I've found, Canyonlands, UT, USA [OC][5436x3624]",
   subreddit_name_prefixed: "r/EarthPorn",
-  score: 3539,
+  // score: 3539,
   created: 1702304828,
   preview: {
     images: [
@@ -59,22 +59,27 @@ const cardExample = {
     enabled: true
   },
   author: "pycckuu_brady",
-  num_comments: 63,
+  // num_comments: 63,
   permalink:
     "/r/EarthPorn/comments/18fvqi4/one_of_the_more_bizarre_formations_ive_found/"
 };
 
-const cardProps = (cardExample, num_comments = 63) => {
-  return { ...cardExample, num_comments: num_comments };
-};
-
 const subredditDefaultRoute = "/r/EarthPorn/hot";
-const subredditRoutes = [
-  {
-    path: "/r/:subreddit/:sortFilter",
-    element: <Card card={cardProps(cardExample)} />
-  }
-];
+const subredditRoutes = (options) => {
+  const num_comments = options?.num_comments ?? 63;
+  const score = options?.score ?? 3539;
+
+  return [
+    {
+      path: "/r/:subreddit/:sortFilter",
+      element: (
+        <Card
+          card={{ ...cardExample, num_comments: num_comments, score: score }}
+        />
+      )
+    }
+  ];
+};
 const subredditInitialEntries = [subredditDefaultRoute];
 
 const searchBaseRoute = "/search";
@@ -82,28 +87,123 @@ const searchDefaultRoute = `${searchBaseRoute}?q=EarthPorn&sort=relevance&t=all`
 const searchRoutes = [
   {
     path: searchBaseRoute,
-    element: <Card card={cardProps(cardExample)} />
+    element: <Card card={cardExample} />
   }
 ];
 const searchInitialEntries = [searchDefaultRoute];
 
 describe("On subreddit pages Card should display", () => {
   it("the post's title", () => {
-    setupWithRouting(subredditRoutes, subredditInitialEntries);
+    setupWithRouting(subredditRoutes(), subredditInitialEntries);
+
     const title = screen.queryByRole("heading", { name: cardExample.title });
     expect(title).toBeInTheDocument();
   });
 
   it("the post's author", () => {
-    setupWithRouting(subredditRoutes, subredditInitialEntries);
+    setupWithRouting(subredditRoutes(), subredditInitialEntries);
+
     const author = screen.queryByText(`u/${cardExample.author}`);
     expect(author).toBeInTheDocument();
+  });
+});
+
+describe("Card should display the number of comments", () => {
+  it("when there are 0 comments", () => {
+    const num_comments = 0;
+    setupWithRouting(
+      subredditRoutes({ num_comments: num_comments }),
+      subredditInitialEntries
+    );
+
+    const commentsText = screen.queryByText(`${num_comments} comments`);
+    expect(commentsText).toBeInTheDocument();
+  });
+
+  it("unaltered when there are <1000 comments", () => {
+    const num_comments = 999;
+    setupWithRouting(
+      subredditRoutes({ num_comments: num_comments }),
+      subredditInitialEntries
+    );
+
+    const commentsText = screen.queryByText(`${num_comments} comments`);
+    expect(commentsText).toBeInTheDocument();
+  });
+
+  it("abbreviated with a 'k' suffix and 1 dp for 1000s of comments", () => {
+    const num_comments = 4675;
+    setupWithRouting(
+      subredditRoutes({ num_comments: num_comments }),
+      subredditInitialEntries
+    );
+
+    const commentsText = screen.queryByText("4.7k comments");
+    expect(commentsText).toBeInTheDocument();
+  });
+
+  it("abbreviated with n 'm' suffix and 1 dp for millions of comments", () => {
+    const num_comments = 4675000;
+    setupWithRouting(
+      subredditRoutes({ num_comments: num_comments }),
+      subredditInitialEntries
+    );
+
+    const commentsText = screen.queryByText("4.7m comments");
+    expect(commentsText).toBeInTheDocument();
+  });
+});
+
+describe("Card should display the number of upvotes", () => {
+  it("when there are 0 upvotes", () => {
+    const score = 0;
+    setupWithRouting(
+      subredditRoutes({ score: score }),
+      subredditInitialEntries
+    );
+
+    const upvotesText = screen.queryByText(`${score} upvotes`);
+    expect(upvotesText).toBeInTheDocument();
+  });
+
+  it("unaltered when there are <1000 upvotes", () => {
+    const score = 999;
+    setupWithRouting(
+      subredditRoutes({ score: score }),
+      subredditInitialEntries
+    );
+
+    const upvotesText = screen.queryByText(`${score} upvotes`);
+    expect(upvotesText).toBeInTheDocument();
+  });
+
+  it("abbreviated with a 'k' suffix and 1 dp for 1000s of upvotes", () => {
+    const score = 4675;
+    setupWithRouting(
+      subredditRoutes({ score: score }),
+      subredditInitialEntries
+    );
+
+    const upvotesText = screen.queryByText("4.7k upvotes");
+    expect(upvotesText).toBeInTheDocument();
+  });
+
+  it("abbreviated with n 'm' suffix and 1 dp for millions of upvotes", () => {
+    const score = 4675000;
+    setupWithRouting(
+      subredditRoutes({ score: score }),
+      subredditInitialEntries
+    );
+
+    const upvotesText = screen.queryByText("4.7m upvotes");
+    expect(upvotesText).toBeInTheDocument();
   });
 });
 
 describe("On the homepage and search pages Card should display", () => {
   it("the post's subreddit", () => {
     setupWithRouting(searchRoutes, searchInitialEntries);
+
     const subreddit = screen.queryByText(
       `${cardExample.subreddit_name_prefixed}`
     );
