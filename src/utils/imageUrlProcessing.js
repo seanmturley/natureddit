@@ -2,27 +2,18 @@ const getImageUrl = (post) => {
   // If no image
   if (!Object.hasOwn(post, "preview")) return null;
 
+  const images = post.preview.images[0].resolutions;
+
   // The index of the last image in the "resolutions" array is the highest downsampled resolution available
-  const maxResIndex = post.preview.images[0].resolutions.length - 1;
+  const maxResIndex = images.length - 1;
 
   // The maximum available downsampled resolution image, used as a fallback if the desired size isn't provided
-  const maxRes = decodeHtmlEntity(
-    post.preview.images[0].resolutions[maxResIndex].url
-  );
+  const maxRes = decodeHtmlEntity(images[maxResIndex].url);
 
   const imageUrl = {
-    small:
-      maxResIndex >= 2
-        ? decodeHtmlEntity(post.preview.images[0].resolutions[2].url)
-        : maxRes,
-    medium:
-      maxResIndex >= 3
-        ? decodeHtmlEntity(post.preview.images[0].resolutions[3].url)
-        : maxRes,
-    large:
-      maxResIndex >= 4
-        ? decodeHtmlEntity(post.preview.images[0].resolutions[4].url)
-        : maxRes
+    small: maxResIndex >= 2 ? decodeHtmlEntity(images[2].url) : maxRes,
+    medium: maxResIndex >= 3 ? decodeHtmlEntity(images[3].url) : maxRes,
+    large: maxResIndex >= 4 ? decodeHtmlEntity(images[4].url) : maxRes
   };
 
   return imageUrl;
