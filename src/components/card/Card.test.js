@@ -64,14 +64,28 @@ const cardExample = {
     "/r/EarthPorn/comments/18fvqi4/one_of_the_more_bizarre_formations_ive_found/"
 };
 
+const cardProps = (cardExample, num_comments = 63) => {
+  return { ...cardExample, num_comments: num_comments };
+};
+
 const subredditDefaultRoute = "/r/EarthPorn/hot";
 const subredditRoutes = [
   {
     path: "/r/:subreddit/:sortFilter",
-    element: <Card card={cardExample} />
+    element: <Card card={cardProps(cardExample)} />
   }
 ];
 const subredditInitialEntries = [subredditDefaultRoute];
+
+const searchBaseRoute = "/search";
+const searchDefaultRoute = `${searchBaseRoute}?q=EarthPorn&sort=relevance&t=all`;
+const searchRoutes = [
+  {
+    path: searchBaseRoute,
+    element: <Card card={cardProps(cardExample)} />
+  }
+];
+const searchInitialEntries = [searchDefaultRoute];
 
 describe("On subreddit pages Card should display", () => {
   it("the post's title", () => {
@@ -84,5 +98,15 @@ describe("On subreddit pages Card should display", () => {
     setupWithRouting(subredditRoutes, subredditInitialEntries);
     const author = screen.queryByText(`u/${cardExample.author}`);
     expect(author).toBeInTheDocument();
+  });
+});
+
+describe("On the homepage and search pages Card should display", () => {
+  it("the post's subreddit", () => {
+    setupWithRouting(searchRoutes, searchInitialEntries);
+    const subreddit = screen.queryByText(
+      `${cardExample.subreddit_name_prefixed}`
+    );
+    expect(subreddit).toBeInTheDocument();
   });
 });
