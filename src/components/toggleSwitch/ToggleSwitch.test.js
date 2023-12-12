@@ -42,10 +42,10 @@ describe("Toggle switch", () => {
     expect(switchFalseLabel).toBeInTheDocument();
   });
 
-  it("should fire the setState function on click", () => {
+  it("should fire the setState function on click", async () => {
     setup(switchProps);
     const switchCheckbox = screen.getByRole("checkbox");
-    userEvent.click(switchCheckbox);
+    await userEvent.click(switchCheckbox);
     expect(switchProps.setState).toHaveBeenCalledTimes(1);
   });
 
@@ -75,10 +75,10 @@ describe("The disabled toggle switch", () => {
     expect(switchCheckbox).toHaveAttribute("disabled");
   });
 
-  it("should NOT fire the setState function on click", () => {
+  it("should NOT fire the setState function on click", async () => {
     setup(switchProps, false, true);
     const switchCheckbox = screen.getByRole("checkbox");
-    userEvent.click(switchCheckbox);
+    await userEvent.click(switchCheckbox);
     expect(switchProps.setState).toHaveBeenCalledTimes(0);
   });
 });
