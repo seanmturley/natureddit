@@ -21,14 +21,14 @@ const unixTimeToAgeInSeconds = (unixTimeStamp) => {
 const formatAge = (unixTimeStamp) => {
   const ageInSeconds = unixTimeToAgeInSeconds(unixTimeStamp);
 
-  if (ageInSeconds < 60) return "seconds";
+  if (ageInSeconds < 60) return "seconds ago";
 
   for (const [unit, duration] of Object.entries(durations)) {
     if (ageInSeconds >= duration) {
       const ageTidy = Math.floor(ageInSeconds / duration);
       const timeUnit = ageTidy > 1 ? `${unit}s` : unit;
 
-      return `${ageTidy} ${timeUnit}`;
+      return `${ageTidy} ${timeUnit} ago`;
     }
   }
 };

@@ -51,7 +51,7 @@ function Card({ card }) {
       )}
       <section className="card__body">
         <div className="card__details">
-          {authorOrSubreddit} <span className="card__age">{age}</span> ago
+          {authorOrSubreddit} <span className="card__age">{age}</span>
         </div>
         <h1 className="card__title">
           <Link
