@@ -11,7 +11,7 @@ const cardExample = {
     "One of the more bizarre formations I've found, Canyonlands, UT, USA [OC][5436x3624]",
   subreddit_name_prefixed: "r/EarthPorn",
   // score: 3539,
-  created: 1702304828,
+  // created: 1702304828,
   preview: {
     images: [
       {
@@ -66,6 +66,7 @@ const cardExample = {
 
 const subredditDefaultRoute = "/r/EarthPorn/hot";
 const subredditRoutes = (options) => {
+  const created = options?.created ?? 1702304828;
   const num_comments = options?.num_comments ?? 63;
   const score = options?.score ?? 3539;
 
@@ -74,7 +75,12 @@ const subredditRoutes = (options) => {
       path: "/r/:subreddit/:sortFilter",
       element: (
         <Card
-          card={{ ...cardExample, num_comments: num_comments, score: score }}
+          card={{
+            ...cardExample,
+            created: created,
+            num_comments: num_comments,
+            score: score
+          }}
         />
       )
     }
@@ -105,6 +111,120 @@ describe("On subreddit pages Card should display", () => {
 
     const author = screen.queryByText(`u/${cardExample.author}`);
     expect(author).toBeInTheDocument();
+  });
+});
+
+describe("Card should correctly display the age of the post", () => {
+  it("when it was posted seconds ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const secondsAgoTime = currentUnixTime - 5;
+
+    setupWithRouting(
+      subredditRoutes({ created: secondsAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText("seconds ago");
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted minutes ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const minutesAgo = 5;
+    const minutesAgoTime = currentUnixTime - minutesAgo * 60;
+
+    setupWithRouting(
+      subredditRoutes({ created: minutesAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText(`${minutesAgo} minutes ago`);
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted hours ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const hoursAgo = 5;
+    const hoursAgoTime = currentUnixTime - hoursAgo * 60 * 60;
+
+    setupWithRouting(
+      subredditRoutes({ created: hoursAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText(`${hoursAgo} hours ago`);
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted days ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const daysAgo = 5;
+    const daysAgoTime = currentUnixTime - daysAgo * 60 * 60 * 24;
+
+    setupWithRouting(
+      subredditRoutes({ created: daysAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText(`${daysAgo} days ago`);
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted weeks ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const weeksAgo = 3;
+    const weeksAgoTime = currentUnixTime - weeksAgo * 60 * 60 * 24 * 7;
+
+    setupWithRouting(
+      subredditRoutes({ created: weeksAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText(`${weeksAgo} weeks ago`);
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted months ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const monthsAgo = 3;
+    const monthsAgoTime = currentUnixTime - monthsAgo * 60 * 60 * 24 * 30;
+
+    setupWithRouting(
+      subredditRoutes({ created: monthsAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText(`${monthsAgo} months ago`);
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted years ago", () => {
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const yearsAgo = 3;
+    const yearsAgoTime = currentUnixTime - yearsAgo * 60 * 60 * 24 * 365;
+
+    setupWithRouting(
+      subredditRoutes({ created: yearsAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText(`${yearsAgo} years ago`);
+    expect(postAge).toBeInTheDocument();
+  });
+
+  it("when it was posted approximately 1 year ago", () => {
+    // Checking rounding and singular unit of time
+    const currentUnixTime = Math.floor(new Date().getTime() / 1000);
+    const yearsAgo = 1.1;
+    const yearsAgoTime = currentUnixTime - yearsAgo * 60 * 60 * 24 * 365;
+
+    setupWithRouting(
+      subredditRoutes({ created: yearsAgoTime }),
+      subredditInitialEntries
+    );
+
+    const postAge = screen.queryByText("1 year ago");
+    expect(postAge).toBeInTheDocument();
   });
 });
 
