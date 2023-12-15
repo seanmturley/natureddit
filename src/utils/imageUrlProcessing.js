@@ -19,7 +19,7 @@ const getImageUrl = (post) => {
   return imageUrl;
 };
 
-const decodeHtmlEntity = (encodedString) => {
+export const decodeHtmlEntity = (encodedString) => {
   const textArea = document.createElement("textarea");
   textArea.innerHTML = encodedString;
   return textArea.value;

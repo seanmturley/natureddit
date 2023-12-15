@@ -6,6 +6,8 @@ import { screen } from "@testing-library/react";
 
 import { setupWithRouting } from "../../testingUtilities";
 
+import { decodeHtmlEntity } from "../../utils/imageUrlProcessing";
+
 const cardExample = {
   title:
     "One of the more bizarre formations I've found, Canyonlands, UT, USA [OC][5436x3624]",
@@ -111,6 +113,17 @@ describe("On subreddit pages Card should display", () => {
 
     const author = screen.queryByText(`u/${cardExample.author}`);
     expect(author).toBeInTheDocument();
+  });
+
+  it("the post's image", () => {
+    setupWithRouting(subredditRoutes(), subredditInitialEntries);
+
+    const altText = `${cardExample.subreddit_name_prefixed} - ${cardExample.title}`;
+    const image = screen.getByAltText(altText);
+    expect(image).toHaveAttribute(
+      "src",
+      decodeHtmlEntity(cardExample.preview.images[0].resolutions[3].url)
+    );
   });
 });
 
