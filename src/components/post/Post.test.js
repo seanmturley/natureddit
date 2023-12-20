@@ -64,22 +64,19 @@ const postExample = {
     "/r/EarthPorn/comments/18fvqi4/one_of_the_more_bizarre_formations_ive_found/"
 };
 
-const subredditDefaultRoute = "/r/EarthPorn/hot";
-const subredditRoutes = (options) => {
-  const modal = options?.modal ?? false;
-
-  return [
-    {
-      path: `/modal${postExample.permalink}`,
-      element: <Post modal={modal} />
-    }
-  ];
-};
-const subredditInitialEntries = [subredditDefaultRoute];
+// Failed attempt at simple setup to get Jest rendering something
+const fullpagePostDefaultRoute = `/fullpage${postExample.permalink}`;
+const fullpagePostRoutes = [
+  {
+    path: "/fullpage/r/:subreddit/comments/:id/:title/:commentId?",
+    element: <Post modal={false} />
+  }
+];
+const fullpagePostInitialEntries = [fullpagePostDefaultRoute];
 
 describe("Post should display", () => {
   it("the post's title", () => {
-    setupWithRouting(subredditRoutes(), subredditInitialEntries);
+    setupWithRouting(fullpagePostRoutes, fullpagePostInitialEntries);
 
     const title = screen.queryByRole("heading", { name: postExample.title });
     expect(title).toBeInTheDocument();
