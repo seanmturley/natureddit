@@ -60,7 +60,7 @@ function Post({ modal }) {
                 {post.subreddit_name_prefixed}
               </Link>{" "}
               by <span>u/{post.author}</span>{" "}
-              <span className="post__age">{age}</span> ago
+              <span className="post__age">{age}</span>
             </div>
             <h1 className="post__title">{post.title}</h1>
             {post.selftext && (
