@@ -6,16 +6,15 @@
 
 .page-headings__homepage {
   display: flex;
+  align-items: center;
   color: unset;
   text-decoration: unset;
 }
 
-.page-headings__logo {
+.page-headings .leaf-logo {
   width: 4rem;
   height: 4rem;
-  background-color: var(--accent);
-  border-radius: 2rem;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .page-headings__title {

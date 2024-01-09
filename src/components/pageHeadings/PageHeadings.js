@@ -2,6 +2,8 @@ import React from "react";
 
 import { Link, useLocation, useParams } from "react-router-dom";
 
+import LeafLogo from "../../assets/LeafLogo";
+
 import "./PageHeadings.css";
 
 function PageHeadings() {
@@ -29,7 +31,7 @@ function PageHeadings() {
   return (
     <section className="page-headings">
       <Link className="page-headings__homepage" to="/">
-        <div className="page-headings__logo"></div>
+        <LeafLogo />
         <h1 className="page-headings__title">Natureddit</h1>
       </Link>
 
