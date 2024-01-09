@@ -22,6 +22,10 @@
   color: var(--front);
 }
 
+.page-headings__title span {
+  color: var(--accent);
+}
+
 .page-headings__location {
   font: var(--body-font);
   color: var(--front-weak);

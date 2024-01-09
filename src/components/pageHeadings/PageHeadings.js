@@ -32,7 +32,9 @@ function PageHeadings() {
     <section className="page-headings">
       <Link className="page-headings__homepage" to="/">
         <LeafLogo />
-        <h1 className="page-headings__title">Natureddit</h1>
+        <h1 className="page-headings__title">
+          Natu<span>reddit</span>
+        </h1>
       </Link>
 
       {navLocation && (
