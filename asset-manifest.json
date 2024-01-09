@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/natureddit/static/css/main.2d9dff86.css",
-    "main.js": "/natureddit/static/js/main.ddd6b374.js",
+    "main.css": "/natureddit/static/css/main.284ef5a8.css",
+    "main.js": "/natureddit/static/js/main.a0503a64.js",
     "static/js/496.f0b984a3.chunk.js": "/natureddit/static/js/496.f0b984a3.chunk.js",
     "index.html": "/natureddit/index.html",
     "static/media/defaultSubredditIcon.svg": "/natureddit/static/media/defaultSubredditIcon.8fbf4508d6cac8cd2feef2a9090bda77.svg",
-    "main.2d9dff86.css.map": "/natureddit/static/css/main.2d9dff86.css.map",
-    "main.ddd6b374.js.map": "/natureddit/static/js/main.ddd6b374.js.map",
+    "main.284ef5a8.css.map": "/natureddit/static/css/main.284ef5a8.css.map",
+    "main.a0503a64.js.map": "/natureddit/static/js/main.a0503a64.js.map",
     "496.f0b984a3.chunk.js.map": "/natureddit/static/js/496.f0b984a3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d9dff86.css",
-    "static/js/main.ddd6b374.js"
+    "static/css/main.284ef5a8.css",
+    "static/js/main.a0503a64.js"
   ]
 }
