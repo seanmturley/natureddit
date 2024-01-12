@@ -64,6 +64,12 @@ function Filters() {
     hideHeading: true,
     name: "sort",
     options: sortFilterOptions,
+    optionDisplayValues: {
+      relevance: "Relevance",
+      hot: "Hot",
+      new: "New",
+      top: "Top"
+    },
     disabled: false,
     selected: sortFilter,
     setState: sortFilterSetState
@@ -83,6 +89,14 @@ function Filters() {
     hideHeading: true,
     name: "time",
     options: ["hour", "day", "week", "month", "year", "all"],
+    optionDisplayValues: {
+      hour: "Now",
+      day: "Today",
+      week: "This Week",
+      month: "This Month",
+      year: "This Year",
+      all: "All Time"
+    },
     disabled: sortFilter !== "relevance" && sortFilter !== "top",
     selected: queryParams.get("t") ?? "all",
     setState: timeFilterSetState

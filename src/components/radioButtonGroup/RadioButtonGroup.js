@@ -9,6 +9,7 @@ function RadioButtonGroup({
   hideHeading,
   name,
   options,
+  optionDisplayValues,
   disabled,
   selected,
   setState
@@ -52,7 +53,7 @@ function RadioButtonGroup({
               checked={option === selected}
               disabled={disabled}
             />
-            {option}
+            {optionDisplayValues ? optionDisplayValues[option] : option}
           </label>
         );
       })}
@@ -65,6 +66,7 @@ RadioButtonGroup.propTypes = {
   hideHeading: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  optionDisplayValues: PropTypes.objectOf(PropTypes.string.isRequired),
   disabled: PropTypes.bool.isRequired,
   selected: PropTypes.string.isRequired,
   setState: PropTypes.func.isRequired
