@@ -13,6 +13,9 @@ import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
 import copyShareLink from "../../utils/copyShareLink";
 
+import { PiArrowsDownUpFill, PiChats, PiRedditLogo } from "react-icons/pi";
+import { IoArrowRedoOutline } from "react-icons/io5";
+
 import "./Post.css";
 
 import PropTypes from "prop-types";
@@ -69,22 +72,27 @@ function Post({ modal }) {
               </div>
             )}
             <div className="post__stats-and-cta">
-              <div className="post__comments">{`${formattedNumComments} comments`}</div>
-              <div className="post__upvotes">{`${formattedScore} upvotes`}</div>
+              <div className="post__comments">
+                <PiChats /> {formattedNumComments}
+              </div>
+              <div className="post__upvotes">
+                <PiArrowsDownUpFill />
+                {formattedScore}
+              </div>
               <a
                 className="post__view-on-reddit"
                 href={`https://www.reddit.com${post.permalink}`}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                view on Reddit
+                <PiRedditLogo />
               </a>
               <button
                 type="button"
                 className="post__share"
                 onClick={shareOnClick}
               >
-                share
+                <IoArrowRedoOutline />
               </button>
             </div>
           </div>
