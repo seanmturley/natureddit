@@ -72,14 +72,15 @@ function Post({ modal }) {
               </div>
             )}
             <div className="post__stats-and-cta">
+              <div className="post__score">
+                <PiArrowsDownUpFill className="post__icon" />
+                {formattedScore}
+              </div>
               <div className="post__comments">
                 <PiChats className="post__icon" /> {formattedNumComments}{" "}
                 comments
               </div>
-              <div className="post__score">
-                <PiArrowsDownUpFill className="post__icon" />
-                {formattedScore} score
-              </div>
+
               <a
                 className="post__view-on-reddit"
                 href={`https://www.reddit.com${post.permalink}`}

@@ -65,12 +65,12 @@ function Card({ card }) {
           </Link>
         </h1>
         <div className="card__stats">
-          <div className="card__comments">
-            <PiChats className="card__icon" /> {formattedNumComments} comments
-          </div>
           <div className="card__score">
             <PiArrowsDownUpFill className="card__icon" />
-            {formattedScore} score
+            {formattedScore}
+          </div>
+          <div className="card__comments">
+            <PiChats className="card__icon" /> {formattedNumComments} comments
           </div>
         </div>
       </section>
