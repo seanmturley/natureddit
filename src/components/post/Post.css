@@ -96,6 +96,31 @@
   text-decoration: unset;
   color: unset;
 }
+
+.post__comments,
+.post__score,
+.post__view-on-reddit,
+.post__share {
+  display: flex;
+  align-items: center;
+}
+
+.post__share {
+  border: none;
+  padding: none;
+  background: none;
+  color: inherit;
+}
+
+.post__share:hover {
+  cursor: pointer;
+}
+
+.post__icon {
+  font-size: 1.5em;
+  margin-right: 0.25em;
+}
+
 .comments__no-comments {
   font: var(--title-font);
   color: var(--front);

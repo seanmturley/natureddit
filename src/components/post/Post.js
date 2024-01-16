@@ -73,11 +73,12 @@ function Post({ modal }) {
             )}
             <div className="post__stats-and-cta">
               <div className="post__comments">
-                <PiChats /> {formattedNumComments}
+                <PiChats className="post__icon" /> {formattedNumComments}{" "}
+                comments
               </div>
-              <div className="post__upvotes">
-                <PiArrowsDownUpFill />
-                {formattedScore}
+              <div className="post__score">
+                <PiArrowsDownUpFill className="post__icon" />
+                {formattedScore} score
               </div>
               <a
                 className="post__view-on-reddit"
@@ -85,14 +86,14 @@ function Post({ modal }) {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <PiRedditLogo />
+                <PiRedditLogo className="post__icon" /> view on Reddit
               </a>
               <button
                 type="button"
                 className="post__share"
                 onClick={shareOnClick}
               >
-                <IoArrowRedoOutline />
+                <IoArrowRedoOutline className="post__icon" /> share
               </button>
             </div>
           </div>
