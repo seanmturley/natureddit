@@ -21,7 +21,7 @@ function ShareButton({ relativeLink }) {
 }
 
 ShareButton.propTypes = {
-  relativeLink: PropTypes.object.isRequired
+  relativeLink: PropTypes.string.isRequired
 };
 
 export default ShareButton;
