@@ -4,11 +4,11 @@ import { useParams, Link } from "react-router-dom";
 
 import ReactMarkdown from "react-markdown";
 
+import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
 import ShareButton from "../shareButton/ShareButton";
 import Comments from "../comments/Comments";
 
 import formatAge from "../../utils/ageFormatting";
-import formatNumber from "../../utils/numberFormatting";
 
 import "./Comment.css";
 
@@ -23,7 +23,6 @@ function Comment({ comment }) {
   const replyComments = comment.replies ? comment.replies.data.children : null;
 
   const age = formatAge(comment.created);
-  const formattedScore = formatNumber(comment.score);
 
   // Replace HTML-encoded ">" symbols
   const commentText = comment.body.replace(/&gt;/g, ">");
@@ -55,9 +54,7 @@ function Comment({ comment }) {
             <ReactMarkdown>{commentText}</ReactMarkdown>
           </div>
           <div className="comment__stats-and-cta">
-            {!comment.score_hidden && (
-              <div className="comment__score">{`${formattedScore} upvotes`}</div>
-            )}
+            {!comment.score_hidden && <ScoreDisplay score={comment.score} />}
             <ShareButton relativeLink={comment.permalink} />
           </div>
           {replyDepthLimitReached && replyComments && (

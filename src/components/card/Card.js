@@ -2,11 +2,13 @@ import React from "react";
 
 import { Link, useLocation, useParams } from "react-router-dom";
 
+import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
+
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
 
-import { PiArrowsDownUpFill, PiChats } from "react-icons/pi";
+import { PiChats } from "react-icons/pi";
 
 import "./Card.css";
 
@@ -18,7 +20,6 @@ function Card({ card }) {
 
   const age = formatAge(card.created);
   const formattedNumComments = formatNumber(card.num_comments);
-  const formattedScore = formatNumber(card.score);
   const imageUrl = getImageUrl(card);
 
   let authorOrSubreddit;
@@ -65,10 +66,7 @@ function Card({ card }) {
           </Link>
         </h1>
         <div className="card__stats">
-          <div className="card__score">
-            <PiArrowsDownUpFill className="card__icon" />
-            {formattedScore}
-          </div>
+          <ScoreDisplay score={card.score} />
           <div className="card__comments">
             <PiChats className="card__icon" /> {formattedNumComments} comments
           </div>

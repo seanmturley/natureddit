@@ -98,7 +98,6 @@
 }
 
 .post__comments,
-.post__score,
 .post__view-on-reddit {
   display: flex;
   align-items: center;

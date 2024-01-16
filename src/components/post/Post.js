@@ -6,6 +6,7 @@ import { useGetPostQuery } from "../../services/redditApi";
 
 import ReactMarkdown from "react-markdown";
 
+import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
 import ShareButton from "../shareButton/ShareButton";
 import Comments from "../comments/Comments";
 
@@ -13,7 +14,7 @@ import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
 
-import { PiArrowsDownUpFill, PiChats, PiRedditLogo } from "react-icons/pi";
+import { PiChats, PiRedditLogo } from "react-icons/pi";
 
 import "./Post.css";
 
@@ -29,7 +30,6 @@ function Post({ modal }) {
 
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
-  const formattedScore = formatNumber(post.score);
   const imageUrl = getImageUrl(post);
 
   const isModal = modal ? " post-container--modal" : "";
@@ -67,15 +67,11 @@ function Post({ modal }) {
               </div>
             )}
             <div className="post__stats-and-cta">
-              <div className="post__score">
-                <PiArrowsDownUpFill className="post__icon" />
-                {formattedScore}
-              </div>
+              <ScoreDisplay score={post.score} />
               <div className="post__comments">
                 <PiChats className="post__icon" /> {formattedNumComments}{" "}
                 comments
               </div>
-
               <a
                 className="post__view-on-reddit"
                 href={`https://www.reddit.com${post.permalink}`}
