@@ -6,15 +6,14 @@ import { useGetPostQuery } from "../../services/redditApi";
 
 import ReactMarkdown from "react-markdown";
 
+import ShareButton from "../shareButton/ShareButton";
 import Comments from "../comments/Comments";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
-import copyShareLink from "../../utils/copyShareLink";
 
 import { PiArrowsDownUpFill, PiChats, PiRedditLogo } from "react-icons/pi";
-import { IoArrowRedoOutline } from "react-icons/io5";
 
 import "./Post.css";
 
@@ -32,10 +31,6 @@ function Post({ modal }) {
   const formattedNumComments = formatNumber(post.num_comments);
   const formattedScore = formatNumber(post.score);
   const imageUrl = getImageUrl(post);
-
-  const shareOnClick = async () => {
-    await copyShareLink(post.permalink);
-  };
 
   const isModal = modal ? " post-container--modal" : "";
 
@@ -89,13 +84,7 @@ function Post({ modal }) {
               >
                 <PiRedditLogo className="post__icon" /> view on Reddit
               </a>
-              <button
-                type="button"
-                className="post__share"
-                onClick={shareOnClick}
-              >
-                <IoArrowRedoOutline className="post__icon" /> share
-              </button>
+              <ShareButton relativeLink={post.permalink} />
             </div>
           </div>
         </section>

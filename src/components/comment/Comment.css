@@ -70,14 +70,11 @@
 
 .comment__stats-and-cta {
   font: var(--detail-font);
+  color: var(--front-weak);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 1.5em;
-}
-
-.comment__score {
-  color: var(--front-weak);
 }
 
 .comment__view-replies-container {

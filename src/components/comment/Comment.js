@@ -4,11 +4,11 @@ import { useParams, Link } from "react-router-dom";
 
 import ReactMarkdown from "react-markdown";
 
+import ShareButton from "../shareButton/ShareButton";
 import Comments from "../comments/Comments";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
-import copyShareLink from "../../utils/copyShareLink";
 
 import "./Comment.css";
 
@@ -27,10 +27,6 @@ function Comment({ comment }) {
 
   // Replace HTML-encoded ">" symbols
   const commentText = comment.body.replace(/&gt;/g, ">");
-
-  const shareOnClick = async () => {
-    await copyShareLink(comment.permalink);
-  };
 
   const isReply = comment.depth > 0 ? "reply" : "new";
 
@@ -62,13 +58,7 @@ function Comment({ comment }) {
             {!comment.score_hidden && (
               <div className="comment__score">{`${formattedScore} upvotes`}</div>
             )}
-            <button
-              type="button"
-              className="comment__share"
-              onClick={shareOnClick}
-            >
-              share
-            </button>
+            <ShareButton relativeLink={comment.permalink} />
           </div>
           {replyDepthLimitReached && replyComments && (
             <div className="comment__view-replies-container">
