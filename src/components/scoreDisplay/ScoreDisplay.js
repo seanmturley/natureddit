@@ -20,7 +20,7 @@ function ScoreDisplay({ score }) {
 }
 
 ScoreDisplay.propTypes = {
-  score: PropTypes.bool.isRequired
+  score: PropTypes.number.isRequired
 };
 
 export default ScoreDisplay;
