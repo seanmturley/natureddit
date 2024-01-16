@@ -66,6 +66,17 @@
   color: var(--front-weak);
 }
 
+.card__comments,
+.card__score {
+  display: flex;
+  align-items: center;
+}
+
+.card__icon {
+  font-size: 1.5em;
+  margin-right: 0.25em;
+}
+
 /* 1 columns*/
 @media (min-width: 320px) {
   .card {

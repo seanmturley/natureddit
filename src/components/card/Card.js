@@ -6,6 +6,8 @@ import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
 
+import { PiArrowsDownUpFill, PiChats } from "react-icons/pi";
+
 import "./Card.css";
 
 import PropTypes from "prop-types";
@@ -63,8 +65,13 @@ function Card({ card }) {
           </Link>
         </h1>
         <div className="card__stats">
-          <div className="card__comments">{`${formattedNumComments} comments`}</div>
-          <div className="card__upvotes">{`${formattedScore} upvotes`}</div>
+          <div className="card__comments">
+            <PiChats className="card__icon" /> {formattedNumComments} comments
+          </div>
+          <div className="card__score">
+            <PiArrowsDownUpFill className="card__icon" />
+            {formattedScore} score
+          </div>
         </div>
       </section>
     </li>
