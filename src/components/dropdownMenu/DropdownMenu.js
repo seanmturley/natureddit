@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
+import { PiListBold } from "react-icons/pi";
+
 import "./DropdownMenu.css";
 
 import PropTypes from "prop-types";
@@ -25,9 +27,7 @@ function DropdownMenu({ lightTheme, setLightTheme }) {
 
   return (
     <section className="menu">
-      <div className="menu__button" onClick={toggleMenu}>
-        Menu
-      </div>
+      <PiListBold className="menu__button" onClick={toggleMenu} />
       {menuOpen && (
         <div className="menu__underlay" onMouseLeave={toggleMenu}>
           <div

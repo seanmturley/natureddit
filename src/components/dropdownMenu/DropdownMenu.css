@@ -6,6 +6,7 @@
 
 .menu__button {
   color: var(--front);
+  font-size: 1.5em;
 }
 
 .menu__button:hover {
