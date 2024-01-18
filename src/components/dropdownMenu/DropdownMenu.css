@@ -44,10 +44,7 @@
 }
 
 .menu__list-icon {
-  display: block;
-  width: 1.4em;
-  height: 1.4em;
-  border-radius: 0.7em;
+  color: var(--front);
+  font-size: 1.5em;
   margin-right: 0.5em;
-  background-color: var(--front);
 }

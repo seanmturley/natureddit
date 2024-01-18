@@ -3,6 +3,11 @@ import React, { useState } from "react";
 import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
 import { PiListBold } from "react-icons/pi";
+import {
+  IoInformationCircleOutline,
+  IoLeafOutline,
+  IoLogoReddit
+} from "react-icons/io5";
 
 import "./DropdownMenu.css";
 
@@ -40,7 +45,7 @@ function DropdownMenu({ lightTheme, setLightTheme }) {
             </li>
             <li className="menu__list-item">
               <a className="menu__link" href="null">
-                <span className="menu__list-icon"></span>
+                <IoLeafOutline className="menu__list-icon" />
                 Nature subreddits
               </a>
             </li>
@@ -51,7 +56,7 @@ function DropdownMenu({ lightTheme, setLightTheme }) {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <span className="menu__list-icon"></span>
+                <IoInformationCircleOutline className="menu__list-icon" />
                 About
               </a>
             </li>
@@ -62,7 +67,7 @@ function DropdownMenu({ lightTheme, setLightTheme }) {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <span className="menu__list-icon"></span>
+                <IoLogoReddit className="menu__list-icon" />
                 Reddit official
               </a>
             </li>
