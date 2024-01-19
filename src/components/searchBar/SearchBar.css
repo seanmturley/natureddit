@@ -21,11 +21,11 @@
 }
 
 .search__icon {
-  width: 1.5em;
-  height: 1.5em;
+  display: flex;
+  align-items: center;
+  color: var(--front-weak);
+  font-size: 1.5em;
   margin-left: 0.25em;
-  border-radius: 0.75em;
-  background-color: var(--front-weak);
 }
 
 .search__input {

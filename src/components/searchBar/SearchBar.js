@@ -6,6 +6,8 @@ import { useGetSubredditsQuery } from "../../services/redditApi";
 
 import SearchDropdown from "../searchDropdown/SearchDropdown";
 
+import { PiMagnifyingGlass } from "react-icons/pi";
+
 import "./SearchBar.css";
 
 function SearchBar() {
@@ -54,7 +56,9 @@ function SearchBar() {
         onSubmit={handleInputSubmit}
         onReset={handleInputReset}
       >
-        <label className="search__icon" htmlFor="search"></label>
+        <label className="search__icon" htmlFor="search">
+          <PiMagnifyingGlass />
+        </label>
         <input
           ref={searchInput}
           className="search__input"
