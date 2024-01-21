@@ -4,6 +4,7 @@ import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
 import { PiListBold } from "react-icons/pi";
 import {
+  IoContrastOutline,
   IoInformationCircleOutline,
   IoLeafOutline,
   IoLogoReddit,
@@ -16,9 +17,10 @@ import "./DropdownMenu.css";
 import PropTypes from "prop-types";
 
 function DropdownMenu({ lightTheme, setLightTheme }) {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const themeSwitchProps = {
+    icon: <IoContrastOutline />,
     heading: "Theme",
     name: "theme",
     optionLabels: { true: "light", false: "dark" },

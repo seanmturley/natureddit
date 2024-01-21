@@ -5,6 +5,7 @@ import "./ToggleSwitch.css";
 import PropTypes from "prop-types";
 
 function ToggleSwitch({
+  icon,
   heading,
   name,
   optionLabels,
@@ -26,7 +27,7 @@ function ToggleSwitch({
       aria-label="toggle-switch"
     >
       <label htmlFor={name} className="toggle-switch__label">
-        <span className="toggle-switch__icon"></span>
+        {icon && <span className="toggle-switch__icon">{icon}</span>}
         <h1 className="toggle-switch__heading">{heading}</h1>
         <input
           className="toggle-switch__input"
@@ -61,6 +62,7 @@ function ToggleSwitch({
 }
 
 ToggleSwitch.propTypes = {
+  icon: PropTypes.elementType,
   heading: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   optionLabels: PropTypes.objectOf(PropTypes.string).isRequired,
