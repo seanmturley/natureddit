@@ -9,12 +9,13 @@ function ToggleSwitch({
   name,
   optionLabels,
   showLabels,
+  optionIcons,
   disabled,
   state,
   setState
 }) {
   const handleChange = (event) => {
-    setState(event.target.value === optionLabels.true);
+    setState(event.target.value !== optionLabels.true);
   };
 
   const clickability = disabled ? "disabled" : "clickable";
@@ -32,7 +33,7 @@ function ToggleSwitch({
           type="checkbox"
           name={name}
           id={name}
-          value={state ? optionLabels.false : optionLabels.true}
+          value={optionLabels[state]}
           onChange={handleChange}
           checked={state}
           disabled={disabled}
@@ -42,12 +43,14 @@ function ToggleSwitch({
             <div className="toggle-switch__text-container">
               <span className="toggle-switch__text-true">
                 {showLabels && optionLabels.true}
+                {optionIcons && optionIcons.true}
               </span>
             </div>
             <div className="toggle-switch__circle"></div>
             <div className="toggle-switch__text-container">
               <span className="toggle-switch__text-false">
                 {showLabels && optionLabels.false}
+                {optionIcons && optionIcons.false}
               </span>
             </div>
           </div>
@@ -62,6 +65,7 @@ ToggleSwitch.propTypes = {
   name: PropTypes.string.isRequired,
   optionLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   showLabels: PropTypes.bool.isRequired,
+  optionIcons: PropTypes.elementType,
   disabled: PropTypes.bool.isRequired,
   state: PropTypes.bool.isRequired,
   setState: PropTypes.func.isRequired

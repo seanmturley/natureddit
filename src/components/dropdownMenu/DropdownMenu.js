@@ -6,7 +6,9 @@ import { PiListBold } from "react-icons/pi";
 import {
   IoInformationCircleOutline,
   IoLeafOutline,
-  IoLogoReddit
+  IoLogoReddit,
+  IoMoon,
+  IoSunny
 } from "react-icons/io5";
 
 import "./DropdownMenu.css";
@@ -14,13 +16,14 @@ import "./DropdownMenu.css";
 import PropTypes from "prop-types";
 
 function DropdownMenu({ lightTheme, setLightTheme }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   const themeSwitchProps = {
     heading: "Theme",
     name: "theme",
-    optionLabels: { true: "L", false: "D" },
-    showLabels: true,
+    optionLabels: { true: "light", false: "dark" },
+    showLabels: false,
+    optionIcons: { true: <IoSunny />, false: <IoMoon /> },
     disabled: false,
     state: lightTheme,
     setState: setLightTheme

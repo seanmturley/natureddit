@@ -113,16 +113,13 @@
 .toggle-switch__text-false {
   font: var(--toggle-switch__text);
   text-transform: uppercase;
-  margin: auto;
+  display: flex;
+  align-items: center;
 }
 
 .toggle-switch__text-true {
-  margin: auto 0.2em auto auto;
   font: var(--toggle-switch__selected-text);
-}
-
-.toggle-switch__text-false {
-  margin: auto auto auto 0;
+  margin-left: 0.2em;
 }
 
 .toggle-switch--true .toggle-switch__text-true {
@@ -143,6 +140,8 @@
 .toggle-switch--false .toggle-switch__text-false {
   transition: color 0.1s ease;
   color: var(--toggle-switch__primary-color);
+  font-size: 2.1em;
+  margin-left: 0.1em;
 }
 
 .toggle-switch--disabled .toggle-switch__text-false {
