@@ -56,12 +56,12 @@
   display: none;
   border: none;
   background-color: transparent;
-  padding: 0 1em;
 }
 
 .search__form:hover .search__clear,
 .search__form--focused .search__clear {
-  display: block;
+  display: flex;
+  align-items: center;
 }
 
 .search__clear:hover {

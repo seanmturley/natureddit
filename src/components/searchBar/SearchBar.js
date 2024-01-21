@@ -7,6 +7,7 @@ import { useGetSubredditsQuery } from "../../services/redditApi";
 import SearchDropdown from "../searchDropdown/SearchDropdown";
 
 import { PiMagnifyingGlass } from "react-icons/pi";
+import { IoClose } from "react-icons/io5";
 
 import "./SearchBar.css";
 
@@ -74,7 +75,9 @@ function SearchBar() {
           onChange={handleInputChange}
         />
         {searchTerm && (
-          <input className="search__clear" type="reset" value="x" />
+          <button className="search__clear" type="reset" value="Clear search">
+            <IoClose />
+          </button>
         )}
       </form>
 
