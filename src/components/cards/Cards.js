@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 
 import { Outlet, useLoaderData } from "react-router-dom";
 
-import { useGetCardsQuery } from "../../services/redditApi";
-
 import MagicGrid from "magic-grid";
 import imagesloaded from "imagesloaded";
 
@@ -11,10 +9,12 @@ import Card from "../card/Card";
 
 import "./Cards.css";
 
-function Cards() {
+import PropTypes from "prop-types";
+
+function Cards({ queryFunction }) {
   const query = useLoaderData();
 
-  const { data } = useGetCardsQuery(query);
+  const { data } = queryFunction(query);
 
   useEffect(() => {
     // Checks if all images in ".cards__list" are
@@ -46,5 +46,9 @@ function Cards() {
     </>
   );
 }
+
+Cards.propTypes = {
+  queryFunction: PropTypes.func.isRequired
+};
 
 export default Cards;

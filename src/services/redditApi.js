@@ -10,6 +10,25 @@ export const redditApi = createApi({
       },
       transformResponse: (response, meta, arg) => response.data.children
     }),
+    getHomeCards: builder.query({
+      async queryFn(query, _queryApi, _extraOptions, fetchWithBQ) {
+        let collatedSubredditData = [];
+
+        for (const subreddit of query) {
+          const result = await fetchWithBQ(`${subreddit}.json`);
+          if (result.error) return { error: result.error };
+
+          collatedSubredditData = [
+            ...collatedSubredditData,
+            ...result.data.data.children
+          ];
+        }
+
+        return collatedSubredditData
+          ? { data: collatedSubredditData }
+          : { error: "Error collating subreddit data" };
+      }
+    }),
     getPost: builder.query({
       query: (query) => {
         return `${query}.json`;
@@ -32,5 +51,9 @@ export const redditApi = createApi({
   })
 });
 
-export const { useGetCardsQuery, useGetPostQuery, useGetSubredditsQuery } =
-  redditApi;
+export const {
+  useGetCardsQuery,
+  useGetHomeCardsQuery,
+  useGetPostQuery,
+  useGetSubredditsQuery
+} = redditApi;

@@ -43,10 +43,23 @@ export const cardsLoader = async ({ request }) => {
     return window.location.replace(`${basename}/fullpage/${postPath}`);
   }
 
-  const query = {
+  if (!cardsPath) {
     // On the homepage (i.e. the cardsPath is an empty string),
-    // the query for cards defaults to the "EarthPorn" subreddit
-    path: cardsPath || "r/EarthPorn/hot",
+    // query the homepage API endpoint with a curated list of
+    // nature subreddits
+    const query = [
+      "r/EarthPorn/hot",
+      "r/LandscapePhotography/hot",
+      "r/beautifultrees/hot"
+    ];
+
+    await makeApiRequest(query, "getHomeCards");
+
+    return query;
+  }
+
+  const query = {
+    path: cardsPath,
     parameters: url.search
   };
 

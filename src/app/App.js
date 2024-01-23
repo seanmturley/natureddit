@@ -12,7 +12,7 @@ import useLocalStorage from "use-local-storage";
 import MainLayout from "../layouts/mainLayout/MainLayout";
 import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
 import ErrorPage from "../components/errorPage/ErrorPage";
-import Cards from "../components/cards/Cards";
+import CardsContainer from "../components/cardsContainer/CardsContainer";
 import Post from "../components/post/Post";
 
 import { cardsLoader, postLoader } from "../services/apiLoaders";
@@ -38,18 +38,22 @@ const router = (lightTheme, setLightTheme) =>
         }
       >
         <Route errorElement={<ErrorPage />}>
-          <Route path="/" loader={cardsLoader} element={<Cards />}>
+          <Route path="/" loader={cardsLoader} element={<CardsContainer />}>
             {modalRoute}
           </Route>
           <Route element={<FiltersLayout />}>
             <Route
               path="/r/:subreddit/:sortFilter"
               loader={cardsLoader}
-              element={<Cards />}
+              element={<CardsContainer />}
             >
               {modalRoute}
             </Route>
-            <Route path="/search" element={<Cards />} loader={cardsLoader}>
+            <Route
+              path="/search"
+              element={<CardsContainer />}
+              loader={cardsLoader}
+            >
               {modalRoute}
             </Route>
           </Route>
