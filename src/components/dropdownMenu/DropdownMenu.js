@@ -2,12 +2,11 @@ import React, { useState } from "react";
 
 import ToggleSwitch from "../toggleSwitch/ToggleSwitch";
 
-import { PiListBold } from "react-icons/pi";
+import { PiListBold, PiRedditLogo } from "react-icons/pi";
 import {
   IoContrastOutline,
   IoInformationCircleOutline,
   IoLeafOutline,
-  IoLogoReddit,
   IoMoon,
   IoSunny
 } from "react-icons/io5";
@@ -72,7 +71,7 @@ function DropdownMenu({ lightTheme, setLightTheme }) {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <IoLogoReddit className="menu__list-icon" />
+                <PiRedditLogo className="menu__list-icon" />
                 Reddit official
               </a>
             </li>
