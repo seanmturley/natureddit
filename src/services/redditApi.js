@@ -11,11 +11,13 @@ export const redditApi = createApi({
       transformResponse: (response, meta, arg) => response.data.children
     }),
     getHomeCards: builder.query({
-      async queryFn(query, _queryApi, _extraOptions, fetchWithBQ) {
+      async queryFn(queries, _queryApi, _extraOptions, fetchWithBQ) {
         let collatedSubredditData = [];
 
-        for (const subreddit of query) {
-          const result = await fetchWithBQ(`${subreddit}.json`);
+        for (const query of queries) {
+          const result = await fetchWithBQ(
+            `${query.subreddit}.json?limit=${query.limit}`
+          );
           if (result.error) return { error: result.error };
 
           collatedSubredditData = [

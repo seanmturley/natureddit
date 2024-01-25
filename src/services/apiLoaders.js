@@ -47,15 +47,15 @@ export const cardsLoader = async ({ request }) => {
     // On the homepage (i.e. the cardsPath is an empty string),
     // query the homepage API endpoint with a curated list of
     // nature subreddits
-    const query = [
-      "r/EarthPorn/hot",
-      "r/LandscapePhotography/hot",
-      "r/beautifultrees/hot"
+    const queries = [
+      { subreddit: "r/beautifultrees/hot", limit: "5" },
+      { subreddit: "r/LandscapePhotography/hot", limit: "5" },
+      { subreddit: "r/EarthPorn/hot", limit: "5" }
     ];
 
-    await makeApiRequest(query, "getHomeCards");
+    await makeApiRequest(queries, "getHomeCards");
 
-    return query;
+    return queries;
   }
 
   const query = {
