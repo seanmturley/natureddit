@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import sortAndSelectByHotness from "../utils/postHotness";
+
 export const redditApi = createApi({
   reducerPath: "redditApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://www.reddit.com/" }),
@@ -11,12 +13,12 @@ export const redditApi = createApi({
       transformResponse: (response, meta, arg) => response.data.children
     }),
     getHomeCards: builder.query({
-      async queryFn(queries, _queryApi, _extraOptions, fetchWithBQ) {
+      async queryFn(query, _queryApi, _extraOptions, fetchWithBQ) {
         let collatedSubredditData = [];
 
-        for (const query of queries) {
+        for (const path of query.paths) {
           const result = await fetchWithBQ(
-            `${query.subreddit}.json?limit=${query.limit}`
+            `${path.subreddit}.json?limit=${path.limit}`
           );
           if (result.error) return { error: result.error };
 
@@ -27,7 +29,12 @@ export const redditApi = createApi({
         }
 
         return collatedSubredditData
-          ? { data: collatedSubredditData }
+          ? {
+              data: sortAndSelectByHotness(
+                collatedSubredditData,
+                query.numPostsRequired
+              )
+            }
           : { error: "Error collating subreddit data" };
       }
     }),
