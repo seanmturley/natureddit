@@ -49,10 +49,12 @@ export const cardsLoader = async ({ request }) => {
     // nature subreddits
     const query = {
       paths: [
+        { subreddit: "r/AutumnPorn/hot", limit: "10" },
         { subreddit: "r/beautifultrees/hot", limit: "10" },
         { subreddit: "r/EarthPorn/hot", limit: "10" },
         { subreddit: "r/LandscapePhotography/hot", limit: "10" },
-        { subreddit: "r/natureporn/hot", limit: "10" }
+        { subreddit: "r/natureporn/hot", limit: "10" },
+        { subreddit: "r/winterporn/hot", limit: "10" }
       ],
       numPostsRequired: 25
     };
