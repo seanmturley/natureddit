@@ -4,6 +4,7 @@
 
 const htmlDecode = (encodedString) => {
   const doc = new DOMParser().parseFromString(encodedString, "text/html");
+
   return doc.documentElement.textContent;
 };
 

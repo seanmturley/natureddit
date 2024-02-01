@@ -19,6 +19,7 @@ import { PiChats, PiRedditLogo } from "react-icons/pi";
 import "./Post.css";
 
 import PropTypes from "prop-types";
+import htmlDecode from "../../utils/htmlDecoding";
 
 function Post({ modal }) {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function Post({ modal }) {
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
   const imageUrl = getImageUrl(post);
+  const title = htmlDecode(post.title);
 
   const isModal = modal ? " post-container--modal" : "";
 
@@ -44,7 +46,7 @@ function Post({ modal }) {
               <img
                 className="post__image"
                 src={imageUrl.large}
-                alt={`${post.subreddit_name_prefixed} - ${post.title}`}
+                alt={`${post.subreddit_name_prefixed} - ${title}`}
               />
             </div>
           )}
@@ -60,7 +62,7 @@ function Post({ modal }) {
               by <span>u/{post.author}</span>{" "}
               <span className="post__age">{age}</span>
             </div>
-            <h1 className="post__title">{post.title}</h1>
+            <h1 className="post__title">{title}</h1>
             {post.selftext && (
               <div className="post__text">
                 <ReactMarkdown>{post.selftext}</ReactMarkdown>
