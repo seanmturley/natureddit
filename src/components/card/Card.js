@@ -7,6 +7,7 @@ import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
+import htmlDecode from "../../utils/htmlDecoding";
 
 import { PiChats } from "react-icons/pi";
 
@@ -21,6 +22,7 @@ function Card({ card }) {
   const age = formatAge(card.created);
   const formattedNumComments = formatNumber(card.num_comments);
   const imageUrl = getImageUrl(card);
+  const title = htmlDecode(card.title);
 
   let authorOrSubreddit;
   if (subreddit) {
@@ -49,7 +51,7 @@ function Card({ card }) {
         <img
           className="card__image"
           src={imageUrl.medium}
-          alt={`${card.subreddit_name_prefixed} - ${card.title}`}
+          alt={`${card.subreddit_name_prefixed} - ${title}`}
         />
       )}
       <section className="card__body">
@@ -62,7 +64,7 @@ function Card({ card }) {
             to={`modal${card.permalink}${search}`}
             state={{ modal: true }}
           >
-            {card.title}
+            {title}
           </Link>
         </h1>
         <div className="card__stats">

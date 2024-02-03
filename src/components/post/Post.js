@@ -13,13 +13,13 @@ import Comments from "../comments/Comments";
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
 import getImageUrl from "../../utils/imageUrlProcessing";
+import htmlDecode from "../../utils/htmlDecoding";
 
 import { PiChats, PiRedditLogo } from "react-icons/pi";
 
 import "./Post.css";
 
 import PropTypes from "prop-types";
-import htmlDecode from "../../utils/htmlDecoding";
 
 function Post({ modal }) {
   const navigate = useNavigate();
