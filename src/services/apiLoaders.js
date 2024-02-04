@@ -56,7 +56,7 @@ export const cardsLoader = async ({ request }) => {
         { subreddit: "r/natureporn/hot", limit: "10" },
         { subreddit: "r/winterporn/hot", limit: "10" }
       ],
-      numPostsRequired: 25
+      numPostsRequired: 40
     };
 
     await makeApiRequest(query, "getHomeCards");
