@@ -1,3 +1,5 @@
+import decodeHtmlEntity from "./htmlEntityDecoding";
+
 const getImageUrl = (post) => {
   // If no image
   if (!Object.hasOwn(post, "preview")) return null;
@@ -17,12 +19,6 @@ const getImageUrl = (post) => {
   };
 
   return imageUrl;
-};
-
-export const decodeHtmlEntity = (encodedString) => {
-  const textArea = document.createElement("textarea");
-  textArea.innerHTML = encodedString;
-  return textArea.value;
 };
 
 export default getImageUrl;
