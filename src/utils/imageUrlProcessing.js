@@ -1,5 +1,24 @@
 import decodeHtmlEntity from "./htmlEntityDecoding";
 
+const getMediaUrls = (post) => {
+  // This will be the default export from this file
+  // It will return URLs for supported media types
+  if (Object.hasOwn(post, "preview")) {
+    // Run getImageUrl minus the guard clause
+    // return a single image URL
+  }
+
+  if (Object.hasOwn(post, "gallery_data")) {
+    // Extract gallery image URLs
+    // Should be similar logic to existing getImageUrl
+    // return object describing media type and an
+    // array of image URLs for the gallery
+  }
+
+  // If a supported media type isn't found, do nothing
+  return null;
+};
+
 const getImageUrl = (post) => {
   // If no image
   if (!Object.hasOwn(post, "preview")) return null;
