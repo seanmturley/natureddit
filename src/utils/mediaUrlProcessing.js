@@ -1,16 +1,16 @@
 import decodeHtmlEntity from "./htmlEntityDecoding";
 
 const getMediaUrls = (post) => {
-  // This will be the default export from this file
-  // It will return URLs for supported media types
   if (Object.hasOwn(post, "preview")) {
-    // Run getImageUrl minus the guard clause
-    // return a single image URL
+    // If the post has a "normal" image
+    return getImageUrl(post);
   }
 
   if (Object.hasOwn(post, "gallery_data")) {
+    // If the post has a gallery of images
     // Extract gallery image URLs
-    // Should be similar logic to existing getImageUrl
+    // Loop through gallery image arrays
+    // For each gallery image array call getImageUrl
     // return object describing media type and an
     // array of image URLs for the gallery
   }
@@ -20,9 +20,6 @@ const getMediaUrls = (post) => {
 };
 
 const getImageUrl = (post) => {
-  // If no image
-  if (!Object.hasOwn(post, "preview")) return null;
-
   const images = post.preview.images[0].resolutions;
 
   // The index of the last image in the "resolutions" array is the highest downsampled resolution available
@@ -40,4 +37,4 @@ const getImageUrl = (post) => {
   return imageUrl;
 };
 
-export default getImageUrl;
+export default getMediaUrls;

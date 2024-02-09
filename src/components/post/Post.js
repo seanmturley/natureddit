@@ -12,7 +12,7 @@ import Comments from "../comments/Comments";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
-import getImageUrl from "../../utils/imageUrlProcessing";
+import getMediaUrls from "../../utils/mediaUrlProcessing";
 import decodeHtmlEntity from "../../utils/htmlEntityDecoding";
 
 import { PiChats, PiRedditLogo } from "react-icons/pi";
@@ -31,7 +31,7 @@ function Post({ modal }) {
 
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
-  const imageUrl = getImageUrl(post);
+  const imageUrl = getMediaUrls(post);
   const title = decodeHtmlEntity(post.title);
 
   const isModal = modal ? " post-container--modal" : "";
