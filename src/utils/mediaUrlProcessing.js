@@ -3,7 +3,7 @@ import decodeHtmlEntity from "./htmlEntityDecoding";
 const getMediaUrls = (post) => {
   if (Object.hasOwn(post, "preview")) {
     // If the post has a "normal" image
-    return getImageUrl(post);
+    return getImageUrl(post.preview.images[0].resolutions);
   }
 
   if (Object.hasOwn(post, "gallery_data")) {
@@ -19,22 +19,21 @@ const getMediaUrls = (post) => {
   return null;
 };
 
-const getImageUrl = (post) => {
-  const images = post.preview.images[0].resolutions;
+const getImageUrl = (imageArray, mediaType = null) => {
+  const urlKey = mediaType === "gallery" ? "u" : "url";
 
   // The index of the last image in the "resolutions" array is the highest downsampled resolution available
-  const maxResIndex = images.length - 1;
+  const maxResIndex = imageArray.length - 1;
 
   // The maximum available downsampled resolution image, used as a fallback if the desired size isn't provided
-  const maxRes = decodeHtmlEntity(images[maxResIndex].url);
+  const maxRes = decodeHtmlEntity(imageArray[maxResIndex][urlKey]);
 
   const imageUrl = {
-    small: maxResIndex >= 2 ? decodeHtmlEntity(images[2].url) : maxRes,
-    medium: maxResIndex >= 3 ? decodeHtmlEntity(images[3].url) : maxRes,
-    large: maxResIndex >= 4 ? decodeHtmlEntity(images[4].url) : maxRes
+    small: maxResIndex >= 2 ? decodeHtmlEntity(imageArray[2][urlKey]) : maxRes,
+    medium: maxResIndex >= 3 ? decodeHtmlEntity(imageArray[3][urlKey]) : maxRes,
+    large: maxResIndex >= 4 ? decodeHtmlEntity(imageArray[4][urlKey]) : maxRes
   };
 
   return imageUrl;
 };
-
 export default getMediaUrls;
