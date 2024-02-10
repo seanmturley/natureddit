@@ -8,9 +8,13 @@ const getMediaUrls = (post) => {
 
   if (Object.hasOwn(post, "gallery_data")) {
     // If the post has a gallery of images
-    // Extract gallery image URLs
+
     // Loop through gallery image arrays
-    // For each gallery image array call getImageUrl
+    for (const galleryItem of post.gallery_data.items) {
+      console.log(
+        getImageUrl(post.media_metadata[galleryItem.media_id].p, "gallery")
+      );
+    }
     // return object describing media type and an
     // array of image URLs for the gallery
   }
