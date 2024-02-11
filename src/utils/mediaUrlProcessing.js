@@ -9,14 +9,19 @@ const getMediaUrls = (post) => {
   if (Object.hasOwn(post, "gallery_data")) {
     // If the post has a gallery of images
 
+    const galleryImages = [];
+
     // Loop through gallery image arrays
     for (const galleryItem of post.gallery_data.items) {
-      console.log(
+      galleryImages.push(
         getImageUrl(post.media_metadata[galleryItem.media_id].p, "gallery")
       );
     }
-    // return object describing media type and an
-    // array of image URLs for the gallery
+
+    return {
+      mediaType: "gallery",
+      galleryImages
+    };
   }
 
   // If a supported media type isn't found, do nothing
