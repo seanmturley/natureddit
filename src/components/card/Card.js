@@ -21,7 +21,7 @@ function Card({ card }) {
 
   const age = formatAge(card.created);
   const formattedNumComments = formatNumber(card.num_comments);
-  const imageUrl = getMediaUrls(card);
+  const media = getMediaUrls(card);
   const title = decodeHtmlEntity(card.title);
 
   let authorOrSubreddit;
@@ -47,10 +47,10 @@ function Card({ card }) {
 
   return (
     <li className="card">
-      {imageUrl && (
+      {media.mediaType === "image" && (
         <img
           className="card__image"
-          src={imageUrl.medium}
+          src={media.image.medium}
           alt={`${card.subreddit_name_prefixed} - ${title}`}
         />
       )}

@@ -31,7 +31,7 @@ function Post({ modal }) {
 
   const age = formatAge(post.created);
   const formattedNumComments = formatNumber(post.num_comments);
-  const imageUrl = getMediaUrls(post);
+  const media = getMediaUrls(post);
   const title = decodeHtmlEntity(post.title);
 
   const isModal = modal ? " post-container--modal" : "";
@@ -41,11 +41,11 @@ function Post({ modal }) {
       {modal && <div className="overlay" onClick={() => navigate(-1)}></div>}
       <div className={`post-container${isModal}`}>
         <section className="post">
-          {imageUrl && (
+          {media.mediaType === "image" && (
             <div className="post__image-container">
               <img
                 className="post__image"
-                src={imageUrl.large}
+                src={media.image.large}
                 alt={`${post.subreddit_name_prefixed} - ${title}`}
               />
             </div>

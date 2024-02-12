@@ -3,7 +3,11 @@ import decodeHtmlEntity from "./htmlEntityDecoding";
 const getMediaUrls = (post) => {
   if (Object.hasOwn(post, "preview")) {
     // If the post has a "normal" image
-    return getImageUrl(post.preview.images[0].resolutions);
+
+    return {
+      mediaType: "image",
+      image: getImageUrl(post.preview.images[0].resolutions)
+    };
   }
 
   if (Object.hasOwn(post, "gallery_data")) {
