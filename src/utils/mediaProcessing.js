@@ -1,6 +1,6 @@
 import decodeHtmlEntity from "./htmlEntityDecoding";
 
-const getMediaUrls = (post) => {
+const getMedia = (post) => {
   if (Object.hasOwn(post, "preview")) {
     // If the post has a "normal" image
 
@@ -49,4 +49,4 @@ const getImageUrl = (imageArray, mediaType = null) => {
 
   return imageUrl;
 };
-export default getMediaUrls;
+export default getMedia;

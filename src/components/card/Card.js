@@ -6,7 +6,7 @@ import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
 
 import formatAge from "../../utils/ageFormatting";
 import formatNumber from "../../utils/numberFormatting";
-import getMediaUrls from "../../utils/mediaUrlProcessing";
+import getMedia from "../../utils/mediaProcessing";
 import decodeHtmlEntity from "../../utils/htmlEntityDecoding";
 
 import { PiChats } from "react-icons/pi";
@@ -21,7 +21,7 @@ function Card({ card }) {
 
   const age = formatAge(card.created);
   const formattedNumComments = formatNumber(card.num_comments);
-  const media = getMediaUrls(card);
+  const media = getMedia(card);
   const title = decodeHtmlEntity(card.title);
 
   let authorOrSubreddit;
