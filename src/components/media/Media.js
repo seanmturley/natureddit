@@ -4,16 +4,13 @@ import Gallery from "../gallery/Gallery";
 
 import PropTypes from "prop-types";
 
-function Media({ media }) {
+function Media({ media, context, size, subreddit, title }) {
   if (media.mediaType === "image") {
     return (
-      // Image class, size, subreddit name, and title can
-      // all be provided by useContext that wraps the Media
-      // component
       <img
-        className="context__image"
-        src={media.image.medium}
-        alt={`r/subreddit - post title`}
+        className={`${context}__image`}
+        src={media.image[size]}
+        alt={`${subreddit} - ${title}`}
       />
     );
   }

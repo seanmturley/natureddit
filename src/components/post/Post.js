@@ -6,6 +6,7 @@ import { useGetPostQuery } from "../../services/redditApi";
 
 import ReactMarkdown from "react-markdown";
 
+import Media from "../media/Media";
 import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
 import ShareButton from "../shareButton/ShareButton";
 import Comments from "../comments/Comments";
@@ -41,12 +42,14 @@ function Post({ modal }) {
       {modal && <div className="overlay" onClick={() => navigate(-1)}></div>}
       <div className={`post-container${isModal}`}>
         <section className="post">
-          {media.mediaType === "image" && (
+          {media && (
             <div className="post__image-container">
-              <img
-                className="post__image"
-                src={media.image.large}
-                alt={`${post.subreddit_name_prefixed} - ${title}`}
+              <Media
+                media={media}
+                context="post"
+                size="large"
+                subreddit={post.subreddit_name_prefixed}
+                title={title}
               />
             </div>
           )}
