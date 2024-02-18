@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link, useLocation, useParams } from "react-router-dom";
 
+import Media from "../media/Media";
 import ScoreDisplay from "../scoreDisplay/ScoreDisplay";
 
 import formatAge from "../../utils/ageFormatting";
@@ -48,10 +49,12 @@ function Card({ card }) {
   return (
     <li className="card">
       {media.mediaType === "image" && (
-        <img
-          className="card__image"
-          src={media.image.medium}
-          alt={`${card.subreddit_name_prefixed} - ${title}`}
+        <Media
+          media={media}
+          context="card"
+          size="medium"
+          subreddit={card.subreddit_name_prefixed}
+          title={title}
         />
       )}
       <section className="card__body">
