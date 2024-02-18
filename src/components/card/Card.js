@@ -48,7 +48,7 @@ function Card({ card }) {
 
   return (
     <li className="card">
-      {media.mediaType === "image" && (
+      {media && (
         <Media
           media={media}
           context="card"
