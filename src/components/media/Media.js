@@ -21,7 +21,11 @@ function Media({ media, context, size, subreddit, title }) {
 }
 
 Media.propTypes = {
-  media: PropTypes.object.isRequired
+  media: PropTypes.object.isRequired,
+  context: PropTypes.oneOf(["card", "post"]).isRequired,
+  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
+  subreddit: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default Media;
