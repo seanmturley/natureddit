@@ -2,7 +2,7 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-function Gallery({ images }) {
+function Gallery({ images, altText }) {
   return (
     <ul>
       {images.map((image) => (

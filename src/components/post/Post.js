@@ -47,7 +47,6 @@ function Post({ modal }) {
               <Media
                 media={media}
                 context="post"
-                size="large"
                 subreddit={post.subreddit_name_prefixed}
                 title={title}
               />

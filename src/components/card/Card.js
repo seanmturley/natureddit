@@ -52,7 +52,6 @@ function Card({ card }) {
         <Media
           media={media}
           context="card"
-          size="medium"
           subreddit={card.subreddit_name_prefixed}
           title={title}
         />
