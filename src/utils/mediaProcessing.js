@@ -17,9 +17,10 @@ const getMedia = (post) => {
 
     // Loop through gallery image arrays
     for (const galleryItem of post.gallery_data.items) {
-      galleryImages.push(
-        getImageUrl(post.media_metadata[galleryItem.media_id].p, "gallery")
-      );
+      galleryImages.push({
+        id: galleryItem.media_id,
+        url: getImageUrl(post.media_metadata[galleryItem.media_id].p, "gallery")
+      });
     }
 
     return {

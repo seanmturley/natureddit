@@ -6,10 +6,10 @@ function Gallery({ images, altText }) {
   return (
     <ul>
       {images.map((image) => (
-        <li>
+        <li key={image.id}>
           <img
             className="gallery__image"
-            src={image.medium}
+            src={image.url.large}
             alt={`Alt text with number in gallery e.g. "2 of 4"`}
           />
         </li>
