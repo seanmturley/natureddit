@@ -5,7 +5,7 @@ import Gallery from "../gallery/Gallery";
 import PropTypes from "prop-types";
 
 function Media({ media, context, subreddit, title }) {
-  const imageSrc = media?.image || media?.galleryImages[0];
+  const imageSrc = media?.image || media?.galleryImages[0].url;
   const altText = `${subreddit} - ${title}`;
 
   if (context === "card") {
