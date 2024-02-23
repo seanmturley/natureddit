@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 function Gallery({ images, altText }) {
   return (
     <ul>
-      {images.map((image) => (
+      {images.map((image, index) => (
         <li key={image.id}>
           <img
             className="gallery__image"
             src={image.url.large}
-            alt={`Alt text with number in gallery e.g. "2 of 4"`}
+            alt={`${altText} (${index + 1} of ${images.length})`}
           />
         </li>
       ))}
@@ -19,7 +19,8 @@ function Gallery({ images, altText }) {
 }
 
 Gallery.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.object).isRequired
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
+  altText: PropTypes.string.isRequired
 };
 
 export default Gallery;
