@@ -1,0 +1,17 @@
+.gallery {
+  list-style: none;
+  padding: unset;
+  margin: unset;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.gallery__item {
+  left: 0;
+  position: absolute;
+}
+.gallery__image {
+  max-width: 100%;
+  object-fit: contain;
+}

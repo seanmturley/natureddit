@@ -1,12 +1,14 @@
 import React from "react";
 
+import "./Gallery.css";
+
 import PropTypes from "prop-types";
 
 function Gallery({ images, altText }) {
   return (
-    <ul>
+    <ul className="gallery">
       {images.map((image, index) => (
-        <li key={image.id}>
+        <li key={image.id} className="gallery__item">
           <img
             className="gallery__image"
             src={image.url.large}
