@@ -3,15 +3,18 @@
   padding: unset;
   margin: unset;
   position: relative;
-  height: 100%;
   width: 100%;
+  height: calc(100vh - var(--nav-bar-height) - 16rem);
+  display: flex;
+  align-items: center;
 }
 
 .gallery__item {
-  left: 0;
+  left: 100%;
   position: absolute;
 }
 .gallery__image {
   max-width: 100%;
   object-fit: contain;
+  max-height: calc(100vh - var(--nav-bar-height) - 16rem);
 }
