@@ -12,6 +12,8 @@
 .gallery__item {
   left: 100%;
   position: absolute;
+  display: flex;
+  justify-content: center;
 }
 .gallery__image {
   max-width: 100%;
