@@ -43,7 +43,7 @@ function Post({ modal }) {
       <div className={`post-container${isModal}`}>
         <section className="post">
           {media && (
-            <div className="post__image-container">
+            <div className="post__media-container">
               <Media
                 media={media}
                 context="post"
