@@ -10,11 +10,19 @@
 }
 
 .gallery__item {
-  left: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
 }
+
+.gallery__item.hidden {
+  left: 100%;
+}
+
+.gallery__item.focused {
+  left: 0;
+}
+
 .gallery__image {
   max-width: 100%;
   object-fit: contain;

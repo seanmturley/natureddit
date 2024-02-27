@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Gallery.css";
 
 import PropTypes from "prop-types";
 
 function Gallery({ images, altText }) {
+  const [focusedItem, setFocusedItem] = useState(0);
+
+  const isFocused = (index) => {
+    return index === focusedItem ? "focused" : "hidden";
+  };
+
   return (
     <div className="gallery">
       <ul className="gallery__list">
         {images.map((image, index) => (
-          <li key={image.id} className="gallery__item">
+          <li key={image.id} className={`gallery__item ${isFocused(index)}`}>
             <img
               className="gallery__image"
               src={image.url.large}
