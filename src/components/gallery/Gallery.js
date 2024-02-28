@@ -11,6 +11,14 @@ function Gallery({ images, altText }) {
     return index === focusedItem ? "focused" : "hidden";
   };
 
+  const prevItem = () => {
+    setFocusedItem((index) => index - 1);
+  };
+
+  const nextItem = () => {
+    setFocusedItem((index) => index + 1);
+  };
+
   return (
     <div className="gallery">
       <ul className="gallery__list">
@@ -24,8 +32,12 @@ function Gallery({ images, altText }) {
           </li>
         ))}
       </ul>
-      <button className="gallery__previous">previous</button>
-      <button className="gallery__next">next</button>
+      <button className="gallery__previous" onClick={prevItem}>
+        previous
+      </button>
+      <button className="gallery__next" onClick={nextItem}>
+        next
+      </button>
     </div>
   );
 }
