@@ -21,6 +21,7 @@
 
 .gallery__item.focused {
   left: 0;
+  width: 100%;
 }
 
 .gallery__image {
