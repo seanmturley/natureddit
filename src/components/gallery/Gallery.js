@@ -32,10 +32,18 @@ function Gallery({ images, altText }) {
           </li>
         ))}
       </ul>
-      <button className="gallery__previous" onClick={prevItem}>
+      <button
+        className="gallery__previous"
+        onClick={prevItem}
+        disabled={focusedItem === 0}
+      >
         previous
       </button>
-      <button className="gallery__next" onClick={nextItem}>
+      <button
+        className="gallery__next"
+        onClick={nextItem}
+        disabled={focusedItem === images.length - 1}
+      >
         next
       </button>
     </div>
