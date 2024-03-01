@@ -46,6 +46,9 @@ function Gallery({ images, altText }) {
       >
         next
       </button>
+      <div className="gallery__position">{`${focusedItem + 1}/${
+        images.length
+      }`}</div>
     </div>
   );
 }
