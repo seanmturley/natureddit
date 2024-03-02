@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+
 import "./Gallery.css";
 
 import PropTypes from "prop-types";
@@ -37,14 +39,14 @@ function Gallery({ images, altText }) {
         onClick={prevItem}
         disabled={focusedItem === 0}
       >
-        previous
+        <IoChevronBack className="gallery__icon" />
       </button>
       <button
         className="gallery__next"
         onClick={nextItem}
         disabled={focusedItem === images.length - 1}
       >
-        next
+        <IoChevronForward className="gallery__icon" />
       </button>
       <div className="gallery__position">{`${focusedItem + 1}/${
         images.length

@@ -29,3 +29,33 @@
   object-fit: contain;
   max-height: calc(100vh - var(--nav-bar-height) - 16rem);
 }
+
+.gallery__previous,
+.gallery__next {
+  padding: 0;
+  border: none;
+  border-radius: 2.5rem;
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--back-transparent);
+  color: var(--front);
+}
+
+.gallery__previous:hover,
+.gallery__next:hover {
+  cursor: pointer;
+}
+
+.gallery__icon {
+  color: var(--front);
+  font-size: 3rem;
+  margin-top: 0.1rem;
+}
+
+.gallery__previous .gallery__icon {
+  margin-right: 0.1rem;
+}
+
+.gallery__next .gallery__icon {
+  margin-left: 0.1em;
+}
