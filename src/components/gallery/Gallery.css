@@ -1,3 +1,8 @@
+.gallery {
+  position: relative;
+  --button-diameter: 5rem;
+}
+
 .gallery__list {
   list-style: none;
   padding: unset;
@@ -34,11 +39,21 @@
 .gallery__next {
   padding: 0;
   border: none;
-  border-radius: 2.5rem;
-  width: 5rem;
-  height: 5rem;
+  border-radius: calc(var(--button-diameter) / 2);
+  width: var(--button-diameter);
+  height: var(--button-diameter);
   background-color: var(--back-transparent);
   color: var(--front);
+  position: absolute;
+  top: calc(50% - (var(--button-diameter) / 2));
+}
+
+.gallery__previous {
+  left: calc(var(--button-diameter) / 4);
+}
+
+.gallery__next {
+  right: calc(var(--button-diameter) / 4);
 }
 
 .gallery__previous:hover,
