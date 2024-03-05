@@ -54,6 +54,11 @@
   top: calc(50% - (var(--button-diameter) / 2));
 }
 
+[data-light-theme="true"] .gallery__previous,
+[data-light-theme="true"] .gallery__next {
+  color: var(--back);
+}
+
 .gallery__previous {
   left: calc(var(--button-diameter) / 4);
 }
@@ -67,8 +72,18 @@
   cursor: pointer;
 }
 
+.gallery__previous:disabled,
+.gallery__next:disabled {
+  cursor: default;
+  color: var(--mid);
+}
+
+[data-light-theme="true"] .gallery__previous:disabled,
+[data-light-theme="true"] .gallery__next:disabled {
+  color: var(--front-weak);
+}
+
 .gallery__icon {
-  color: var(--front);
   font-size: 3rem;
   margin-top: 0.1rem;
 }
