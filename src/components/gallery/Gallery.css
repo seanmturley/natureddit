@@ -36,7 +36,8 @@
 }
 
 .gallery:hover .gallery__previous,
-.gallery:hover .gallery__next {
+.gallery:hover .gallery__next,
+.gallery:hover .gallery__position {
   display: block;
 }
 
@@ -94,4 +95,17 @@
 
 .gallery__next .gallery__icon {
   margin-left: 0.1em;
+}
+
+.gallery__position {
+  display: none;
+  font: var(--detail-font);
+  height: 2em;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  background-color: var(--back-transparent);
+  color: var(--front);
+  position: absolute;
+  /* top: auto;
+  left: auto; */
 }
