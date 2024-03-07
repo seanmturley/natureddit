@@ -100,12 +100,13 @@
 .gallery__position {
   display: none;
   font: var(--detail-font);
-  height: 2em;
-  padding: 0.5em 1em;
-  border-radius: 1em;
-  background-color: var(--back-transparent);
   color: var(--front);
+  background-color: var(--back-transparent);
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  width: 4em;
   position: absolute;
-  /* top: auto;
-  left: auto; */
+  bottom: 1em;
+  left: calc(50% - (2em));
 }
