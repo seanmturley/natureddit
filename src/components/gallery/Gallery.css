@@ -35,15 +35,8 @@
   max-height: calc(100vh - var(--nav-bar-height) - 16rem);
 }
 
-.gallery:hover .gallery__previous,
-.gallery:hover .gallery__next,
-.gallery:hover .gallery__position {
-  display: block;
-}
-
 .gallery__previous,
 .gallery__next {
-  display: none;
   padding: 0;
   border: none;
   border-radius: calc(var(--button-diameter) / 2);
@@ -98,7 +91,6 @@
 }
 
 .gallery__position {
-  display: none;
   font: var(--detail-font);
   color: var(--front);
   background-color: var(--back-transparent);
