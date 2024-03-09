@@ -1,6 +1,6 @@
 .gallery {
   position: relative;
-  --button-diameter: 5rem;
+  --button-diameter: 4rem;
 }
 
 .gallery__list {
@@ -78,16 +78,16 @@
 }
 
 .gallery__icon {
-  font-size: 3rem;
-  margin-top: 0.1rem;
+  font-size: 2.5rem;
+  margin-top: 0.25rem;
 }
 
 .gallery__previous .gallery__icon {
-  margin-right: 0.1rem;
+  margin-right: 0.15rem;
 }
 
 .gallery__next .gallery__icon {
-  margin-left: 0.1em;
+  margin-left: 0.15em;
 }
 
 .gallery__position {
