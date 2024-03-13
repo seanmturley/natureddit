@@ -32,7 +32,7 @@
 
 .menu__list-item {
   display: block;
-  padding: 1.7rem;
+  padding: var(--body-font__size);
 }
 
 .menu__link {
