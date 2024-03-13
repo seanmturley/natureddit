@@ -3,7 +3,7 @@
   --toggle-switch__on-color: var(--accent);
   --toggle-switch__off-color: var(--back);
   /* --toggle-switch__disabled-color: var(--disabled-color); */
-  --toggle-switch__text: var(--title-font);
+  --toggle-switch__text: var(--body-font);
   --toggle-switch__selected-text: var(--title-font);
   --toggle-switch__button-height: 3em;
   --toggle-switch__border-width: var(--border-width);
