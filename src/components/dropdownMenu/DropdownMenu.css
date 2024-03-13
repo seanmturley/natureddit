@@ -32,11 +32,11 @@
 
 .menu__list-item {
   display: block;
-  padding: 2.5rem 2rem;
+  padding: 1.7rem;
 }
 
 .menu__link {
-  font: var(--title-font);
+  font: var(--body-font);
   color: var(--front);
   text-decoration: none;
   display: flex;
