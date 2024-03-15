@@ -25,6 +25,7 @@
 .menu__list {
   margin: 0;
   padding: 0;
+  width: 15em;
   display: flex;
   flex-direction: column;
   background-color: var(--mid-weak);
