@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/natureddit/static/css/main.e750c1b2.css",
+    "main.css": "/natureddit/static/css/main.fa6836a4.css",
     "main.js": "/natureddit/static/js/main.8f32c2b3.js",
     "static/js/496.f0b984a3.chunk.js": "/natureddit/static/js/496.f0b984a3.chunk.js",
     "index.html": "/natureddit/index.html",
     "static/media/defaultSubredditIcon.svg": "/natureddit/static/media/defaultSubredditIcon.8fbf4508d6cac8cd2feef2a9090bda77.svg",
-    "main.e750c1b2.css.map": "/natureddit/static/css/main.e750c1b2.css.map",
+    "main.fa6836a4.css.map": "/natureddit/static/css/main.fa6836a4.css.map",
     "main.8f32c2b3.js.map": "/natureddit/static/js/main.8f32c2b3.js.map",
     "496.f0b984a3.chunk.js.map": "/natureddit/static/js/496.f0b984a3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e750c1b2.css",
+    "static/css/main.fa6836a4.css",
     "static/js/main.8f32c2b3.js"
   ]
 }
