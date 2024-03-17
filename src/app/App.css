@@ -17,19 +17,19 @@
   --border-width: 0.1rem;
   --border: var(--border-width) solid black;
 
-  --title-font__size: 2.4rem;
+  --title-font__size: 2.2rem;
   --title-font__line-height: 1.15;
   --title-font: 400 var(--title-font__size) / var(--title-font__line-height)
       "Work Sans",
     sans-serif;
 
-  --body-font__size: 1.7rem;
+  --body-font__size: 1.6rem;
   --body-font__line-height: 1.5;
   --body-font: 400 var(--body-font__size) / var(--body-font__line-height)
       "Open Sans",
     sans-serif;
 
-  --detail-font__size: 1.4rem;
+  --detail-font__size: 1.3rem;
   --detail-font__line-height: 1.15;
   --detail-font: 400 var(--detail-font__size) / var(--detail-font__line-height)
       "Work Sans",
