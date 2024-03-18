@@ -8,6 +8,8 @@ import { useGetSubredditsQuery } from "../../services/redditApi";
 
 import SearchDropdownOption from "../searchDropdownOption/SearchDropdownOption";
 
+import { PiMagnifyingGlass } from "react-icons/pi";
+
 import "./SearchDropdown.css";
 
 import PropTypes from "prop-types";
@@ -72,7 +74,7 @@ function SearchDropdown({ handleInputSubmit, searchInput, trimmedSearchTerm }) {
             onMouseDown={(event) => event.preventDefault()}
             onClick={handleInputSubmit}
           >
-            <div className="search-option__icon"></div>
+            <PiMagnifyingGlass className="search-option__icon" />
             Search posts for "{trimmedSearchTerm}"
           </div>
         </li>

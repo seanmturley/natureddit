@@ -35,9 +35,7 @@
 }
 
 .search-option__icon {
-  background-color: var(--front-weak);
   width: 2em;
   height: 2em;
   margin-right: 0.5em;
-  border-radius: 1em;
 }
