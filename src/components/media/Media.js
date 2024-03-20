@@ -19,7 +19,11 @@ function Media({ media, context, subreddit, title }) {
       return <Gallery images={media.galleryImages} altText={altText} />;
     }
 
-    return <img className={"post__image"} src={imageSrc.large} alt={altText} />;
+    return (
+      <div className="post__image-container">
+        <img className={"post__image"} src={imageSrc.large} alt={altText} />
+      </div>
+    );
   }
 }
 

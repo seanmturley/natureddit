@@ -43,14 +43,12 @@ function Post({ modal }) {
       <div className={`post-container${isModal}`}>
         <section className="post">
           {media && (
-            <div className="post__media-container">
-              <Media
-                media={media}
-                context="post"
-                subreddit={post.subreddit_name_prefixed}
-                title={title}
-              />
-            </div>
+            <Media
+              media={media}
+              context="post"
+              subreddit={post.subreddit_name_prefixed}
+              title={title}
+            />
           )}
           <div className="post__body">
             <div className="post__details">
