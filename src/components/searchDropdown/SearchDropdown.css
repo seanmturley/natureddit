@@ -1,8 +1,11 @@
 .search-dropdown {
+  font: var(--detail-font);
+  color: var(--front);
+  background-color: var(--mid-weak);
   position: absolute;
   width: 100%;
-  background-color: var(--mid-weak);
   padding: 0 1rem;
+  border-radius: 0 0 1em 1em;
 }
 
 .search-dropdown__options {
@@ -12,8 +15,6 @@
 
 .option {
   display: block;
-  font: var(--detail-font);
-  color: var(--front);
 }
 
 .option--focused {
