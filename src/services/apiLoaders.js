@@ -50,17 +50,17 @@ export const cardsLoader = async ({ request }) => {
     const query = {
       paths: [
         { subreddit: "r/AutumnPorn/hot", limit: "10" },
-        { subreddit: "r/beautifultrees/hot", limit: "10" },
-        { subreddit: "r/desertporn/hot", limit: "10" },
-        { subreddit: "r/EarthPorn/hot", limit: "10" },
-        { subreddit: "r/lakeporn/hot", limit: "10" },
+        { subreddit: "r/beautifultrees/hot", limit: "5" },
+        { subreddit: "r/desertporn/hot", limit: "5" },
+        { subreddit: "r/EarthPorn/hot", limit: "20" },
+        { subreddit: "r/lakeporn/hot", limit: "5" },
         { subreddit: "r/LandscapePhotography/hot", limit: "10" },
         { subreddit: "r/natureporn/hot", limit: "10" },
-        { subreddit: "r/seaporn/hot", limit: "10" },
-        { subreddit: "r/waterporn/hot", limit: "10" },
+        { subreddit: "r/seaporn/hot", limit: "5" },
+        { subreddit: "r/waterporn/hot", limit: "5" },
         { subreddit: "r/winterporn/hot", limit: "10" }
       ],
-      numPostsRequired: 40
+      numPostsRequired: 45
     };
 
     await makeApiRequest(query, "getHomeCards");
