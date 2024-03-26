@@ -62,12 +62,12 @@ function ToggleSwitch({
 }
 
 ToggleSwitch.propTypes = {
-  icon: PropTypes.elementType,
+  icon: PropTypes.element,
   heading: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   optionLabels: PropTypes.objectOf(PropTypes.string).isRequired,
   showLabels: PropTypes.bool.isRequired,
-  optionIcons: PropTypes.elementType,
+  optionIcons: PropTypes.objectOf(PropTypes.element),
   disabled: PropTypes.bool.isRequired,
   state: PropTypes.bool.isRequired,
   setState: PropTypes.func.isRequired
