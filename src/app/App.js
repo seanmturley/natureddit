@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   createBrowserRouter,
@@ -70,12 +70,29 @@ const router = (lightTheme, setLightTheme) =>
     }
   );
 
-function App() {
+function App({ router }) {
   const [lightTheme, setLightTheme] = useLocalStorage("lightTheme", false);
+  const [showSplashScreen, setShowSplashScreen] = useState(true);
+
+  useEffect(() => {
+    const splashScreenInterval = setInterval(() => {
+      const navState = router.state.navigation.state;
+      if (navState === "idle") {
+        setShowSplashScreen(false);
+        clearInterval(splashScreenInterval);
+      }
+    }, 1000);
+
+    return () => clearInterval(splashScreenInterval);
+  }, []);
 
   return (
     <div className="app" data-light-theme={lightTheme}>
-      <RouterProvider router={router(lightTheme, setLightTheme)} />
+      {showSplashScreen ? (
+        <h1>Loading...</h1>
+      ) : (
+        <RouterProvider router={router(lightTheme, setLightTheme)} />
+      )}
     </div>
   );
 }
