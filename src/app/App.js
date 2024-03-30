@@ -12,8 +12,8 @@ function App({ router }) {
 
   useEffect(() => {
     const splashScreenInterval = setInterval(() => {
-      console.log(router);
-      const navState = router.state.navigation.state;
+      const navState = router().state.navigation.state;
+
       if (navState === "idle") {
         setShowSplashScreen(false);
         clearInterval(splashScreenInterval);
@@ -21,7 +21,7 @@ function App({ router }) {
     }, 1000);
 
     return () => clearInterval(splashScreenInterval);
-  }, []);
+  }, [router]);
 
   return (
     <div className="app" data-light-theme={lightTheme}>
