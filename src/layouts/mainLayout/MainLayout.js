@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Outlet, useNavigation } from "react-router-dom";
 
@@ -11,8 +11,12 @@ import "./MainLayout.css";
 
 import PropTypes from "prop-types";
 
-function MainLayout({ lightTheme, setLightTheme }) {
+function MainLayout({ lightTheme, setLightTheme, setLoaded }) {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    setLoaded(true);
+  }, [setLoaded]);
 
   return (
     <>
@@ -29,9 +33,10 @@ function MainLayout({ lightTheme, setLightTheme }) {
   );
 }
 
-DropdownMenu.propTypes = {
+MainLayout.propTypes = {
   lightTheme: PropTypes.bool.isRequired,
-  setLightTheme: PropTypes.func.isRequired
+  setLightTheme: PropTypes.func.isRequired,
+  setLoaded: PropTypes.func.isRequired
 };
 
 export default MainLayout;

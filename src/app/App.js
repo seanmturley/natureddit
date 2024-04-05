@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   createBrowserRouter,
@@ -29,12 +29,16 @@ const modalRoute = (
   />
 );
 
-const router = (lightTheme, setLightTheme) =>
+const router = (lightTheme, setLightTheme, setLoaded) =>
   createBrowserRouter(
     createRoutesFromElements(
       <Route
         element={
-          <MainLayout lightTheme={lightTheme} setLightTheme={setLightTheme} />
+          <MainLayout
+            lightTheme={lightTheme}
+            setLightTheme={setLightTheme}
+            setLoaded={setLoaded}
+          />
         }
       >
         <Route errorElement={<ErrorPage />}>
@@ -72,10 +76,12 @@ const router = (lightTheme, setLightTheme) =>
 
 function App() {
   const [lightTheme, setLightTheme] = useLocalStorage("lightTheme", false);
+  const [pageLoaded, setLoaded] = useState(false);
 
   return (
     <div className="app" data-light-theme={lightTheme}>
-      <RouterProvider router={router(lightTheme, setLightTheme)} />
+      {!pageLoaded && <h1>Loading...</h1>}
+      <RouterProvider router={router(lightTheme, setLightTheme, setLoaded)} />
     </div>
   );
 }
