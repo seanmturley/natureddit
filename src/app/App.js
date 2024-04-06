@@ -14,6 +14,7 @@ import FiltersLayout from "../layouts/filtersLayout/FiltersLayout";
 import ErrorPage from "../components/errorPage/ErrorPage";
 import CardsContainer from "../components/cardsContainer/CardsContainer";
 import Post from "../components/post/Post";
+import LoadingSplash from "../components/loadingSplash/LoadingSplash";
 
 import { cardsLoader, postLoader } from "../services/apiLoaders";
 
@@ -80,7 +81,7 @@ function App() {
 
   return (
     <div className="app" data-light-theme={lightTheme}>
-      {!pageLoaded && <h1>Loading...</h1>}
+      {!pageLoaded && <LoadingSplash />}
       <RouterProvider router={router(lightTheme, setLightTheme, setLoaded)} />
     </div>
   );
