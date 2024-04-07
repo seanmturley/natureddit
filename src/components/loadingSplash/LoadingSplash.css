@@ -1,7 +1,6 @@
 .loading-splash {
   position: absolute;
-  top: var(--nav-bar-height);
-  height: calc(100% - var(--nav-bar-height));
+  height: 100%;
   width: 100%;
   overflow: auto;
   z-index: 1;

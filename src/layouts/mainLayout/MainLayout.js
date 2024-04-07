@@ -25,8 +25,8 @@ function MainLayout({ lightTheme, setLightTheme, setLoaded }) {
         <SearchBar />
         <DropdownMenu lightTheme={lightTheme} setLightTheme={setLightTheme} />
       </header>
-      {navigation.state === "loading" && <LoadingOverlay />}
       <main className="main">
+        {navigation.state === "loading" && <LoadingOverlay />}
         <Outlet />
       </main>
     </>
