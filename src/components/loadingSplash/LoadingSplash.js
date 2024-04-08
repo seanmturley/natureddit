@@ -1,11 +1,14 @@
 import React from "react";
 
+import LeafLogo from "../../assets/LeafLogo";
+
 import "./LoadingSplash.css";
 
 function LoadingSplash() {
   return (
     <div className="loading-splash">
-      <h1 className="loading-splash__text">Loading...</h1>
+      <div className="loader"></div>
+      <LeafLogo />
     </div>
   );
 }
