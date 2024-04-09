@@ -47,12 +47,17 @@ To be added soon.
 
 A read-only client for Reddit with:
 
-- A home page featuring nature photography
+- A home page featuring the "hottest" nature photography posts from a curated list of subreddits
 - A design that showcases images
+- Modal and fullpage views of individual posts including the ability to:
+  - Share direct links to posts and to individual comments (and their replies)
+  - View deeply nested comments
 - A search function providing access to Reddit's:
-  - Subreddits
+  - Subreddits (via a dropdown)
   - Individual posts
-- A toggle for dark mode
+- Filters for "hot", "new", "top", and several time periods on search and subreddit pages
+- Animated loading splashes for initial page load and navigation within the app
+- A toggle for dark/light mode
 
 ## Future work
 
