@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.loading-overlay--nav {
+  background-color: var(--back-transparent);
+}
+
 .loader {
   position: absolute;
   box-sizing: content-box;
@@ -19,6 +23,11 @@
   width: 108px;
   height: 108px;
   animation: spinner 3s ease infinite;
+}
+
+[data-light-theme="true"] .loading-overlay--nav .loader {
+  border-top-color: var(--mid-weak);
+  border-bottom-color: var(--mid-weak);
 }
 
 @keyframes spinner {

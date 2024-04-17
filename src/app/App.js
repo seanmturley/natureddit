@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="app" data-light-theme={lightTheme}>
-      {!pageLoaded && <LoadingOverlay />}
+      {!pageLoaded && <LoadingOverlay loadingType="load" />}
       <RouterProvider router={router(lightTheme, setLightTheme, setLoaded)} />
     </div>
   );
