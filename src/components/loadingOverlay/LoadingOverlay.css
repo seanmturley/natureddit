@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--back-transparent);
 }
 
 .loader {
@@ -15,8 +14,8 @@
   box-sizing: content-box;
   border: 4px solid transparent;
   border-radius: 50%;
-  border-top: 4px solid white;
-  border-bottom: 4px solid white;
+  border-top: 4px solid var(--front-weak);
+  border-bottom: 4px solid var(--front-weak);
   width: 108px;
   height: 108px;
   animation: spinner 3s ease infinite;
