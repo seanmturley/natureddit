@@ -34,7 +34,7 @@ export const cardsLoader = async ({ request }) => {
     pathname.includes("/modal/") &&
     pathname.includes("/comments/")
   ) {
-    // If the modal state isn't true, redirect to the modal view to
+    // If the modal state isn't true, redirect from the modal view to
     // the fullpage version of the post
 
     // The redirect uses window.location.replace because React
